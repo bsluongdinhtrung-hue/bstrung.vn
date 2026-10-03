@@ -3,37 +3,52 @@
 > **Chủ dự án:** BSCKI. Lương Đình Trung  
 > **Định vị:** Cổng thông tin y khoa cá nhân, sổ tay thực hành lâm sàng và tư vấn sức khỏe phòng khám gia đình.  
 > **Phong cách nhận diện (Design Signature):** Đồng bộ chuẩn **Deep Medical Teal** của hệ sinh thái phần mềm BS. Trung (`#1F5C55`, `#16443F`, `#E3EFEC`, `#F7F8F6`, `#12211F`), typography chuẩn y khoa, bố cục Bento tối giản, ngôn ngữ đối thoại tự nhiên, ấm áp ("người" hơn), không lộ thuật ngữ kỹ thuật backend.  
-> **Công nghệ:** Next.js 15 (App Router), TypeScript, Tailwind CSS, Lucide React, triển khai tự động CI/CD trên GitHub & Vercel.
+> **Công nghệ & Cơ sở dữ liệu:** Next.js 15 (App Router), TypeScript, Tailwind CSS, Lucide React, **Supabase PostgreSQL** (`bstrung_articles`), GitHub & Vercel.
 
 ---
 
-## I. Cập Nhật Danh Mục 5 Chuyên Mục Trọng Tâm (Đã Bỏ Bài #3 và #7)
+## I. Danh Mục 5 Chuyên Mục Trọng Tâm (Đã Lược Bỏ Bài 3 & 7)
 
-Theo chỉ đạo của BS. Trung, đã lược bỏ hoàn toàn 2 công cụ phục vụ nội bộ bệnh viện (Quản lý HbA1c và Báo cáo KBTYC). Toàn bộ website tập trung 100% vào **5 chuyên mục chăm sóc sức khỏe & thực hành lâm sàng**:
-
-| STT | Tên Chuyên Mục | Định Vị & Ngôn Ngữ Tiếp Cận | Hành Động (CTA) | Liên Kết Trợ Lý Tư Vấn |
-|:---:|:---|:---|:---|:---|
-| **1** | 🌟 **Sổ Tay Dinh Dưỡng & Thực Đơn** *(Top 1)* | Hướng dẫn chế độ ăn khoa học, gợi ý thực đơn 7 ngày cá nhân hóa theo từng bệnh lý (ĐTĐ, Gout, Tim mạch, Thai kỳ...) | *Bấm vào để nhận tư vấn thực đơn riêng* | `https://notebooklm.google.com/notebook/45e0dc30-6972-46ce-b55d-88a02d013776` |
-| **2** | 🩺 **Sổ Tay Nội Khoa Lâm Sàng** *(Top 2)* | Góc tra cứu phác đồ và tài liệu chuyên sâu dành cho đồng nghiệp và người bệnh cần tìm hiểu kỹ về bệnh lý mạn tính | *Tra cứu phác đồ bệnh học* | 6 module chuyên khoa (Tổng quát, XN, Thang điểm, Dược, Dinh dưỡng, Đấu thầu) |
-| **3** | 💊 **Hướng Dẫn Dùng Thuốc An Toàn** | Tra cứu hướng dẫn dùng thuốc, thời điểm uống trước/sau ăn, cảnh báo tương tác thuốc và lưu ý chức năng thận | *Kiểm tra đơn thuốc an toàn* | `https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618` |
-| **4** | 🧮 **Tính Nhanh Chỉ Số & Thang Điểm Y Học** | Bộ công cụ tính nhanh BMI, mức lọc cầu thận eGFR trực tiếp trên trang + tra cứu thang điểm tiên lượng lâm sàng | *Tính chỉ số sức khỏe ngay* | `https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee` |
-| **5** | 👶 **Chăm Sóc & Bệnh Lý Trẻ Em** | Sổ tay theo dõi sốt, ho, tiêu chảy, tính liều hạ sốt chuẩn theo cân nặng (kg) và phát hiện sớm dấu hiệu nguy hiểm | *Nhận hướng dẫn chăm sóc bé* | `https://notebooklm.google.com/notebook/daa19f87-43df-43d6-8c9d-6e541691a4cb` |
+Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe thiết thực:
+1. 🌟 **Sổ Tay Dinh Dưỡng & Thực Đơn** (Top 1)
+2. 🩺 **Sổ Tay Lâm Sàng Nội Khoa** (Top 2)
+3. 💊 **Hướng Dẫn Dùng Thuốc An Toàn & Tránh Tương Tác**
+4. 🧮 **Tính Nhanh Chỉ Số Thể Trạng (BMI, ClCr) & Thang Điểm Y Học**
+5. 👶 **Sổ Tay Chăm Sóc & Điều Trị Bệnh Cho Bé**
 
 ---
 
-## II. Hệ Thống Màu Sắc & Ngôn Ngữ Nhận Diện (Medical Deep Teal)
+## II. Kiến Trúc Cơ Sở Dữ Liệu Supabase (Độc Lập & Chống Trùng Lặp)
 
-Kế thừa trực tiếp từ dự án `my-medical-app` của BS. Trung:
-- **Primary Deep Teal:** `#1F5C55` (Màu xanh cổ vịt y tế sang trọng, tin cậy, dịu mắt)
-- **Primary Hover & Deep:** `#16443F`
-- **Primary Tint / Soft Background:** `#E3EFEC` (Nền thẻ nhẹ nhàng, êm dịu)
-- **Neutral Background:** `#F7F8F6` (Trắng ngà y tế ấm áp, không chói lóa như trắng tinh khiết)
-- **Foreground Text:** `#12211F` (Màu than trầm đậm, độ tương phản cao, chuẩn công thái học thị giác)
-- **Borders & Dividers:** `#DDE3E0`
-- **Zalo Hotline:** `0559 148 032` (`https://zalo.me/0559148032`)
+### 1. Nguyên tắc cô lập dữ liệu (Data Isolation Principle)
+- Dự án Supabase (`fkjmiatwdcgxdkqnwhgn`) hiện chứa các bảng của hệ thống Giải phẫu bệnh (`iso_*`).
+- Tuyệt đối **không can thiệp, không sửa đổi hay xóa** bất kỳ bảng `iso_*` nào.
+- Toàn bộ dữ liệu của website `bstrung.vn` sử dụng bảng riêng biệt có tiền tố `bstrung_`:
+  - **`public.bstrung_articles`**: Lưu trữ toàn bộ 5 bài viết / sổ tay y khoa.
+
+### 2. Cấu trúc bảng `bstrung_articles`:
+- `id`: SERIAL PRIMARY KEY
+- `slug`: TEXT UNIQUE (Định danh duy nhất: `so-tay-dinh-duong`, `so-tay-noi-khoa`...)
+- `title`: TEXT (Tiêu đề bài viết)
+- `subtitle`: TEXT (Mô tả ngắn gọn chuyên môn)
+- `excerpt`: TEXT (Đoạn tóm tắt gần gũi với người bệnh)
+- `content`: TEXT (Nội dung chi tiết & hướng dẫn lâm sàng)
+- `category`: TEXT (Chuyên khoa: Dinh dưỡng, Nội khoa, Dược lý, Đo lường, Nhi khoa)
+- `priority_order`: INTEGER (Thứ tự ưu tiên 1 - 5)
+- `external_link`: TEXT (Đường link kết nối tới trợ lý tư vấn)
+- `image_url`: TEXT (Đường dẫn ảnh minh họa chuẩn)
+- `badges`: TEXT[] (Nhãn phân loại)
+- `is_active`: BOOLEAN (Trạng thái hiển thị công khai)
+
+### 3. File khởi tạo & Script hỗ trợ:
+- Schema SQL: [`supabase-bstrung-schema.sql`](file:///c:/Users/hi/Desktop/MyApp/Linh%20tinh/bstrung.vn/supabase-bstrung-schema.sql)
+- Script đồng bộ tự động: [`scripts/seed-supabase.js`](file:///c:/Users/hi/Desktop/MyApp/Linh%20tinh/bstrung.vn/scripts/seed-supabase.js)
+- Client kết nối: [`lib/supabase.ts`](file:///c:/Users/hi/Desktop/MyApp/Linh%20tinh/bstrung.vn/lib/supabase.ts)
 
 ---
 
-## III. Chuẩn Hóa Văn Phong & Trải Nghiệm Người Dùng (Tone of Voice)
-- **Tuyệt đối không nhắc:** *"Google NotebookLM"*, *"AI cần suy nghĩ 15-20s"*, *"Khung nhúng HTML"*, *"Bệnh viện Đức Giang"*.
-- **Văn phong chuẩn mực:** Ấm áp, gần gũi như bác sĩ gia đình đang lắng nghe và giải thích cho bệnh nhân; đồng thời giữ vững độ khúc chiết, chuẩn mực y khoa cho đồng nghiệp tra cứu.
+## III. Kênh Liên Hệ & Nhận Diện
+- Hotline / Zalo chính thức: **`0559 148 032`** (`https://zalo.me/0559148032`)
+- Nút Zalo nổi tròn (Floating Zalo) hiển thị toàn trang.
+- Email: `bsluongdinhtrung@gmail.com`
+- Domain Production Vercel: `https://bstrung-vn.vercel.app`
