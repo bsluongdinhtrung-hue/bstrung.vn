@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'BSCKI. Lương Đình Trung | Cổng Thông Tin Y Khoa & Sổ Tay Lâm Sàng',
-  description: 'Trang thông tin y khoa, sổ tay thực hành lâm sàng, dinh dưỡng, quản lý HbA1c và công cụ hỗ trợ chẩn đoán điều trị của BSCKI. Lương Đình Trung.',
+  title: 'BSCKI. Lương Đình Trung | Cổng Thông Tin Sức Khỏe & Sổ Tay Lâm Sàng',
+  description: 'Trang thông tin y khoa, sổ tay dinh dưỡng cá nhân hóa, thực đơn sức khỏe, hướng dẫn dùng thuốc an toàn và chăm sóc sức khỏe gia đình của BSCKI. Lương Đình Trung.',
   icons: {
     icon: '/images/cropped-logo-moi-1.png',
   },
@@ -24,7 +24,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
+      <body className="min-h-screen bg-[#F7F8F6] text-[#12211F] flex flex-col font-sans">
         {children}
       </body>
     </html>

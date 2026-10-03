@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Stethoscope, ExternalLink, ShieldCheck, Mail, Sparkles, BookOpen, AlertCircle } from 'lucide-react';
+import { Stethoscope, ExternalLink, Mail, ArrowRight, BookOpen } from 'lucide-react';
 
 interface MedicineModule {
   id: string;
@@ -73,45 +73,32 @@ const MODULES: MedicineModule[] = [
 
 export default function SectionInternalMedicine() {
   return (
-    <section id="noi-khoa" className="py-16 bg-slate-50/70 border-b border-slate-200/70 scroll-mt-20">
+    <section id="noi-khoa" className="py-16 bg-[#F7F8F6] border-b border-[#DDE3E0] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-slate-200 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#DDE3E0] gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 border border-sky-200 text-sky-800 text-xs font-bold mb-3">
-              <Stethoscope className="w-3.5 h-3.5 text-sky-600" />
-              <span>Chuyên Mục Trọng Tâm Số 2</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E3EFEC] border border-[#B8D5CE] text-[#1F5C55] text-xs font-bold mb-3">
+              <Stethoscope className="w-3.5 h-3.5 text-[#1F5C55]" />
+              <span>Chuyên Mục Trọng Tâm Số 2 • Thực Hành Lâm Sàng</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
-              Sổ Tay Nội Khoa (Hỗ Trợ Thực Hành Lâm Sàng)
+            <h2 className="text-2xl sm:text-3xl font-black text-[#12211F] tracking-tight">
+              Sổ Tay Nội Khoa Lâm Sàng
             </h2>
-            <p className="text-slate-500 text-sm sm:text-base mt-1 max-w-3xl">
-              Hệ thống 6 phân hệ chuyên môn số hóa giúp bác sĩ và nhân viên y tế tra cứu phác đồ, 
-              chỉ số xét nghiệm, thang điểm và tương tác dược lý tức thì.
+            <p className="text-[#5C6B68] text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
+              Hệ thống tra cứu chuyên môn dành cho đồng nghiệp y khoa và người bệnh muốn tìm hiểu sâu về phác đồ 
+              chẩn đoán, ý nghĩa các chỉ số xét nghiệm và quản lý các bệnh mạn tính phức tạp.
             </p>
           </div>
 
           <a
-            href="mailto:bsluongdinhtrung@gmail.com?subject=Yêu%20cầu%20kích%20hoạt%20Sổ%20tay%20Nội%20khoa"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs border border-slate-300 shadow-2xs transition-all shrink-0"
+            href="mailto:bsluongdinhtrung@gmail.com?subject=Trao%20đổi%20chuyên%20môn%20Sổ%20tay%20Nội%20khoa"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-[#E3EFEC]/60 text-[#12211F] font-bold text-xs border border-[#DDE3E0] shadow-2xs transition-all shrink-0"
           >
-            <Mail className="w-4 h-4 text-sky-600" />
-            <span>Liên hệ phân quyền truy cập</span>
+            <Mail className="w-4 h-4 text-[#1F5C55]" />
+            <span>Liên hệ trao đổi chuyên môn</span>
           </a>
-        </div>
-
-        {/* Clinical Note Callout */}
-        <div className="mb-8 p-4 rounded-xl bg-blue-50 border border-blue-200/80 flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-          <div className="text-xs sm:text-sm text-blue-900 leading-relaxed">
-            <span className="font-bold">Hướng dẫn sử dụng hiệu quả:</span>
-            <ul className="list-disc list-inside mt-1 space-y-0.5 text-blue-800">
-              <li>Nếu cần tra cứu chức năng riêng lẻ, hãy chọn từng chuyên khoa bên dưới (AI phản hồi trong 10-20s).</li>
-              <li>Nếu cần hội chẩn cho bệnh lý phức tạp hoặc đa bệnh lý, chọn <strong>&ldquo;Sổ Tay Nội Khoa Toàn Diện&rdquo;</strong> để AI tổng hợp liên chuyên khoa.</li>
-              <li>Phân hệ <strong>Dinh dưỡng</strong> hiện được mở miễn phí; các phân hệ còn lại dành riêng cho đội ngũ lâm sàng nội bộ.</li>
-            </ul>
-          </div>
         </div>
 
         {/* 6 Bento Grid Cards */}
@@ -119,23 +106,23 @@ export default function SectionInternalMedicine() {
           {MODULES.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-lg hover:border-sky-300 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-2xl border border-[#DDE3E0] overflow-hidden shadow-xs hover:shadow-md hover:border-[#1F5C55] transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                {/* Image Preview Container */}
-                <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden border-b border-slate-100">
+                {/* Image Container */}
+                <div className="relative aspect-4/3 w-full bg-[#F7F8F6] overflow-hidden border-b border-[#DDE3E0]">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-104 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
                     <span
                       className={`inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold shadow-xs ${
                         item.isFree
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-slate-900/80 text-white backdrop-blur-xs'
+                          ? 'bg-[#1F5C55] text-white'
+                          : 'bg-[#12211F]/85 text-white backdrop-blur-xs'
                       }`}
                     >
                       {item.tag}
@@ -145,10 +132,10 @@ export default function SectionInternalMedicine() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="font-bold text-slate-900 text-base group-hover:text-sky-600 transition-colors">
+                  <h3 className="font-bold text-[#12211F] text-base group-hover:text-[#1F5C55] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                  <p className="text-xs text-[#5C6B68] mt-2 leading-relaxed">
                     {item.subtitle}
                   </p>
                 </div>
@@ -160,14 +147,14 @@ export default function SectionInternalMedicine() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs transition-colors ${
+                  className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs transition-colors ${
                     item.isFree
-                      ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200'
-                      : 'bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200 hover:border-sky-200'
+                      ? 'bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] border border-[#B8D5CE]'
+                      : 'bg-[#F7F8F6] hover:bg-[#E3EFEC] text-[#12211F] hover:text-[#1F5C55] border border-[#DDE3E0]'
                   }`}
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>{item.isFree ? 'Mở AI Miễn Phí' : 'Truy cập Notebook AI'}</span>
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>{item.isFree ? 'Xem tài liệu miễn phí' : 'Mở sổ tay tra cứu'}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>

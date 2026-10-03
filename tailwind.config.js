@@ -9,19 +9,28 @@ module.exports = {
     extend: {
       colors: {
         medical: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
+          50: '#F4F7F6',
+          100: '#E3EFEC',
+          200: '#C7DFD9',
+          300: '#9BC4BA',
+          400: '#6FA497',
+          500: '#3D7D74',
+          600: '#1F5C55', // Primary Deep Teal
+          700: '#16443F', // Primary Deep Dark
+          800: '#12332F',
+          900: '#0F2522',
+          950: '#071513',
+        },
+        surface: {
+          bg: '#F7F8F6',
+          card: '#FFFFFF',
+          line: '#DDE3E0',
+          text: '#12211F',
+          muted: '#5C6B68',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },

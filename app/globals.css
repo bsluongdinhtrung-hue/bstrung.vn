@@ -7,8 +7,10 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-slate-50 text-slate-800 antialiased selection:bg-sky-500 selection:text-white;
+    background-color: #F7F8F6;
+    color: #12211F;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -18,24 +20,39 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #F7F8F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #C7DFD9;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #9BC4BA;
 }
 
-/* Subtle glassmorphism */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Medical Card with soft sage borders */
+.medical-card {
+  background: #FFFFFF;
+  border: 1px solid #DDE3E0;
+  border-radius: 1rem;
+  transition: all 0.25s ease-in-out;
+}
+.medical-card:hover {
+  border-color: #9BC4BA;
+  box-shadow: 0 10px 25px -5px rgba(31, 92, 85, 0.08), 0 8px 10px -6px rgba(31, 92, 85, 0.04);
 }
 
-.medical-gradient {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%);
+/* Floating Zalo button pulse */
+@keyframes soft-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(31, 92, 85, 0.35);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(31, 92, 85, 0.5);
+  }
+}
+.floating-zalo {
+  animation: soft-pulse 3s infinite ease-in-out;
 }
