@@ -95,3 +95,22 @@ Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe
   - `MOD-04`: Ma trận cảnh báo an toàn dược lý, tương tác phối hợp thuốc và chỉnh liều suy thận.
   - `MOD-05`: Khẩu phần bệnh lý mẫu cân đối tỷ lệ tinh bột chậm, đạm lành mạnh và giảm natri.
   - `MOD-06`: Sổ tay quản trị danh mục kỹ thuật y tế, định mức hao phí và tỷ lệ quỹ BHYT thanh toán.
+
+---
+
+## VII. Cổng Chặn Thu Phí Zalo & Tích Hợp VietQR Chính Thức (Zalo Paywall Modal)
+
+### 1. Cơ chế vận hành & Bảo mật
+- **Ẩn hoàn toàn số điện thoại dạng văn bản:** Trên toàn trang (Header, Chân trang, Banner, Nút nổi) không hiển thị số điện thoại để chống bot quét số spam cuộc gọi rác.
+- **Kích hoạt Cửa sổ Thanh toán (Modal):** Khi người bệnh bấm vào bất kỳ nút liên hệ Zalo nào, hệ thống mở cửa sổ `ZaloConsultModal` với chuẩn mã VietQR Napas 24/7.
+- **Quy trình 2 bước cho người bệnh:**
+  1. Quét mã QR chuyển khoản đúng **50.000 VNĐ** (hoặc sao chép STK/Nội dung chuyển khoản).
+  2. Bấm nút *"Tôi đã chuyển khoản — Mở Zalo nhắn tin với Bác sĩ"* để dẫn thẳng vào `https://zalo.me/0559148032`, gửi ảnh bill và câu hỏi bệnh án.
+- **Thông tin tài khoản thụ hưởng:**
+  - Ngân hàng: **VietinBank (Ngân hàng TMCP Công thương Việt Nam)**
+  - Số tài khoản: **`108005198338`**
+  - Tên chủ tài khoản: **LƯƠNG ĐÌNH TRUNG**
+  - Số tiền: **50.000 VNĐ**
+  - Nội dung chuyển khoản: **`Tu van Zalo BS Trung`**
+  - Tính năng mã VietQR: **Link trực tiếp 100%, tuyệt đối không có quảng cáo, tiền chuyển thẳng vào tài khoản Bác sĩ trong 2 giây qua liên minh Napas.**
+

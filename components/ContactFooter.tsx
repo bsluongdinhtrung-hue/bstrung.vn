@@ -3,8 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Mail, MessageCircle, MapPin, ShieldAlert, ArrowUp } from 'lucide-react';
+import { useZaloConsult } from './ZaloConsultContext';
 
 export default function ContactFooter() {
+  const { openZaloModal } = useZaloConsult();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -38,15 +40,13 @@ export default function ContactFooter() {
             </p>
 
             <div className="pt-2 flex items-center gap-3">
-              <a
-                href="https://zalo.me/0559148032"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs"
+              <button
+                onClick={openZaloModal}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Nhắn tin Zalo cùng Bác sĩ</span>
-              </a>
+              </button>
 
               <a
                 href="mailto:bsluongdinhtrung@gmail.com"
@@ -70,9 +70,12 @@ export default function ContactFooter() {
                 </div>
                 <div>
                   <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Zalo tư vấn trực tiếp:</span>
-                  <a href="https://zalo.me/0559148032" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#9BC4BA] transition-colors font-bold text-sm">
+                  <button
+                    onClick={openZaloModal}
+                    className="text-white hover:text-[#9BC4BA] transition-colors font-bold text-sm text-left cursor-pointer"
+                  >
                     Bấm để kết nối Zalo với BS. Trung →
-                  </a>
+                  </button>
                 </div>
               </div>
 

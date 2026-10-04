@@ -3,8 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Apple, Stethoscope, ArrowRight, ShieldCheck, HeartPulse, UserCheck, Pill } from 'lucide-react';
+import { useZaloConsult } from './ZaloConsultContext';
 
 export default function HeroBanner() {
+  const { openZaloModal } = useZaloConsult();
   return (
     <section className="relative overflow-hidden pt-8 pb-14 md:pt-14 md:pb-20 bg-gradient-to-b from-[#E3EFEC]/50 via-[#F7F8F6] to-[#F7F8F6] border-b border-[#DDE3E0]">
       
@@ -53,15 +55,13 @@ export default function HeroBanner() {
                 <span>Tra cứu Nội khoa</span>
               </a>
 
-              <a
-                href="https://zalo.me/0559148032"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] font-bold text-sm border border-[#B8D5CE] transition-all"
+              <button
+                onClick={openZaloModal}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] font-bold text-sm border border-[#B8D5CE] transition-all cursor-pointer"
               >
                 <UserCheck className="w-4 h-4" />
                 <span>Tư vấn trực tiếp</span>
-              </a>
+              </button>
             </div>
 
             {/* Key Values */}
@@ -136,15 +136,13 @@ export default function HeroBanner() {
                 </div>
 
                 <div className="pt-2">
-                  <a
-                    href="https://zalo.me/0559148032"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-2xs"
+                  <button
+                    onClick={openZaloModal}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-2xs cursor-pointer"
                   >
                     <span>Nhắn tin tư vấn trực tiếp qua Zalo</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  </button>
                 </div>
 
               </div>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Menu, X, Mail, MessageCircle } from 'lucide-react';
+import { useZaloConsult } from './ZaloConsultContext';
 
 const NAV_ITEMS = [
   { label: 'Sổ tay Dinh dưỡng', href: '#dinh-duong', badge: 'Thực đơn' },
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openZaloModal } = useZaloConsult();
 
   return (
     <header className="sticky top-0 z-50 bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#DDE3E0] shadow-xs">
@@ -66,15 +68,13 @@ export default function Header() {
 
           {/* Quick Actions (Zalo & Mail) */}
           <div className="hidden sm:flex items-center gap-2.5">
-            <a
-              href="https://zalo.me/0559148032"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg bg-[#E3EFEC] text-[#1F5C55] border border-[#B8D5CE] hover:bg-[#D4E8E3] transition-colors shadow-2xs"
+            <button
+              onClick={openZaloModal}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg bg-[#E3EFEC] text-[#1F5C55] border border-[#B8D5CE] hover:bg-[#D4E8E3] transition-colors shadow-2xs cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
               <span>Nhắn tin Zalo</span>
-            </a>
+            </button>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"
               className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-lg bg-[#1F5C55] hover:bg-[#16443F] text-white transition-colors shadow-2xs"
@@ -114,15 +114,16 @@ export default function Header() {
             </a>
           ))}
           <div className="pt-4 border-t border-[#DDE3E0] flex gap-2">
-            <a
-              href="https://zalo.me/0559148032"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-bold rounded-lg bg-[#E3EFEC] text-[#1F5C55] border border-[#B8D5CE]"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openZaloModal();
+              }}
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-bold rounded-lg bg-[#E3EFEC] text-[#1F5C55] border border-[#B8D5CE] cursor-pointer"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Nhắn Zalo</span>
-            </a>
+            </button>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"
               className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-bold rounded-lg bg-[#1F5C55] text-white"
