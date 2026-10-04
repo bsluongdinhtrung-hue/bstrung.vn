@@ -73,7 +73,7 @@ export default function Header() {
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg bg-[#E3EFEC] text-[#1F5C55] border border-[#B8D5CE] hover:bg-[#D4E8E3] transition-colors shadow-2xs"
             >
               <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
-              <span>Zalo: 0559 148 032</span>
+              <span>Nhắn tin Zalo</span>
             </a>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"

@@ -23,7 +23,7 @@ export default function FloatingZalo() {
         target="_blank"
         rel="noopener noreferrer"
         className="floating-zalo flex items-center justify-center w-14 h-14 rounded-full bg-[#1F5C55] hover:bg-[#16443F] text-white shadow-xl transition-transform hover:scale-110 focus:outline-hidden"
-        title="Nhắn tin Zalo trực tiếp với BS. Trung: 0559 148 032"
+        title="Nhắn tin Zalo trực tiếp với BS. Trung"
       >
         <MessageCircle className="w-7 h-7 text-white fill-white/20" />
       </a>

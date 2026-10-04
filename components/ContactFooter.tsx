@@ -45,7 +45,7 @@ export default function ContactFooter() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Nhắn tin Zalo: 0559 148 032</span>
+                <span>Nhắn tin Zalo cùng Bác sĩ</span>
               </a>
 
               <a
@@ -69,9 +69,9 @@ export default function ContactFooter() {
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Số điện thoại Zalo:</span>
+                  <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Zalo tư vấn trực tiếp:</span>
                   <a href="https://zalo.me/0559148032" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#9BC4BA] transition-colors font-bold text-sm">
-                    0559 148 032 (BS. Trung)
+                    Bấm để kết nối Zalo với BS. Trung →
                   </a>
                 </div>
               </div>
