@@ -1,73 +1,99 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import { Stethoscope, ExternalLink, Mail, ArrowRight, BookOpen } from 'lucide-react';
+import {
+  Stethoscope,
+  ExternalLink,
+  Mail,
+  ArrowRight,
+  BookOpen,
+  FlaskConical,
+  Gauge,
+  Pill,
+  Apple,
+  Scale,
+  Activity,
+  Sparkles,
+} from 'lucide-react';
 
 interface MedicineModule {
   id: string;
+  code: string;
   title: string;
   subtitle: string;
-  image: string;
   link: string;
   tag: string;
   isFree: boolean;
+  icon: React.ComponentType<{ className?: string }>;
+  highlights: string[];
 }
 
 const MODULES: MedicineModule[] = [
   {
     id: 'so-tay-full',
+    code: 'MOD-01 • CLINICAL',
     title: 'Sổ Tay Nội Khoa Toàn Diện',
-    subtitle: 'Tổng hợp phác đồ điều trị, chẩn đoán phân biệt & bệnh học phức tạp',
-    image: '/images/so-tay-full.png',
+    subtitle: 'Tổng hợp phác đồ điều trị, chẩn đoán phân biệt & bệnh học phức tạp đa chuyên khoa',
     link: 'https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29',
-    tag: 'Chuyên khoa sâu',
+    tag: 'Phác đồ BYT & Quốc tế',
     isFree: false,
+    icon: Stethoscope,
+    highlights: ['12+ Chuyên khoa', 'Chẩn đoán phân biệt', 'Phác đồ chuẩn hóa'],
   },
   {
     id: 'xet-nghiem',
+    code: 'MOD-02 • LAB',
     title: 'Xét Nghiệm Thường Dùng',
-    subtitle: 'Chỉ số sinh hóa, huyết học, miễn dịch và ý nghĩa lâm sàng',
-    image: '/images/Xet-nghiem-thuong-dung-nen.png',
+    subtitle: 'Chỉ số sinh hóa, huyết học, miễn dịch, marker sinh học và biện luận ý nghĩa lâm sàng',
     link: 'https://notebooklm.google.com/notebook/3dbcddca-26c7-477a-a299-c3f482f85277',
-    tag: 'Cận lâm sàng',
+    tag: 'Cận lâm sàng & Trị số SI',
     isFree: false,
+    icon: FlaskConical,
+    highlights: ['Sinh hóa & Huyết học', 'Trị số tham chiếu SI', 'Biện luận kết quả'],
   },
   {
     id: 'thang-diem',
+    code: 'MOD-03 • SCORES',
     title: 'Công Thức & Thang Điểm',
-    subtitle: 'Thang điểm tiên lượng CURB-65, Glasgow, Child-Pugh, Creatinine Cl...',
-    image: '/images/Cong-thuc-va-thang-diem-thuong-dung-nen.png',
+    subtitle: 'Thang điểm tiên lượng CURB-65, Glasgow, Child-Pugh, Creatinine Cl, CHA2DS2-VASc...',
     link: 'https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee',
-    tag: 'Đo lường Y học',
+    tag: 'Đo lường & Phân tầng',
     isFree: false,
+    icon: Gauge,
+    highlights: ['CURB-65 • Glasgow', 'Child-Pugh • eGFR', 'Phân tầng nguy cơ'],
   },
   {
     id: 'thuoc-tuong-tac',
+    code: 'MOD-04 • PHARMA',
     title: 'Thuốc & Tương Tác Thuốc',
-    subtitle: 'Tra cứu dược lý học, chống chỉ định và tương tác phối hợp thuốc',
-    image: '/images/thuoc-va-tuong-tac-thuoc-nen.png',
+    subtitle: 'Tra cứu dược lý lâm sàng, chỉnh liều theo chức năng gan/thận và phòng tránh tương tác',
     link: 'https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618',
     tag: 'Dược lý lâm sàng',
     isFree: false,
+    icon: Pill,
+    highlights: ['Cảnh báo tương tác', 'Chỉnh liều suy thận', 'Chống chỉ định'],
   },
   {
     id: 'dinh-duong-mod',
+    code: 'MOD-05 • DIET',
     title: 'Sổ Tay Dinh Dưỡng',
-    subtitle: 'Thực đơn mẫu, khẩu phần ăn bệnh lý và tra cứu vi chất',
-    image: '/images/so-tay-dinh-duong-3.jpg',
+    subtitle: 'Thực đơn mẫu cho người bệnh mạn tính, khẩu phần ăn bệnh lý và tra cứu vi chất',
     link: 'https://notebooklm.google.com/notebook/45e0dc30-6972-46ce-b55d-88a02d013776',
-    tag: 'Cung cấp miễn phí',
+    tag: 'Liệu pháp Dinh dưỡng',
     isFree: true,
+    icon: Apple,
+    highlights: ['Thực đơn ĐTĐ & THA', 'Mâm cơm chuẩn Việt', 'Cá nhân hóa'],
   },
   {
     id: 'gia-dau-thau',
+    code: 'MOD-06 • POLICY',
     title: 'Giá & Đấu Thầu Y Tế',
-    subtitle: 'Tham khảo danh mục kỹ thuật, định mức và quy định đấu thầu',
-    image: '/images/gia-va-dau-thau-nen-1024x1008.png',
+    subtitle: 'Tham khảo danh mục kỹ thuật, định mức kinh tế kỹ thuật và quy định đấu thầu y tế',
     link: 'https://notebooklm.google.com/notebook/cee0719a-ca48-401b-85a6-abea4bb4f20d',
-    tag: 'Quản lý Dược - VT',
+    tag: 'Quản lý Dược & BHYT',
     isFree: false,
+    icon: Scale,
+    highlights: ['Thông tư & Định mức', 'Danh mục kỹ thuật', 'Quy chế thầu BHYT'],
   },
 ];
 
@@ -101,66 +127,102 @@ export default function SectionInternalMedicine() {
           </a>
         </div>
 
-        {/* 6 Bento Grid Cards */}
+        {/* 6 Bento Grid Cards (Option 1: Modern 3D/Isometric Bento Icons) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {MODULES.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-white rounded-2xl border border-[#DDE3E0] overflow-hidden shadow-xs hover:shadow-md hover:border-[#1F5C55] transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                {/* Image Container */}
-                <div className="relative aspect-4/3 w-full bg-[#F7F8F6] overflow-hidden border-b border-[#DDE3E0]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-104 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold shadow-xs ${
-                        item.isFree
-                          ? 'bg-[#1F5C55] text-white'
-                          : 'bg-[#12211F]/85 text-white backdrop-blur-xs'
-                      }`}
-                    >
-                      {item.tag}
-                    </span>
+          {MODULES.map((item) => {
+            const IconComp = item.icon;
+            return (
+              <div
+                key={item.id}
+                className="group bg-white rounded-2xl border border-[#DDE3E0] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#1F5C55] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Clean 3D Bento Header Banner */}
+                  <div className="relative h-44 w-full bg-gradient-to-br from-[#E3EFEC] via-[#F4F8F7] to-[#F7F8F6] p-5 flex flex-col justify-between overflow-hidden border-b border-[#DDE3E0]">
+                    {/* Decorative subtle ambient glows */}
+                    <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-[#1F5C55]/10 blur-xl pointer-events-none group-hover:bg-[#1F5C55]/15 transition-colors" />
+                    <div className="absolute -left-6 -bottom-6 w-20 h-20 rounded-full bg-[#1F5C55]/10 blur-lg pointer-events-none" />
+
+                    {/* Top Row: Tag & Badge */}
+                    <div className="relative z-10 flex items-center justify-between gap-2">
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold shadow-2xs ${
+                          item.isFree
+                            ? 'bg-[#1F5C55] text-white'
+                            : 'bg-white border border-[#B8D5CE] text-[#1F5C55]'
+                        }`}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                        {item.tag}
+                      </span>
+                      {item.isFree && (
+                        <span className="px-2 py-0.5 rounded-full bg-[#E3EFEC] text-[#1F5C55] text-[10px] font-bold border border-[#B8D5CE]">
+                          Miễn phí
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Center 3D Icon Container */}
+                    <div className="relative z-10 flex items-center justify-center my-auto">
+                      <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-white/95 border border-[#B8D5CE] shadow-sm group-hover:shadow-md group-hover:scale-110 group-hover:border-[#1F5C55] transition-all duration-300">
+                        <div className="text-[#1F5C55] group-hover:text-[#16443F] transition-colors">
+                          <IconComp className="w-8 h-8" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Row: Module Code Tag */}
+                    <div className="relative z-10 flex items-center justify-center">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#5C6B68]/80">
+                        {item.code}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-5">
+                    <h3 className="font-bold text-[#12211F] text-base group-hover:text-[#1F5C55] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#5C6B68] mt-2 leading-relaxed">
+                      {item.subtitle}
+                    </p>
+
+                    {/* Highlight Pills */}
+                    <div className="flex flex-wrap gap-1.5 mt-4">
+                      {item.highlights.map((h, i) => (
+                        <span
+                          key={i}
+                          className="inline-block px-2 py-0.5 rounded-md bg-[#F7F8F6] border border-[#DDE3E0] text-[10.5px] font-medium text-[#5C6B68]"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-bold text-[#12211F] text-base group-hover:text-[#1F5C55] transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#5C6B68] mt-2 leading-relaxed">
-                    {item.subtitle}
-                  </p>
+                {/* Action Footer */}
+                <div className="px-5 pb-5 pt-0">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs transition-colors shadow-2xs ${
+                      item.isFree
+                        ? 'bg-[#1F5C55] hover:bg-[#16443F] text-white'
+                        : 'bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] border border-[#B8D5CE]'
+                    }`}
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>{item.isFree ? 'Xem tài liệu miễn phí' : 'Mở sổ tay tra cứu'}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-              </div>
 
-              {/* Action Footer */}
-              <div className="px-5 pb-5 pt-0">
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs transition-colors ${
-                    item.isFree
-                      ? 'bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] border border-[#B8D5CE]'
-                      : 'bg-[#F7F8F6] hover:bg-[#E3EFEC] text-[#12211F] hover:text-[#1F5C55] border border-[#DDE3E0]'
-                  }`}
-                >
-                  <BookOpen className="w-3.5 h-3.5" />
-                  <span>{item.isFree ? 'Xem tài liệu miễn phí' : 'Mở sổ tay tra cứu'}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

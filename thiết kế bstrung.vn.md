@@ -39,3 +39,25 @@ Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe
 - Hotline / Zalo chính thức: **`0559 148 032`** (`https://zalo.me/0559148032`)
 - Nút Zalo nổi tròn (Floating Zalo) hiển thị toàn trang.
 - Email: `bsluongdinhtrung@gmail.com`
+
+---
+
+## IV. Nâng Cấp Giao Diện & Trải Nghiệm Thị Giác (Visual & UX Revamp 2026)
+
+### 1. Sổ Tay Dinh Dưỡng - Mâm Cơm Việt Chuẩn Y Khoa
+- Thay thế hoàn toàn ảnh bìa sách cũ bằng hình ảnh thực tế mâm cơm gia đình Việt Nam chuẩn lâm sàng:
+  - **Cơm gạo lứt vừng đen:** Tinh bột chậm (chỉ số GI thấp) cho người đái tháo đường & giảm cân.
+  - **Cá hấp gừng hành:** Đạm tinh khiết, giàu Omega-3, không dầu mỡ chiên xào, bảo vệ tim mạch & mỡ máu.
+  - **Rau củ ngũ sắc luộc:** Súp lơ xanh, đậu bắp, cà rốt, đậu cô ve (giàu sulforaphane, chất nhầy hòa tan bảo vệ niêm mạc ruột).
+  - **Canh rau thịt nạc băm trong veo:** Nấu thanh đạm giảm natri bảo vệ thận và huyết áp.
+  - **Bưởi hồng tráng miệng:** Giàu vitamin C và naringenin hỗ trợ độ nhạy insulin.
+
+### 2. Sổ Tay Nội Khoa - Phương Án 1 (Modern 3D Bento Medical Icons & Badges)
+- Thay thế 6 ảnh chụp slide thuyết trình cũ bằng hệ thống 6 thẻ Bento 3D Vector & Clinical Badges:
+  1. `MOD-01 • CLINICAL`: Sổ Tay Nội Khoa Toàn Diện (`Stethoscope` - Tag: Phác đồ BYT & Quốc tế)
+  2. `MOD-02 • LAB`: Xét Nghiệm Thường Dùng (`FlaskConical` - Tag: Cận lâm sàng & Trị số SI)
+  3. `MOD-03 • SCORES`: Công Thức & Thang Điểm (`Gauge` - Tag: Đo lường & Phân tầng)
+  4. `MOD-04 • PHARMA`: Thuốc & Tương Tác Thuốc (`Pill` - Tag: Dược lý lâm sàng)
+  5. `MOD-05 • DIET`: Sổ Tay Dinh Dưỡng (`Apple` - Tag: Liệu pháp Dinh dưỡng)
+  6. `MOD-06 • POLICY`: Giá & Đấu Thầu Y Tế (`Scale` - Tag: Quản lý Dược & BHYT)
+- Ưu điểm: Tải cực nhanh (<0.1s), sắc nét tuyệt đối 100% trên màn hình Retina / 4K / Mobile, đồng bộ nhận diện Deep Medical Teal `#1F5C55`.

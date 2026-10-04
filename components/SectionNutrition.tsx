@@ -61,18 +61,26 @@ export default function SectionNutrition() {
             <div className="group relative rounded-2xl overflow-hidden border border-[#DDE3E0] shadow-sm bg-[#F7F8F6] hover:shadow-md transition-all duration-300">
               <a href={CONSULT_URL} target="_blank" rel="noopener noreferrer" className="block relative aspect-square w-full">
                 <Image
-                  src="/images/so-tay-dinh-duong-3.jpg"
-                  alt="Sổ tay dinh dưỡng thực hành"
+                  src="/images/vietnamese-healthy-meal.jpg"
+                  alt="Mâm cơm dinh dưỡng chuẩn Y khoa phong cách Việt"
                   fill
                   className="object-cover group-hover:scale-103 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#12211F]/80 via-transparent to-transparent opacity-85 group-hover:opacity-70 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12211F]/85 via-black/20 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="inline-block px-2.5 py-1 rounded-md bg-[#1F5C55] text-white text-xs font-bold mb-1.5">
-                    Tư vấn miễn phí
-                  </span>
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className="inline-block px-2.5 py-1 rounded-md bg-[#1F5C55] text-white text-xs font-bold">
+                      Thực đơn chuẩn Y khoa
+                    </span>
+                    <span className="inline-block px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-xs text-white text-[11px] font-medium">
+                      Ẩm thực gia đình Việt
+                    </span>
+                  </div>
                   <p className="text-sm font-semibold text-white drop-shadow-xs">
-                    Bấm vào ảnh để bắt đầu trao đổi về thực đơn của bạn
+                    Cơm gạo lứt, cá hấp gừng, rau củ ngũ sắc & bưởi hồng thanh đạm
+                  </p>
+                  <p className="text-xs text-[#E3EFEC] mt-1">
+                    Bấm vào ảnh để Bác sĩ tư vấn thực đơn cá nhân hóa cho bạn →
                   </p>
                 </div>
               </a>
