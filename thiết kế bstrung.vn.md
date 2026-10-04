@@ -4,7 +4,8 @@
 > **Định vị:** Cổng thông tin y khoa cá nhân, sổ tay thực hành lâm sàng và tư vấn sức khỏe phòng khám gia đình.  
 > **Tên miền chính thức:** 👉 `https://bstrung.vn` (và `https://www.bstrung.vn`)  
 > **Phong cách nhận diện (Design Signature):** Đồng bộ chuẩn **Deep Medical Teal** của hệ sinh thái phần mềm BS. Trung (`#1F5C55`, `#16443F`, `#E3EFEC`, `#F7F8F6`, `#12211F`), typography chuẩn y khoa, bố cục Bento tối giản, ngôn ngữ đối thoại tự nhiên, ấm áp ("người" hơn), không lộ thuật ngữ kỹ thuật backend.  
-> **Hạ tầng:** Next.js 15 (App Router), TypeScript, Tailwind CSS, Lucide React, **Supabase PostgreSQL** (`bstrung_articles`), GitHub & Vercel Production.
+> **Hạ tầng:** Next.js 15 (App Router), TypeScript, Tailwind CSS, Lucide React, **Supabase PostgreSQL** (`bstrung_articles`), GitHub & Vercel Production.  
+> **Thư mục lưu trữ dự án:** `C:\Users\hi\Desktop\MyApp\web bstrung.vn`
 
 ---
 
