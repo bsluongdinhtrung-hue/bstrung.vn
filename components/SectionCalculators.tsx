@@ -28,8 +28,19 @@ export default function SectionCalculators() {
   const finalClcr = isFemale ? rawClcr * 0.85 : rawClcr;
 
   return (
-    <section id="tinh-toan" className="py-16 bg-[#F7F8F6] border-b border-[#DDE3E0] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tinh-toan" className="bg-white rounded-3xl border border-[#CCD9D5] shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-10 md:p-12 scroll-mt-24">
+      {/* Section Index Stepper */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-5 border-b border-[#CCD9D5]">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0F4C47] text-white text-xs font-black tracking-wider uppercase shadow-2xs">
+          <Calculator className="w-3.5 h-3.5 text-cyan-300" />
+          <span>PHÂN VÙNG 04 / 05</span>
+        </div>
+        <span className="text-xs font-bold text-[#0F4C47] tracking-wide uppercase">
+          Công Cụ Đo Lường & Tính Toán Chỉ Số Y Sinh
+        </span>
+      </div>
+
+      <div>
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#DDE3E0] gap-4">

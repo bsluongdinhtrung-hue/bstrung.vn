@@ -8,8 +8,19 @@ export default function SectionMedication() {
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618';
 
   return (
-    <section id="thuoc" className="py-16 bg-[#FFFFFF] border-b border-[#DDE3E0] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="thuoc" className="bg-white rounded-3xl border border-[#CCD9D5] shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-10 md:p-12 scroll-mt-24">
+      {/* Section Index Stepper */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-5 border-b border-[#CCD9D5]">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#12211F] text-white text-xs font-black tracking-wider uppercase shadow-2xs">
+          <Pill className="w-3.5 h-3.5 text-amber-400" />
+          <span>PHÂN VÙNG 03 / 05</span>
+        </div>
+        <span className="text-xs font-bold text-[#12211F] tracking-wide uppercase">
+          Dược Lý Lâm Sàng & An Toàn Kê Đơn Thuốc
+        </span>
+      </div>
+
+      <div>
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#DDE3E0] gap-4">

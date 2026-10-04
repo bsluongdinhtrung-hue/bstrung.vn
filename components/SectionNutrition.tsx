@@ -23,8 +23,19 @@ export default function SectionNutrition() {
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/45e0dc30-6972-46ce-b55d-88a02d013776';
 
   return (
-    <section id="dinh-duong" className="py-16 bg-[#FFFFFF] border-b border-[#DDE3E0] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="dinh-duong" className="bg-white rounded-3xl border border-[#CFDDD8] shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-10 md:p-12 scroll-mt-24">
+      {/* Section Index Stepper */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-5 border-b border-[#E3EFEC]">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#1F5C55] text-white text-xs font-black tracking-wider uppercase shadow-2xs">
+          <Apple className="w-3.5 h-3.5" />
+          <span>PHÂN VÙNG 01 / 05</span>
+        </div>
+        <span className="text-xs font-bold text-[#1F5C55] tracking-wide uppercase">
+          Dinh Dưỡng Khoa Học & Khẩu Phần Ăn Chuẩn Việt
+        </span>
+      </div>
+
+      <div>
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#DDE3E0] gap-4">

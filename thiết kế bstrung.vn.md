@@ -74,3 +74,24 @@ Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe
 - `/huong-dan-chan-doan-va-dieu-tri-benh-ly-thuong-gap-o-tre-em` & `/so-tay-nhi-khoa` $\rightarrow$ `/#nhi-khoa`
 - `/quan-ly-hba1c` $\rightarrow$ `/#cong-cu`
 - `/so-sanh-so-lieu-hang-thang-kbtyc` & `/quan-ly-he-thong-bao-cao-y-te` $\rightarrow$ `/`
+
+---
+
+## VI. Nâng Cấp Phân Tách Chuyên Mục (Bento Islands) & Bảng Điều Khiển Lâm Sàng (Rich Micro-UI)
+
+### 1. Kiến trúc phân tách chuyên mục độc lập (Bento Island Architecture)
+- Nền tổng thể trang chuyển sang tông xám ngọc y tế mát mắt (`#EEF3F1`), tạo độ tương phản mạnh mẽ với các khối chuyên môn.
+- Cả 5 chuyên mục được quy hoạch thành **5 Hòn đảo Chuyên môn (Bento Islands)**:
+  - Khối Card lớn bo góc `rounded-3xl`, viền phân định sắc nét `border-[#CCD9D5]`, bóng đổ nổi khối `shadow-sm hover:shadow-md`.
+  - Mỗi chuyên mục có **Dải chỉ mục số thứ tự lớn** (`PHÂN VÙNG 01 / 05` đến `PHÂN VÙNG 05 / 05`) với màu sắc và biểu tượng nhận diện đặc thù.
+  - Khoảng cách giữa các chuyên mục (`space-y-12 md:space-y-16`) giúp người dùng cuộn đến đâu nhận biết rõ ràng ranh giới chuyên khoa đến đó.
+
+### 2. Thiết kế lại 6 thẻ Sổ tay Nội khoa (Rich Clinical Micro-UI Preview)
+- Loại bỏ hoàn toàn ô trống đặt 1 icon đơn điệu trước đây.
+- Nửa trên mỗi thẻ trở thành một **bảng điều khiển y khoa thu nhỏ (Clinical Micro-UI)** chân thực:
+  - `MOD-01`: Bảng phác đồ tiêu chuẩn vàng, chẩn đoán phân biệt đa chuyên khoa, chiến lược bậc thang.
+  - `MOD-02`: Phiếu kết quả xét nghiệm tham chiếu (Glucose, HbA1c, Creatinine) với nhãn dải đo bình thường.
+  - `MOD-03`: Thước đo tiên lượng lâm sàng (CURB-65, Child-Pugh, CKD-EPI) kèm phân tầng nguy cơ.
+  - `MOD-04`: Ma trận cảnh báo an toàn dược lý, tương tác phối hợp thuốc và chỉnh liều suy thận.
+  - `MOD-05`: Khẩu phần bệnh lý mẫu cân đối tỷ lệ tinh bột chậm, đạm lành mạnh và giảm natri.
+  - `MOD-06`: Sổ tay quản trị danh mục kỹ thuật y tế, định mức hao phí và tỷ lệ quỹ BHYT thanh toán.

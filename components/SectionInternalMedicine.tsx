@@ -13,7 +13,8 @@ import {
   Apple,
   Scale,
   Activity,
-  Sparkles,
+  AlertTriangle,
+  CheckCircle2,
 } from 'lucide-react';
 
 interface MedicineModule {
@@ -26,6 +27,7 @@ interface MedicineModule {
   isFree: boolean;
   icon: React.ComponentType<{ className?: string }>;
   highlights: string[];
+  renderPreview: () => React.ReactNode;
 }
 
 const MODULES: MedicineModule[] = [
@@ -39,6 +41,31 @@ const MODULES: MedicineModule[] = [
     isFree: false,
     icon: Stethoscope,
     highlights: ['12+ Chuyên khoa', 'Chẩn đoán phân biệt', 'Phác đồ chuẩn hóa'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#16443F] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            PHÁC ĐỒ CHUẨN ĐOÁN & ĐIỀU TRỊ
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#16443F] text-white font-semibold">12+ KHOA</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center gap-2 bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <span className="font-medium text-[#12211F]">Tiêu chuẩn vàng chẩn đoán (Gold Standard)</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <span className="font-medium text-[#12211F]">Chẩn đoán phân biệt đa bệnh mạn tính</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <span className="font-medium text-[#12211F]">Chiến lược điều trị bậc thang & biến chứng</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 'xet-nghiem',
@@ -50,6 +77,40 @@ const MODULES: MedicineModule[] = [
     isFree: false,
     icon: FlaskConical,
     highlights: ['Sinh hóa & Huyết học', 'Trị số tham chiếu SI', 'Biện luận kết quả'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#1F5C55] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#1F5C55]" />
+            PHIẾU XÉT NGHIỆM THAM CHIẾU
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#1F5C55] text-white font-semibold">CHUẨN SI</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Glucose máu đói</span>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-[#12211F]">5.2 mmol/L</span>
+              <span className="text-[9.5px] px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">4.1 - 5.9</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">HbA1c máu</span>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-[#12211F]">6.8 %</span>
+              <span className="text-[9.5px] px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded font-bold">&lt; 7.0%</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Creatinine huyết thanh</span>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-[#12211F]">88 µmol/L</span>
+              <span className="text-[9.5px] px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">eGFR 82</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 'thang-diem',
@@ -61,6 +122,31 @@ const MODULES: MedicineModule[] = [
     isFree: false,
     icon: Gauge,
     highlights: ['CURB-65 • Glasgow', 'Child-Pugh • eGFR', 'Phân tầng nguy cơ'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#0F4C47] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <Activity className="w-3.5 h-3.5 text-[#0F4C47]" />
+            THƯỚC ĐO TIÊN LƯỢNG LÂM SÀNG
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#0F4C47] text-white font-semibold">SCORES</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">CURB-65 (Viêm phổi)</span>
+            <span className="font-bold text-[#0F4C47] bg-[#E3EFEC] px-2 py-0.5 rounded text-[10px]">0 - 5 điểm</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Child-Pugh (Xơ gan)</span>
+            <span className="font-bold text-[#0F4C47] bg-[#E3EFEC] px-2 py-0.5 rounded text-[10px]">Class A/B/C</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Lọc cầu thận CKD-EPI</span>
+            <span className="font-bold text-[#0F4C47] bg-[#E3EFEC] px-2 py-0.5 rounded text-[10px]">Giai đoạn 1 - 5</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 'thuoc-tuong-tac',
@@ -72,6 +158,31 @@ const MODULES: MedicineModule[] = [
     isFree: false,
     icon: Pill,
     highlights: ['Cảnh báo tương tác', 'Chỉnh liều suy thận', 'Chống chỉ định'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#12211F] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+            MA TRẬN DƯỢC LÝ & AN TOÀN
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500 text-white font-semibold">CẢNH BÁO</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center justify-between bg-amber-50/90 border border-amber-200 px-2.5 py-1.5 rounded-lg shadow-2xs">
+            <span className="font-semibold text-amber-950">Phối hợp 2+ nhóm thuốc</span>
+            <span className="font-bold text-amber-800 text-[10px]">Cảnh báo mức 2</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Chỉnh liều suy giảm chức năng thận</span>
+            <span className="font-bold text-[#12211F] text-[10px]">eGFR &lt; 30 ml/p</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Thời điểm uống thuốc tối ưu</span>
+            <span className="font-bold text-[#1F5C55] text-[10px]">Trước/Sau bữa ăn</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 'dinh-duong-mod',
@@ -83,6 +194,31 @@ const MODULES: MedicineModule[] = [
     isFree: true,
     icon: Apple,
     highlights: ['Thực đơn ĐTĐ & THA', 'Mâm cơm chuẩn Việt', 'Cá nhân hóa'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#1B6B5D] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <Apple className="w-3.5 h-3.5 text-[#1B6B5D]" />
+            CÂN ĐỐI DƯỠNG CHẤT KHẨU PHẦN
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-600 text-white font-semibold">MIỄN PHÍ</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Tinh bột chậm (Gạo lứt/Yến mạch)</span>
+            <span className="font-bold text-[#12211F] text-[10px]">50 - 55% calo</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Đạm lành mạnh (Cá hấp / Thịt nạc)</span>
+            <span className="font-bold text-[#12211F] text-[10px]">1.0 - 1.2 g/kg</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Giảm Natri (Muối ăn hàng ngày)</span>
+            <span className="font-bold text-[#1F5C55] text-[10px]">&lt; 5g/ngày</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 'gia-dau-thau',
@@ -94,14 +230,49 @@ const MODULES: MedicineModule[] = [
     isFree: false,
     icon: Scale,
     highlights: ['Thông tư & Định mức', 'Danh mục kỹ thuật', 'Quy chế thầu BHYT'],
+    renderPreview: () => (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#1F3E3B] pb-1.5 border-b border-[#CCD9D5]">
+          <span className="flex items-center gap-1.5">
+            <Scale className="w-3.5 h-3.5 text-[#1F3E3B]" />
+            QUẢN TRỊ DANH MỤC & ĐỊNH MỨC
+          </span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-white font-semibold">BHYT</span>
+        </div>
+        <div className="space-y-1.5 pt-0.5 text-[11px]">
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Thông tư 22/2023/TT-BYT</span>
+            <span className="font-bold text-[#12211F] text-[10px]">Giá KCB</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Định mức kinh tế - kỹ thuật</span>
+            <span className="font-bold text-[#12211F] text-[10px]">Vật tư tiêu hao</span>
+          </div>
+          <div className="flex items-center justify-between bg-white/80 px-2.5 py-1.5 rounded-lg border border-[#CCD9D5]/60 shadow-2xs">
+            <span className="font-medium text-[#16443F]">Danh mục thanh toán BHYT</span>
+            <span className="font-bold text-[#1F5C55] text-[10px]">Tỷ lệ chuẩn 100%</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 
 export default function SectionInternalMedicine() {
   return (
-    <section id="noi-khoa" className="py-16 bg-[#F7F8F6] border-b border-[#DDE3E0] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section id="noi-khoa" className="bg-white rounded-3xl border border-[#CCD9D5] shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-10 md:p-12 scroll-mt-24">
+      {/* Section Index Stepper */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-5 border-b border-[#D6E8E3]">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#16443F] text-white text-xs font-black tracking-wider uppercase shadow-2xs">
+          <Stethoscope className="w-3.5 h-3.5" />
+          <span>PHÂN VÙNG 02 / 05</span>
+        </div>
+        <span className="text-xs font-bold text-[#16443F] tracking-wide uppercase">
+          Sổ Tay Thực Hành Lâm Sàng & Phác Đồ Bệnh Học
+        </span>
+      </div>
+
+      <div>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#DDE3E0] gap-4">
           <div>
@@ -120,62 +291,49 @@ export default function SectionInternalMedicine() {
 
           <a
             href="mailto:bsluongdinhtrung@gmail.com?subject=Trao%20đổi%20chuyên%20môn%20Sổ%20tay%20Nội%20khoa"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-[#E3EFEC]/60 text-[#12211F] font-bold text-xs border border-[#DDE3E0] shadow-2xs transition-all shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#F7F8F6] hover:bg-[#E3EFEC] text-[#12211F] font-bold text-xs border border-[#CCD9D5] shadow-2xs transition-all shrink-0"
           >
             <Mail className="w-4 h-4 text-[#1F5C55]" />
             <span>Liên hệ trao đổi chuyên môn</span>
           </a>
         </div>
 
-        {/* 6 Bento Grid Cards (Option 1: Modern 3D/Isometric Bento Icons) */}
+        {/* 6 Rich Clinical Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {MODULES.map((item) => {
             const IconComp = item.icon;
             return (
               <div
                 key={item.id}
-                className="group bg-white rounded-2xl border border-[#DDE3E0] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#1F5C55] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-[#FCFDFD] rounded-2xl border border-[#CCD9D5] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#1F5C55] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  {/* Clean 3D Bento Header Banner */}
-                  <div className="relative h-44 w-full bg-gradient-to-br from-[#E3EFEC] via-[#F4F8F7] to-[#F7F8F6] p-5 flex flex-col justify-between overflow-hidden border-b border-[#DDE3E0]">
-                    {/* Decorative subtle ambient glows */}
-                    <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-[#1F5C55]/10 blur-xl pointer-events-none group-hover:bg-[#1F5C55]/15 transition-colors" />
-                    <div className="absolute -left-6 -bottom-6 w-20 h-20 rounded-full bg-[#1F5C55]/10 blur-lg pointer-events-none" />
-
-                    {/* Top Row: Tag & Badge */}
-                    <div className="relative z-10 flex items-center justify-between gap-2">
+                  {/* Rich Clinical Micro-UI Preview Banner */}
+                  <div className="p-4 bg-gradient-to-br from-[#EAF2EF] via-[#F4F8F6] to-[#EAEFEB] border-b border-[#CCD9D5]">
+                    {/* Top row: Code + Icon + Tag */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-white border border-[#B8D5CE] shadow-2xs flex items-center justify-center text-[#1F5C55] group-hover:scale-105 transition-transform">
+                          <IconComp className="w-4 h-4" />
+                        </div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#5C6B68]">
+                          {item.code}
+                        </span>
+                      </div>
                       <span
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold shadow-2xs ${
+                        className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold ${
                           item.isFree
                             ? 'bg-[#1F5C55] text-white'
                             : 'bg-white border border-[#B8D5CE] text-[#1F5C55]'
                         }`}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-current" />
                         {item.tag}
                       </span>
-                      {item.isFree && (
-                        <span className="px-2 py-0.5 rounded-full bg-[#E3EFEC] text-[#1F5C55] text-[10px] font-bold border border-[#B8D5CE]">
-                          Miễn phí
-                        </span>
-                      )}
                     </div>
 
-                    {/* Center 3D Icon Container */}
-                    <div className="relative z-10 flex items-center justify-center my-auto">
-                      <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-white/95 border border-[#B8D5CE] shadow-sm group-hover:shadow-md group-hover:scale-110 group-hover:border-[#1F5C55] transition-all duration-300">
-                        <div className="text-[#1F5C55] group-hover:text-[#16443F] transition-colors">
-                          <IconComp className="w-8 h-8" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Row: Module Code Tag */}
-                    <div className="relative z-10 flex items-center justify-center">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#5C6B68]/80">
-                        {item.code}
-                      </span>
+                    {/* Interactive Clinical Preview Box */}
+                    <div className="bg-white/90 rounded-xl p-3 border border-[#CCD9D5] shadow-2xs">
+                      {item.renderPreview()}
                     </div>
                   </div>
 
@@ -189,11 +347,11 @@ export default function SectionInternalMedicine() {
                     </p>
 
                     {/* Highlight Pills */}
-                    <div className="flex flex-wrap gap-1.5 mt-4">
+                    <div className="flex flex-wrap gap-1.5 mt-3.5">
                       {item.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="inline-block px-2 py-0.5 rounded-md bg-[#F7F8F6] border border-[#DDE3E0] text-[10.5px] font-medium text-[#5C6B68]"
+                          className="inline-block px-2 py-0.5 rounded-md bg-[#F0F4F2] border border-[#CCD9D5] text-[10.5px] font-medium text-[#5C6B68]"
                         >
                           {h}
                         </span>
