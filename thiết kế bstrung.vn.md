@@ -62,3 +62,15 @@ Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe
   5. `MOD-05 • DIET`: Sổ Tay Dinh Dưỡng (`Apple` - Tag: Liệu pháp Dinh dưỡng)
   6. `MOD-06 • POLICY`: Giá & Đấu Thầu Y Tế (`Scale` - Tag: Quản lý Dược & BHYT)
 - Ưu điểm: Tải cực nhanh (<0.1s), sắc nét tuyệt đối 100% trên màn hình Retina / 4K / Mobile, đồng bộ nhận diện Deep Medical Teal `#1F5C55`.
+
+---
+
+## V. Cấu Hình Chuyển Hướng Vĩnh Viễn (301 Permanent Redirects)
+Để bảo toàn toàn bộ liên kết cũ trên WordPress, thứ hạng tìm kiếm trên Google (SEO) và link đã chia sẻ trên Zalo/Facebook:
+- `/a-i-ho-tro-xay-dung-che-do-dinh-duong` & `/so-tay-dinh-duong` $\rightarrow$ `/#dinh-duong`
+- `/ho-tro-thuc-hanh-noi-khoa` & `/so-tay-noi-khoa` $\rightarrow$ `/#noi-khoa`
+- `/huong-dan-su-dung-cac-thuoc-thuong-dung-va-tuong-tac-thuoc` & `/thuoc-va-tuong-tac-thuoc` $\rightarrow$ `/#thuoc`
+- `/cac-cong-cu-tinh-toan-va-do-luong-thuong-dung-trong-y-hoc` & `/cong-cu-tinh-toan-y-hoc` $\rightarrow$ `/#cong-cu`
+- `/huong-dan-chan-doan-va-dieu-tri-benh-ly-thuong-gap-o-tre-em` & `/so-tay-nhi-khoa` $\rightarrow$ `/#nhi-khoa`
+- `/quan-ly-hba1c` $\rightarrow$ `/#cong-cu`
+- `/so-sanh-so-lieu-hang-thang-kbtyc` & `/quan-ly-he-thong-bao-cao-y-te` $\rightarrow$ `/`
