@@ -8,14 +8,14 @@ export default function FloatingZalo() {
   const { openZaloModal } = useZaloConsult();
 
   return (
-    <aside aria-label="Kênh hỗ trợ trực tuyến" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+    <aside aria-label="Kênh hỗ trợ trực tuyến" className="fixed bottom-16 md:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-3">
       {/* Tooltip hint on desktop */}
       <button
         onClick={openZaloModal}
-        className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white text-[#12211F] text-xs font-bold border border-[#DDE3E0] shadow-md hover:border-[#1F5C55] transition-all group cursor-pointer"
+        className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white text-[#12211F] text-xs font-bold border border-[#E8E4DA] shadow-md hover:border-[#1F5C55] transition-all group cursor-pointer"
       >
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-        <span className="group-hover:text-[#1F5C55]">Tư vấn Zalo cùng Bác sĩ</span>
+        <span className="group-hover:text-[#1F5C55]">Tư vấn 1-1 riêng cùng Bác sĩ</span>
       </button>
 
       {/* Floating Action Button */}

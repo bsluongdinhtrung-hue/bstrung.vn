@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: #F7F8F6;
+    background-color: #F5F2EB;
     color: #12211F;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -20,21 +20,34 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F8F6;
+  background: #F5F2EB;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C7DFD9;
+  background: #D9D3C5;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9BC4BA;
+  background: #B8B09F;
 }
 
-/* Medical Card with soft sage borders */
+/* Warm Bento Card with soft ambient separation */
+.bento-card {
+  background: #FFFFFF;
+  border: 1px solid #E8E4DA;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease-in-out;
+}
+.bento-card:hover {
+  border-color: #CBD5CF;
+  box-shadow: 0 10px 25px -5px rgba(31, 92, 85, 0.06), 0 8px 10px -6px rgba(31, 92, 85, 0.03);
+}
+
+/* Medical Card legacy compatibility */
 .medical-card {
   background: #FFFFFF;
-  border: 1px solid #DDE3E0;
-  border-radius: 1rem;
+  border: 1px solid #E8E4DA;
+  border-radius: 1.25rem;
   transition: all 0.25s ease-in-out;
 }
 .medical-card:hover {

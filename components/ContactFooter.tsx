@@ -12,7 +12,7 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer id="lien-he" className="bg-[#12211F] text-[#DDE3E0] pt-16 pb-12 border-t border-[#1F5C55]/30">
+    <footer id="lien-he" className="bg-[#12211F] text-[#DDE3E0] pt-14 pb-24 md:pb-14 border-t border-[#1F5C55]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
@@ -20,7 +20,7 @@ export default function ContactFooter() {
           {/* Col 1: Bio & Brand */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-[#C7DFD9]/40">
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-[#C7DFD9]/40 bg-white">
                 <Image
                   src="/images/cropped-logo-moi-1.png"
                   alt="Logo BS. Trung"
@@ -29,7 +29,7 @@ export default function ContactFooter() {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">BSCKI. Lương Đình Trung</h3>
+                <h3 className="text-lg font-bold text-white font-serif">BSCKI. Lương Đình Trung</h3>
                 <p className="text-xs text-[#9BC4BA] font-semibold">Chuyên Khoa I • Sức Khỏe Gia Đình & Lâm Sàng</p>
               </div>
             </div>
@@ -45,7 +45,7 @@ export default function ContactFooter() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Nhắn tin Zalo cùng Bác sĩ</span>
+                <span>Tư vấn 1-1 cùng Bác sĩ (Zalo)</span>
               </button>
 
               <a

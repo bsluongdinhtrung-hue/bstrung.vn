@@ -21,16 +21,22 @@ module.exports = {
           900: '#0F2522',
           950: '#071513',
         },
-        surface: {
-          bg: '#F7F8F6',
+        canvas: {
+          warm: '#F5F2EB',
           card: '#FFFFFF',
-          line: '#DDE3E0',
+          border: '#E8E4DA',
+        },
+        surface: {
+          bg: '#F5F2EB',
+          card: '#FFFFFF',
+          line: '#E8E4DA',
           text: '#12211F',
-          muted: '#5C6B68',
+          muted: '#63706D',
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Newsreader', 'Playfair Display', 'Georgia', 'serif'],
       },
     },
   },

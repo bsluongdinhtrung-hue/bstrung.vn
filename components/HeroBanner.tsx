@@ -1,155 +1,200 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Apple, Stethoscope, ArrowRight, ShieldCheck, HeartPulse, UserCheck, Pill } from 'lucide-react';
+import {
+  Stethoscope,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Sparkles,
+  MessageCircle,
+  Pill,
+  Apple,
+  Cpu,
+  Layers,
+} from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
 
 export default function HeroBanner() {
   const { openZaloModal } = useZaloConsult();
+  const [greeting, setGreeting] = useState('Chào bạn!');
+  const [formattedDate, setFormattedDate] = useState('');
+
+  useEffect(() => {
+    const now = new Date();
+    const hour = now.getHours();
+    if (hour < 12) {
+      setGreeting('Chào buổi sáng!');
+    } else if (hour < 18) {
+      setGreeting('Chào buổi chiều!');
+    } else {
+      setGreeting('Chào buổi tối!');
+    }
+
+    const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+    const dayName = days[now.getDay()];
+    const dateStr = `${dayName}, ngày ${now.getDate()} tháng ${now.getMonth() + 1}, ${now.getFullYear()}`;
+    setFormattedDate(dateStr);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden pt-8 pb-14 md:pt-14 md:pb-20 bg-gradient-to-b from-[#E3EFEC]/50 via-[#F7F8F6] to-[#F7F8F6] border-b border-[#DDE3E0]">
-      
-      {/* Decorative backdrop elements */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#1F5C55]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 left-10 w-80 h-80 bg-[#1F5C55]/8 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Main Info */}
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E3EFEC] border border-[#B8D5CE] text-[#1F5C55] text-xs font-bold">
-              <HeartPulse className="w-4 h-4 text-[#1F5C55]" />
-              <span>Cổng Thông Tin Sức Khỏe & Phòng Khám Gia Đình</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#12211F] tracking-tight leading-tight">
-              BSCKI. Lương Đình Trung
-              <span className="block text-xl sm:text-2xl md:text-3xl font-bold text-[#1F5C55] mt-2">
-                Đồng Hành Chăm Sóc Sức Khỏe & Thực Hành Lâm Sàng
-              </span>
+    <section className="relative pt-6 pb-10 md:pt-10 md:pb-14 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-8">
+        
+        {/* Top Greeting Header (Editorial Serif Style as seen in reference image) */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#E8E4DA] pb-4">
+          <div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#12211F] tracking-tight">
+              {greeting}
             </h1>
-
-            <p className="text-[#5C6B68] text-base md:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-              Nơi chia sẻ các hướng dẫn y khoa chuẩn mực, thực đơn dinh dưỡng cá nhân hóa 
-              và sổ tay tra cứu phác đồ điều trị bệnh lý mạn tính. Thiết thực cho người bệnh, tiện ích cho đồng nghiệp.
+            <p className="text-xs sm:text-sm text-[#63706D] mt-1 font-medium">
+              {formattedDate || 'Cổng Thông Tin Y Khoa & Sổ Tay Lâm Sàng'}
             </p>
+          </div>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-              <a
-                href="#dinh-duong"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-sm shadow-sm transition-all"
-              >
-                <Apple className="w-4 h-4 text-[#C7DFD9]" />
-                <span>Sổ tay Dinh dưỡng & Thực đơn</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E2EBE8] text-[#1F5C55] text-xs font-bold border border-[#BDD3CC]">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>BSCKI. Lương Đình Trung</span>
+            </span>
+          </div>
+        </div>
 
-              <a
-                href="#noi-khoa"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-[#E3EFEC]/50 text-[#12211F] font-bold text-sm border border-[#DDE3E0] shadow-xs transition-all"
-              >
-                <Stethoscope className="w-4 h-4 text-[#1F5C55]" />
-                <span>Tra cứu Nội khoa</span>
-              </a>
-
-              <button
-                onClick={openZaloModal}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#E3EFEC] hover:bg-[#D4E8E3] text-[#1F5C55] font-bold text-sm border border-[#B8D5CE] transition-all cursor-pointer"
-              >
-                <UserCheck className="w-4 h-4" />
-                <span>Tư vấn trực tiếp</span>
-              </button>
+        {/* System Health / Readiness Card (Inspired by Reference Image Status Card) */}
+        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E8E4DA] shadow-xs">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/80 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-base sm:text-lg font-bold text-[#12211F]">
+                  Cổng Y Khoa Sẵn Sàng Phục Vụ
+                </h2>
+                <p className="text-xs text-[#63706D] mt-0.5">
+                  Trợ lý AI & Cẩm nang phác đồ trực tuyến 24/7
+                </p>
+              </div>
             </div>
 
-            {/* Key Values */}
-            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#5C6B68] font-medium">
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#1F5C55]" />
-                <span>Kiến thức Y khoa chuẩn mực</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#1F5C55]" />
-                <span>Thực đơn theo thể trạng từng người</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#1F5C55]" />
-                <span>Tra cứu an toàn & miễn phí</span>
-              </div>
+            <div className="text-right shrink-0">
+              <span className="text-2xl sm:text-3xl font-black font-serif text-emerald-600">
+                100%
+              </span>
+              <span className="block text-[11px] text-[#63706D] font-medium">
+                Sẵn sàng
+              </span>
             </div>
           </div>
 
-          {/* Hero Visual Card / Bento Feature */}
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="relative rounded-2xl bg-white p-6 shadow-md border border-[#DDE3E0] overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E3EFEC]/60 rounded-bl-full pointer-events-none" />
-                
-                <div className="flex items-center gap-4 pb-4 border-b border-[#DDE3E0]">
-                  <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-xs border border-[#C7DFD9] shrink-0">
-                    <Image
-                      src="/images/cropped-logo-moi-1.png"
-                      alt="Avatar BS. Trung"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#12211F] text-base">BSCKI. Lương Đình Trung</h3>
-                    <p className="text-xs text-[#1F5C55] font-bold">Bác sĩ Chuyên khoa I</p>
-                    <p className="text-xs text-[#5C6B68]">Tư vấn sức khỏe & Thực hành lâm sàng</p>
-                  </div>
-                </div>
+          {/* Progress Indicator */}
+          <div className="w-full bg-[#F0EBE1] h-2 rounded-full overflow-hidden mb-3">
+            <div className="bg-gradient-to-r from-emerald-500 to-[#1F5C55] h-full w-full rounded-full transition-all duration-500" />
+          </div>
 
-                <div className="py-4 space-y-3">
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F7F8F6] border border-[#DDE3E0]">
-                    <div className="p-2 rounded-lg bg-[#E3EFEC] text-[#1F5C55] shrink-0">
-                      <Apple className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-[#12211F]">Dinh Dưỡng & Thực Đơn Khoa Học</h4>
-                      <p className="text-[11px] text-[#5C6B68] mt-0.5">Xây dựng khẩu phần ăn theo từng bệnh nền, lứa tuổi và sở thích.</p>
-                    </div>
-                  </div>
+          <div className="flex items-center justify-between text-[11px] text-[#63706D] font-medium">
+            <span>Dữ liệu lâm sàng chuẩn hóa theo Bộ Y tế & Quốc tế</span>
+            <span className="text-emerald-700 font-semibold">Cập nhật trực tuyến</span>
+          </div>
+        </div>
 
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F7F8F6] border border-[#DDE3E0]">
-                    <div className="p-2 rounded-lg bg-[#E3EFEC] text-[#1F5C55] shrink-0">
-                      <Pill className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-[#12211F]">Hướng Dẫn Dùng Thuốc An Toàn</h4>
-                      <p className="text-[11px] text-[#5C6B68] mt-0.5">Kiểm tra thời điểm uống thuốc, phòng ngừa tương tác nguy hiểm.</p>
-                    </div>
-                  </div>
+        {/* 4 Quick Stat Bento Cards (2 cols mobile, 4 cols desktop - Exactly like the reference image) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          
+          {/* Card 1: Phác đồ */}
+          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center mb-3">
+              <Stethoscope className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
+                12+
+              </span>
+              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
+                Khoa Lâm Sàng
+              </span>
+            </div>
+          </div>
 
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F7F8F6] border border-[#DDE3E0]">
-                    <div className="p-2 rounded-lg bg-[#E3EFEC] text-[#1F5C55] shrink-0">
-                      <Stethoscope className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-[#12211F]">Sổ Tay Lâm Sàng Nội Khoa</h4>
-                      <p className="text-[11px] text-[#5C6B68] mt-0.5">Phác đồ chuẩn, giải thích chỉ số xét nghiệm và chăm sóc bệnh mạn tính.</p>
-                    </div>
-                  </div>
-                </div>
+          {/* Card 2: Thuốc */}
+          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center mb-3">
+              <Pill className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
+                100+
+              </span>
+              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
+                Cặp Tương Tác Thuốc
+              </span>
+            </div>
+          </div>
 
-                <div className="pt-2">
-                  <button
-                    onClick={openZaloModal}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-2xs cursor-pointer"
-                  >
-                    <span>Nhắn tin tư vấn trực tiếp qua Zalo</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+          {/* Card 3: Dinh dưỡng */}
+          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center mb-3">
+              <Apple className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
+                7 Ngày
+              </span>
+              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
+                Thực Đơn Cá Nhân Hóa
+              </span>
+            </div>
+          </div>
 
-              </div>
+          {/* Card 4: AI Assistant */}
+          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center mb-3">
+              <Cpu className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
+                24/7
+              </span>
+              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
+                Trợ Lý AI NotebookLM
+              </span>
             </div>
           </div>
 
         </div>
+
+        {/* Action Bar (Clear separation between Free AI Assistant and Direct 1-1 Doctor Consultation) */}
+        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E8E4DA] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h3 className="text-sm sm:text-base font-bold text-[#12211F]">
+              Bạn cần tra cứu phác đồ hay cần tư vấn bệnh án riêng?
+            </h3>
+            <p className="text-xs text-[#63706D] mt-0.5">
+              Hỏi đáp miễn phí tức thì qua Trợ lý AI hoặc Đặt lịch tư vấn trực tiếp 1-1 cùng BSCKI. Lương Đình Trung
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0 w-full sm:w-auto">
+            <a
+              href="#tien-ich"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
+            >
+              <Sparkles className="w-4 h-4 text-emerald-200" />
+              <span>Tra Cứu Cùng Trợ Lý AI (Miễn Phí)</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <button
+              onClick={openZaloModal}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#FAF7F2] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-xs sm:text-sm border border-[#CBD5CF] transition-all cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
+              <span>Tư Vấn 1-1 Cùng Bác Sĩ (Zalo)</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
   );
