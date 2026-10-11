@@ -88,10 +88,10 @@ const SECONDARY_APPS: MedicineApp[] = [
   {
     id: 'chinh-sach-bhyt',
     code: 'MOD-06 • POLICY',
-    title: 'Quản Trị Dược & Định Mức BHYT',
-    subtitle: 'Sổ tay định mức danh mục kỹ thuật y tế và tỷ lệ quỹ BHYT thanh toán',
+    title: 'Xây Dựng Giá Dịch Vụ Kỹ Thuật & Đấu Thầu',
+    subtitle: 'Định mức kinh tế - kỹ thuật, xây dựng cơ cấu giá DVKT và công tác đấu thầu y tế',
     link: 'https://notebooklm.google.com/notebook/cee0719a-ca48-401b-85a6-abea4bb4f20d',
-    badge: 'Tra cứu phác đồ',
+    badge: 'Giá DVKT & Đấu thầu',
     colorClass: 'text-stone-700 border-stone-200/70',
     bgLightClass: 'bg-stone-50',
     icon: Scale,
@@ -233,7 +233,7 @@ export default function SectionInternalMedicine() {
             onClick={() => setShowMore(!showMore)}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FAF9F5] hover:bg-[#EFECE5] border border-[#E8E4DA] text-xs font-semibold text-[#63706D] hover:text-[#1F5C55] transition-colors cursor-pointer"
           >
-            <span>{showMore ? 'Thu gọn bớt chuyên mục phụ' : 'Xem thêm: Dinh dưỡng bệnh lý & Quản lý BHYT'}</span>
+            <span>{showMore ? 'Thu gọn bớt chuyên mục phụ' : 'Xem thêm: Dinh dưỡng bệnh lý & Giá DVKT, Đấu thầu'}</span>
             {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
         </div>

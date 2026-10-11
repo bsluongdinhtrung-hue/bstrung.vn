@@ -60,7 +60,7 @@ Toàn bộ hệ thống tập trung vào 5 chuyên mục chăm sóc sức khỏe
   3. `MOD-03 • SCORES`: Công Thức & Thang Điểm (`Gauge` - Tag: Đo lường & Phân tầng)
   4. `MOD-04 • PHARMA`: Thuốc & Tương Tác Thuốc (`Pill` - Tag: Dược lý lâm sàng)
   5. `MOD-05 • DIET`: Sổ Tay Dinh Dưỡng (`Apple` - Tag: Liệu pháp Dinh dưỡng)
-  6. `MOD-06 • POLICY`: Giá & Đấu Thầu Y Tế (`Scale` - Tag: Quản lý Dược & BHYT)
+  6. `MOD-06 • POLICY`: Xây Dựng Giá Dịch Vụ Kỹ Thuật & Đấu Thầu (`Scale` - Tag: Giá DVKT & Đấu thầu)
 - Ưu điểm: Tải cực nhanh (<0.1s), sắc nét tuyệt đối 100% trên màn hình Retina / 4K / Mobile, đồng bộ nhận diện Deep Medical Teal `#1F5C55`.
 
 ---
