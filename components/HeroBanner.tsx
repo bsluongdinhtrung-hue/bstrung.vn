@@ -20,37 +20,60 @@ export default function HeroBanner() {
   const { openZaloModal } = useZaloConsult();
   const [greeting, setGreeting] = useState('Chào bạn!');
   const [formattedDate, setFormattedDate] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
-    const now = new Date();
-    const hour = now.getHours();
-    if (hour < 12) {
-      setGreeting('Chào buổi sáng!');
-    } else if (hour < 18) {
-      setGreeting('Chào buổi chiều!');
-    } else {
-      setGreeting('Chào buổi tối!');
-    }
+    const updateDateTime = () => {
+      const now = new Date();
+      const hour = now.getHours();
+      if (hour < 12) {
+        setGreeting('Chào buổi sáng');
+      } else if (hour < 18) {
+        setGreeting('Chào buổi chiều');
+      } else {
+        setGreeting('Chào buổi tối');
+      }
 
-    const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
-    const dayName = days[now.getDay()];
-    const dateStr = `${dayName}, ngày ${now.getDate()} tháng ${now.getMonth() + 1}, ${now.getFullYear()}`;
-    setFormattedDate(dateStr);
+      const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+      const dayName = days[now.getDay()];
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+
+      setFormattedDate(`${dayName}, ngày ${day}/${month}/${year}`);
+      setCurrentTime(`${hours}:${minutes}`);
+    };
+
+    updateDateTime();
+    const timer = setInterval(updateDateTime, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative pt-6 pb-10 md:pt-10 md:pb-14 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-8">
         
-        {/* Top Greeting Header (Editorial Serif Style as seen in reference image) */}
+        {/* Top Greeting Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#E8E4DA] pb-4">
           <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#12211F] tracking-tight">
-              {greeting}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-[#12211F] tracking-tight">
+              Cổng Y Khoa & Sổ Tay Lâm Sàng
             </h1>
-            <p className="text-xs sm:text-sm text-[#63706D] mt-1 font-medium">
-              {formattedDate || 'Cổng Thông Tin Y Khoa & Sổ Tay Lâm Sàng'}
-            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#63706D] mt-1.5 font-medium">
+              <span>{greeting}</span>
+              <span>•</span>
+              <span>{formattedDate}</span>
+              {currentTime && (
+                <>
+                  <span>•</span>
+                  <span className="font-mono font-bold text-[#1F5C55] bg-[#E2EBE8] px-2 py-0.5 rounded-md border border-[#BDD3CC]">
+                    {currentTime}
+                  </span>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
