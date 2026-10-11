@@ -13,6 +13,9 @@ import {
   Apple,
   Cpu,
   Layers,
+  FlaskConical,
+  Gauge,
+  ExternalLink,
 } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
 
@@ -122,68 +125,112 @@ export default function HeroBanner() {
           </div>
         </div>
 
-        {/* 4 Quick Stat Bento Cards (2 cols mobile, 4 cols desktop - Exactly like the reference image) */}
+        {/* 4 Core Clinical Tools Bento Cards (2 cols mobile, 4 cols desktop) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           
-          {/* Card 1: 5 Sổ tay Chuyên mục */}
-          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center mb-3">
-              <Layers className="w-4 h-4" />
+          {/* Card 1: Thực Hành Nội Khoa */}
+          <a
+            href="https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-cyan-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Stethoscope className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-semibold text-cyan-800 bg-cyan-50/80 px-2 py-0.5 rounded-md border border-cyan-200/50 flex items-center gap-1">
+                <span>Tra cứu</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              </span>
             </div>
             <div>
-              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
-                5 Sổ Tay
-              </span>
-              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
-                Chuyên Mục Trọng Tâm
-              </span>
+              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-cyan-800 transition-colors leading-snug">
+                Thực Hành Nội Khoa
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
+                Phác đồ chẩn đoán, Cấp cứu & Hồi sức ICU
+              </p>
             </div>
-          </div>
+          </a>
 
-          {/* Card 2: Thuốc */}
-          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center mb-3">
-              <Pill className="w-4 h-4" />
+          {/* Card 2: Tương Tác Thuốc */}
+          <a
+            href="https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-emerald-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Pill className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50/80 px-2 py-0.5 rounded-md border border-emerald-200/50 flex items-center gap-1">
+                <span>Tra cứu</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              </span>
             </div>
             <div>
-              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
-                100+
-              </span>
-              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
-                Cặp Tương Tác Thuốc
-              </span>
+              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-emerald-800 transition-colors leading-snug">
+                Tương Tác Thuốc
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
+                Cập nhật chuẩn Dược thư & Bộ Y Tế
+              </p>
             </div>
-          </div>
+          </a>
 
-          {/* Card 3: Dinh dưỡng */}
-          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center mb-3">
-              <Apple className="w-4 h-4" />
+          {/* Card 3: Xét Nghiệm & Trị Số SI */}
+          <a
+            href="https://notebooklm.google.com/notebook/3dbcddca-26c7-477a-a299-c3f482f85277"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-purple-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <FlaskConical className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-semibold text-purple-800 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-200/50 flex items-center gap-1">
+                <span>Tra cứu</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              </span>
             </div>
             <div>
-              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
-                7 Ngày
-              </span>
-              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
-                Thực Đơn Cá Nhân Hóa
-              </span>
+              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-purple-800 transition-colors leading-snug">
+                Xét Nghiệm & Trị Số SI
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
+                Biện luận sinh hóa, huyết học & marker
+              </p>
             </div>
-          </div>
+          </a>
 
-          {/* Card 4: AI Assistant */}
-          <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center mb-3">
-              <Cpu className="w-4 h-4" />
+          {/* Card 4: Thang Điểm & Tiên Lượng */}
+          <a
+            href="https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-amber-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Gauge className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-semibold text-amber-800 bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/50 flex items-center gap-1">
+                <span>Tra cứu</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              </span>
             </div>
             <div>
-              <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
-                24/7
-              </span>
-              <span className="text-xs text-[#63706D] font-medium block mt-0.5">
-                Trợ Lý AI NotebookLM
-              </span>
+              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-amber-800 transition-colors leading-snug">
+                Thang Điểm & Tiên Lượng
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
+                HEART, CURB-65, CKD-EPI & phân tầng
+              </p>
             </div>
-          </div>
+          </a>
 
         </div>
 
