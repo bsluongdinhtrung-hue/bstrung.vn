@@ -58,7 +58,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
             Tư Vấn Chuyên Môn Cùng BSCKI. Lương Đình Trung
           </h3>
           <p className="text-xs text-[#E3EFEC] mt-1 leading-relaxed">
-            Dịch vụ tư vấn y khoa cá nhân hóa, đọc hồ sơ xét nghiệm & phác đồ điều trị qua Zalo riêng của Bác sĩ.
+            Kênh trao đổi y khoa trực tiếp qua Zalo cùng BSCKI. Lương Đình Trung.
           </p>
         </div>
 
