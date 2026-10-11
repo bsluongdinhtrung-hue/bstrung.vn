@@ -31,7 +31,7 @@ const PRIMARY_APPS: MedicineApp[] = [
     id: 'so-tay-full',
     code: 'MOD-01 • CLINICAL',
     title: 'Phác Đồ Nội Khoa Toàn Diện',
-    subtitle: '12+ Chuyên khoa, chẩn đoán phân biệt & phác đồ điều trị chuẩn Bộ Y tế',
+    subtitle: 'Chẩn đoán phân biệt & phác đồ điều trị nội khoa chuẩn Bộ Y tế',
     link: 'https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29',
     badge: 'AI NotebookLM',
     colorClass: 'text-cyan-700 border-cyan-200/70',

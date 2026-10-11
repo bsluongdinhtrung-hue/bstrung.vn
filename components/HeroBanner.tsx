@@ -125,17 +125,17 @@ export default function HeroBanner() {
         {/* 4 Quick Stat Bento Cards (2 cols mobile, 4 cols desktop - Exactly like the reference image) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           
-          {/* Card 1: Phác đồ */}
+          {/* Card 1: 5 Sổ tay Chuyên mục */}
           <div className="bg-white rounded-2xl p-4 border border-[#E8E4DA] shadow-xs flex flex-col justify-between hover:border-[#1F5C55]/40 transition-colors">
             <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center mb-3">
-              <Stethoscope className="w-4 h-4" />
+              <Layers className="w-4 h-4" />
             </div>
             <div>
               <span className="text-xl sm:text-2xl font-bold font-serif text-[#12211F] block">
-                12+
+                5 Sổ Tay
               </span>
               <span className="text-xs text-[#63706D] font-medium block mt-0.5">
-                Khoa Lâm Sàng
+                Chuyên Mục Trọng Tâm
               </span>
             </div>
           </div>
