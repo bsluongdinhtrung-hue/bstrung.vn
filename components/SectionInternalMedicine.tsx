@@ -13,7 +13,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 interface MedicineApp {
   id: string;
@@ -101,6 +101,7 @@ const SECONDARY_APPS: MedicineApp[] = [
 
 export default function SectionInternalMedicine() {
   const [showMore, setShowMore] = useState(false);
+  const { incrementCounter } = useAnalytics();
 
   return (
     <section id="tien-ich" className="scroll-mt-24 space-y-6">
@@ -170,7 +171,7 @@ export default function SectionInternalMedicine() {
                     href={app.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackClick(app.id, app.title, 'clinical')}
+                    onClick={() => incrementCounter(app.id, app.title, 'clinical')}
                     className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white group-hover:bg-[#1F5C55] text-[#1F5C55] group-hover:text-white border border-[#CBD5CF] group-hover:border-[#1F5C55] font-bold text-xs transition-colors shadow-2xs"
                   >
                     <span>Hỏi AI tra cứu</span>
@@ -217,7 +218,7 @@ export default function SectionInternalMedicine() {
                       href={app.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => trackClick(app.id, app.title, 'clinical')}
+                      onClick={() => incrementCounter(app.id, app.title, 'clinical')}
                       className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white group-hover:bg-[#1F5C55] text-[#1F5C55] group-hover:text-white border border-[#CBD5CF] group-hover:border-[#1F5C55] font-bold text-xs transition-colors shadow-2xs"
                     >
                       <span>Mở chuyên mục tra cứu</span>

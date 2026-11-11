@@ -18,10 +18,11 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 export default function HeroBanner() {
   const { openZaloModal } = useZaloConsult();
+  const { incrementCounter, getDisplayCount } = useAnalytics();
   const [greeting, setGreeting] = useState('Chào bạn!');
   const [formattedDate, setFormattedDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
@@ -134,7 +135,7 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackClick('noi-khoa-icu', 'Thực Hành Nội Khoa & Cấp Cứu ICU', 'clinical')}
+            onClick={() => incrementCounter('noi-khoa-icu', 'Thực Hành Nội Khoa & Cấp Cứu ICU', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-cyan-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
             <div>
@@ -155,7 +156,9 @@ export default function HeroBanner() {
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-cyan-800 bg-cyan-50/70 px-1.5 py-0.5 rounded">🔥 1.450+ lượt xem</span>
+              <span className="font-semibold text-cyan-800 bg-cyan-50/70 px-1.5 py-0.5 rounded">
+                🔥 {getDisplayCount('noi-khoa-icu', 1450)} lượt xem
+              </span>
               <span className="opacity-70">BYT chuẩn</span>
             </div>
           </a>
@@ -165,7 +168,7 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackClick('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
+            onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-emerald-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
             <div>
@@ -186,7 +189,9 @@ export default function HeroBanner() {
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-emerald-800 bg-emerald-50/70 px-1.5 py-0.5 rounded">🔥 1.120+ lượt xem</span>
+              <span className="font-semibold text-emerald-800 bg-emerald-50/70 px-1.5 py-0.5 rounded">
+                🔥 {getDisplayCount('tuong-tac-thuoc', 1120)} lượt xem
+              </span>
               <span className="opacity-70">An toàn đơn</span>
             </div>
           </a>
@@ -196,7 +201,7 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/3dbcddca-26c7-477a-a299-c3f482f85277"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackClick('xet-nghiem-si', 'Xét Nghiệm & Trị Số SI', 'clinical')}
+            onClick={() => incrementCounter('xet-nghiem-si', 'Xét Nghiệm & Trị Số SI', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-purple-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
             <div>
@@ -217,7 +222,9 @@ export default function HeroBanner() {
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-purple-800 bg-purple-50/70 px-1.5 py-0.5 rounded">🔥 980+ lượt xem</span>
+              <span className="font-semibold text-purple-800 bg-purple-50/70 px-1.5 py-0.5 rounded">
+                🔥 {getDisplayCount('xet-nghiem-si', 980)} lượt xem
+              </span>
               <span className="opacity-70">Trị số SI</span>
             </div>
           </a>
@@ -227,7 +234,7 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackClick('thang-diem', 'Thang Điểm & Tiên Lượng Lâm Sàng', 'clinical')}
+            onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Tiên Lượng Lâm Sàng', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-amber-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
             <div>
@@ -248,7 +255,9 @@ export default function HeroBanner() {
               </p>
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-amber-800 bg-amber-50/70 px-1.5 py-0.5 rounded">🔥 870+ lượt xem</span>
+              <span className="font-semibold text-amber-800 bg-amber-50/70 px-1.5 py-0.5 rounded">
+                🔥 {getDisplayCount('thang-diem', 870)} lượt xem
+              </span>
               <span className="opacity-70">Đo lường</span>
             </div>
           </a>
@@ -269,7 +278,7 @@ export default function HeroBanner() {
           <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0 w-full sm:w-auto">
             <a
               href="#tien-ich"
-              onClick={() => trackClick('ai-assistant-hero', 'Trợ Lý AI NotebookLM (Hero)', 'ai')}
+              onClick={() => incrementCounter('ai-assistant-hero', 'Trợ Lý AI NotebookLM (Hero)', 'ai')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
             >
               <Sparkles className="w-4 h-4 text-emerald-200" />
@@ -279,7 +288,7 @@ export default function HeroBanner() {
 
             <button
               onClick={() => {
-                trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Hero)', 'consultation');
+                incrementCounter('zalo-consult', 'Tư Vấn Zalo 1-1 (Hero)', 'consultation');
                 openZaloModal();
               }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#FAF7F2] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-xs sm:text-sm border border-[#CBD5CF] transition-all cursor-pointer"

@@ -12,6 +12,7 @@ import ContactFooter from '@/components/ContactFooter';
 import FloatingZalo from '@/components/FloatingZalo';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { ZaloConsultProvider } from '@/components/ZaloConsultContext';
+import { AnalyticsProvider } from '@/components/AnalyticsContext';
 import { trackPageView } from '@/lib/tracker';
 
 export default function HomePage() {
@@ -20,8 +21,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <ZaloConsultProvider>
-      <div className="flex flex-col min-h-screen bg-[#F5F2EB]">
+    <AnalyticsProvider>
+      <ZaloConsultProvider>
+        <div className="flex flex-col min-h-screen bg-[#F5F2EB]">
         <Header />
         
         <main className="flex-1">
@@ -52,5 +54,6 @@ export default function HomePage() {
         <MobileBottomNav />
       </div>
     </ZaloConsultProvider>
+  </AnalyticsProvider>
   );
 }

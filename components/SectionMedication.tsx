@@ -3,9 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Pill, ExternalLink, ShieldAlert, CheckCircle2, ArrowRight, Clock, AlertTriangle, Sparkles, Flame } from 'lucide-react';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionMedication() {
+  const { incrementCounter, getDisplayCount } = useAnalytics();
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618';
 
   return (
@@ -20,7 +21,7 @@ export default function SectionMedication() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-emerald-600" />
-              <span>1.120+ lượt tra cứu tương tác</span>
+              <span>{getDisplayCount('tuong-tac-thuoc', 1120)} lượt tra cứu tương tác</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
@@ -36,7 +37,7 @@ export default function SectionMedication() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackClick('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
+          onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />

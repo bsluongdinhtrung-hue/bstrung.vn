@@ -3,9 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Baby, ExternalLink, AlertOctagon, ShieldCheck, ArrowRight, Thermometer, Sparkles, Flame } from 'lucide-react';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionPediatrics() {
+  const { incrementCounter, getDisplayCount } = useAnalytics();
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/daa19f87-43df-43d6-8c9d-6e541691a4cb';
 
   return (
@@ -20,7 +21,7 @@ export default function SectionPediatrics() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-cyan-600" />
-              <span>760+ lượt phụ huynh tra cứu</span>
+              <span>{getDisplayCount('cham-soc-nhi-khoa', 760)} lượt phụ huynh tra cứu</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
@@ -36,7 +37,7 @@ export default function SectionPediatrics() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackClick('cham-soc-nhi-khoa', 'Sổ Tay Chăm Sóc Cho Bé', 'pediatrics')}
+          onClick={() => incrementCounter('cham-soc-nhi-khoa', 'Sổ Tay Chăm Sóc Cho Bé', 'pediatrics')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />

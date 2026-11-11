@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import { Calculator, ExternalLink, ArrowRight, Gauge, Sparkles, Flame } from 'lucide-react';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionCalculators() {
+  const { incrementCounter, getDisplayCount } = useAnalytics();
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee';
 
   // Quick Calculator (BMI & eGFR Cockcroft-Gault)
@@ -40,7 +41,7 @@ export default function SectionCalculators() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-amber-600" />
-              <span>870+ lượt tính & tra cứu</span>
+              <span>{getDisplayCount('thang-diem', 870)} lượt tính & tra cứu</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
@@ -56,7 +57,7 @@ export default function SectionCalculators() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackClick('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
+          onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />

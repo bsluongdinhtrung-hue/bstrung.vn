@@ -1,13 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getFirebaseAdmin, BASELINE_COUNTERS, BASELINE_TOTAL_VIEWS, BASELINE_TOTAL_CLICKS } from '@/lib/firebase';
+import { BASELINE_COUNTERS, BASELINE_TOTAL_VIEWS, BASELINE_TOTAL_CLICKS } from '@/lib/firebase';
+import { getAnalyticsSummary } from '@/lib/analytics-storage';
 
 export async function GET() {
   try {
-    const { db } = getFirebaseAdmin();
-    const doc = await db.collection('bstrung_counters').doc('summary').get();
-
-    const data = doc.data() || {};
-    const items = data.items || {};
+    const summary = await getAnalyticsSummary();
+    const items = summary.items || {};
 
     const formattedCounts: Record<string, number> = {};
 
@@ -17,30 +15,31 @@ export async function GET() {
       formattedCounts[key] = BASELINE_COUNTERS[key] + realClicks;
     });
 
-    // Also include any new keys tracked in Firestore
+    // Also include any new keys tracked
     Object.keys(items).forEach((key) => {
       if (!formattedCounts[key]) {
         formattedCounts[key] = items[key].clicks || 0;
       }
     });
 
-    const totalViews = (data.totalPageViews || 0) + BASELINE_TOTAL_VIEWS;
-    const totalClicks = (data.totalClicks || 0) + BASELINE_TOTAL_CLICKS;
+    const totalViews = (summary.totalPageViews || 0) + BASELINE_TOTAL_VIEWS;
+    const totalClicks = (summary.totalClicks || 0) + BASELINE_TOTAL_CLICKS;
 
     return NextResponse.json({
       success: true,
       totalViews,
       totalClicks,
       counters: formattedCounts,
+      rawClicks: summary.totalClicks || 0,
     });
   } catch (err: any) {
     console.error('Summary API error:', err);
-    // Fallback to baseline
     return NextResponse.json({
       success: true,
       totalViews: BASELINE_TOTAL_VIEWS,
       totalClicks: BASELINE_TOTAL_CLICKS,
       counters: BASELINE_COUNTERS,
+      rawClicks: 0,
     });
   }
 }

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Apple, ExternalLink, Check, Copy, HelpCircle, Utensils, HeartPulse, Sparkles, MessageCircle, Flame } from 'lucide-react';
-import { trackClick } from '@/lib/tracker';
+import { useAnalytics } from './AnalyticsContext';
 
 const SAMPLE_QUESTIONS = [
   'Tôi bị đái tháo đường và tăng huyết áp, gợi ý giúp tôi thực đơn 7 ngày dễ nấu cho người miền Bắc?',
@@ -14,6 +14,7 @@ const SAMPLE_QUESTIONS = [
 
 export default function SectionNutrition() {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const { incrementCounter, getDisplayCount } = useAnalytics();
 
   const handleCopy = (text: string, index: number) => {
     navigator.clipboard.writeText(text);
@@ -35,7 +36,7 @@ export default function SectionNutrition() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-rose-500" />
-              <span>1.280+ lượt người đã mở thực đơn</span>
+              <span>{getDisplayCount('so-tay-dinh-duong', 1280)} lượt người đã mở thực đơn</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
@@ -51,7 +52,7 @@ export default function SectionNutrition() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackClick('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
+          onClick={() => incrementCounter('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />
@@ -70,7 +71,7 @@ export default function SectionNutrition() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackClick('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng (Ảnh Mâm Cơm)', 'nutrition')}
+              onClick={() => incrementCounter('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng (Ảnh Mâm Cơm)', 'nutrition')}
               className="block relative aspect-square w-full"
             >
               <Image
