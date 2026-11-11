@@ -41,7 +41,7 @@ export default function SectionCalculators() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-amber-600" />
-              <span>{getDisplayCount('thang-diem', 870)} lượt tính & tra cứu</span>
+              <span>{getDisplayCount('thang-diem', 0)} lượt tính & tra cứu</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">

@@ -36,7 +36,7 @@ export default function SectionNutrition() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-rose-500" />
-              <span>{getDisplayCount('so-tay-dinh-duong', 1280)} lượt người đã mở thực đơn</span>
+              <span>{getDisplayCount('so-tay-dinh-duong', 0)} lượt người đã mở thực đơn</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">

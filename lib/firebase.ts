@@ -45,18 +45,18 @@ export interface DailyStats {
 }
 
 export const BASELINE_COUNTERS: Record<string, number> = {
-  'so-tay-dinh-duong': 1280,
-  'noi-khoa-icu': 1450,
-  'tuong-tac-thuoc': 1120,
-  'xet-nghiem-si': 980,
-  'thang-diem': 870,
-  'cham-soc-nhi-khoa': 760,
-  'gia-dvkt-dau-thau': 640,
-  'zalo-consult': 350,
+  'so-tay-dinh-duong': 0,
+  'noi-khoa-icu': 0,
+  'tuong-tac-thuoc': 0,
+  'xet-nghiem-si': 0,
+  'thang-diem': 0,
+  'cham-soc-nhi-khoa': 0,
+  'gia-dvkt-dau-thau': 0,
+  'zalo-consult': 0,
 };
 
-export const BASELINE_TOTAL_VIEWS = 8420;
-export const BASELINE_TOTAL_CLICKS = 6850;
+export const BASELINE_TOTAL_VIEWS = 0;
+export const BASELINE_TOTAL_CLICKS = 0;
 
 export function getFirebaseAdmin(): { app: App; db: Firestore } {
   if (!getApps().length) {

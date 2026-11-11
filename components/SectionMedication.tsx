@@ -21,7 +21,7 @@ export default function SectionMedication() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-emerald-600" />
-              <span>{getDisplayCount('tuong-tac-thuoc', 1120)} lượt tra cứu tương tác</span>
+              <span>{getDisplayCount('tuong-tac-thuoc', 0)} lượt tra cứu tương tác</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">

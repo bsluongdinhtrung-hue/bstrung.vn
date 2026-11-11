@@ -157,7 +157,7 @@ export default function HeroBanner() {
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
               <span className="font-semibold text-cyan-800 bg-cyan-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('noi-khoa-icu', 1450)} lượt xem
+                🔥 {getDisplayCount('noi-khoa-icu', 0)} lượt xem
               </span>
               <span className="opacity-70">BYT chuẩn</span>
             </div>
@@ -190,7 +190,7 @@ export default function HeroBanner() {
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
               <span className="font-semibold text-emerald-800 bg-emerald-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('tuong-tac-thuoc', 1120)} lượt xem
+                🔥 {getDisplayCount('tuong-tac-thuoc', 0)} lượt xem
               </span>
               <span className="opacity-70">An toàn đơn</span>
             </div>
@@ -223,7 +223,7 @@ export default function HeroBanner() {
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
               <span className="font-semibold text-purple-800 bg-purple-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('xet-nghiem-si', 980)} lượt xem
+                🔥 {getDisplayCount('xet-nghiem-si', 0)} lượt xem
               </span>
               <span className="opacity-70">Trị số SI</span>
             </div>
@@ -256,7 +256,7 @@ export default function HeroBanner() {
             </div>
             <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
               <span className="font-semibold text-amber-800 bg-amber-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('thang-diem', 870)} lượt xem
+                🔥 {getDisplayCount('thang-diem', 0)} lượt xem
               </span>
               <span className="opacity-70">Đo lường</span>
             </div>

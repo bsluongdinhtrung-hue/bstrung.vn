@@ -21,7 +21,7 @@ export default function SectionPediatrics() {
             </div>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] font-semibold">
               <Flame className="w-3 h-3 text-cyan-600" />
-              <span>{getDisplayCount('cham-soc-nhi-khoa', 760)} lượt phụ huynh tra cứu</span>
+              <span>{getDisplayCount('cham-soc-nhi-khoa', 0)} lượt phụ huynh tra cứu</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">

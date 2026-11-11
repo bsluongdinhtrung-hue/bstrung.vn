@@ -12,7 +12,7 @@ export interface AnalyticsContextType {
 const AnalyticsContext = createContext<AnalyticsContextType>({
   counters: {},
   incrementCounter: () => {},
-  getDisplayCount: (_id, fallback) => `${fallback.toLocaleString('vi-VN')}+`,
+  getDisplayCount: (_id, fallback) => `${fallback.toLocaleString('vi-VN')}`,
 });
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
@@ -44,9 +44,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     baseTrackClick(targetId, targetLabel, category);
   };
 
-  const getDisplayCount = (targetId: string, fallback: number): string => {
+  const getDisplayCount = (targetId: string, fallback: number = 0): string => {
     const val = counters[targetId] !== undefined ? counters[targetId] : fallback;
-    return `${val.toLocaleString('vi-VN')}+`;
+    return `${val.toLocaleString('vi-VN')}`;
   };
 
   return (
