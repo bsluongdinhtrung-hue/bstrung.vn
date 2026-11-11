@@ -18,6 +18,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
+import { trackClick } from '@/lib/tracker';
 
 export default function HeroBanner() {
   const { openZaloModal } = useZaloConsult();
@@ -133,24 +134,29 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('noi-khoa-icu', 'Thực Hành Nội Khoa & Cấp Cứu ICU', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-cyan-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Stethoscope className="w-4 h-4" />
-              </div>
-              <span className="text-[10px] font-semibold text-cyan-800 bg-cyan-50/80 px-2 py-0.5 rounded-md border border-cyan-200/50 flex items-center gap-1">
-                <span>Tra cứu</span>
-                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-              </span>
-            </div>
             <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Stethoscope className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-semibold text-cyan-800 bg-cyan-50/80 px-2 py-0.5 rounded-md border border-cyan-200/50 flex items-center gap-1">
+                  <span>Tra cứu</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
               <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-cyan-800 transition-colors leading-snug">
                 Thực Hành Nội Khoa
               </h3>
               <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
                 Phác đồ chẩn đoán, Cấp cứu & Hồi sức ICU
               </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
+              <span className="font-semibold text-cyan-800 bg-cyan-50/70 px-1.5 py-0.5 rounded">🔥 1.450+ lượt xem</span>
+              <span className="opacity-70">BYT chuẩn</span>
             </div>
           </a>
 
@@ -159,24 +165,29 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-emerald-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Pill className="w-4 h-4" />
-              </div>
-              <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50/80 px-2 py-0.5 rounded-md border border-emerald-200/50 flex items-center gap-1">
-                <span>Tra cứu</span>
-                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-              </span>
-            </div>
             <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Pill className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50/80 px-2 py-0.5 rounded-md border border-emerald-200/50 flex items-center gap-1">
+                  <span>Tra cứu</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
               <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-emerald-800 transition-colors leading-snug">
                 Tương Tác Thuốc
               </h3>
               <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
                 Cập nhật chuẩn Dược thư & Bộ Y Tế
               </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
+              <span className="font-semibold text-emerald-800 bg-emerald-50/70 px-1.5 py-0.5 rounded">🔥 1.120+ lượt xem</span>
+              <span className="opacity-70">An toàn đơn</span>
             </div>
           </a>
 
@@ -185,24 +196,29 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/3dbcddca-26c7-477a-a299-c3f482f85277"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('xet-nghiem-si', 'Xét Nghiệm & Trị Số SI', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-purple-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <FlaskConical className="w-4 h-4" />
-              </div>
-              <span className="text-[10px] font-semibold text-purple-800 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-200/50 flex items-center gap-1">
-                <span>Tra cứu</span>
-                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-              </span>
-            </div>
             <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <FlaskConical className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-semibold text-purple-800 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-200/50 flex items-center gap-1">
+                  <span>Tra cứu</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
               <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-purple-800 transition-colors leading-snug">
                 Xét Nghiệm & Trị Số SI
               </h3>
               <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
                 Biện luận sinh hóa, huyết học & marker
               </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
+              <span className="font-semibold text-purple-800 bg-purple-50/70 px-1.5 py-0.5 rounded">🔥 980+ lượt xem</span>
+              <span className="opacity-70">Trị số SI</span>
             </div>
           </a>
 
@@ -211,24 +227,29 @@ export default function HeroBanner() {
             href="https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('thang-diem', 'Thang Điểm & Tiên Lượng Lâm Sàng', 'clinical')}
             className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-amber-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Gauge className="w-4 h-4" />
-              </div>
-              <span className="text-[10px] font-semibold text-amber-800 bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/50 flex items-center gap-1">
-                <span>Tra cứu</span>
-                <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-              </span>
-            </div>
             <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Gauge className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-semibold text-amber-800 bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/50 flex items-center gap-1">
+                  <span>Tra cứu</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </span>
+              </div>
               <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-amber-800 transition-colors leading-snug">
                 Thang Điểm & Tiên Lượng
               </h3>
               <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
                 HEART, CURB-65, CKD-EPI & phân tầng
               </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
+              <span className="font-semibold text-amber-800 bg-amber-50/70 px-1.5 py-0.5 rounded">🔥 870+ lượt xem</span>
+              <span className="opacity-70">Đo lường</span>
             </div>
           </a>
 
@@ -248,6 +269,7 @@ export default function HeroBanner() {
           <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0 w-full sm:w-auto">
             <a
               href="#tien-ich"
+              onClick={() => trackClick('ai-assistant-hero', 'Trợ Lý AI NotebookLM (Hero)', 'ai')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
             >
               <Sparkles className="w-4 h-4 text-emerald-200" />
@@ -256,7 +278,10 @@ export default function HeroBanner() {
             </a>
 
             <button
-              onClick={openZaloModal}
+              onClick={() => {
+                trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Hero)', 'consultation');
+                openZaloModal();
+              }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#FAF7F2] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-xs sm:text-sm border border-[#CBD5CF] transition-all cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-[#1F5C55]" />

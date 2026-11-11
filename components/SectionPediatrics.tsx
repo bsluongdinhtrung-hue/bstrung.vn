@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Baby, ExternalLink, AlertOctagon, ShieldCheck, ArrowRight, Thermometer, Sparkles } from 'lucide-react';
+import { Baby, ExternalLink, AlertOctagon, ShieldCheck, ArrowRight, Thermometer, Sparkles, Flame } from 'lucide-react';
+import { trackClick } from '@/lib/tracker';
 
 export default function SectionPediatrics() {
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/daa19f87-43df-43d6-8c9d-6e541691a4cb';
@@ -12,9 +13,15 @@ export default function SectionPediatrics() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold mb-2.5">
-            <Baby className="w-3.5 h-3.5 text-[#1F5C55]" />
-            <span>Nhi Khoa Gia Đình • Chăm Sóc Bé Khoa Học</span>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+              <Baby className="w-3.5 h-3.5 text-[#1F5C55]" />
+              <span>Nhi Khoa Gia Đình • Chăm Sóc Bé Khoa Học</span>
+            </div>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] font-semibold">
+              <Flame className="w-3 h-3 text-cyan-600" />
+              <span>760+ lượt phụ huynh tra cứu</span>
+            </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Sổ Tay Chăm Sóc & Điều Trị Bệnh Cho Bé
@@ -29,6 +36,7 @@ export default function SectionPediatrics() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackClick('cham-soc-nhi-khoa', 'Sổ Tay Chăm Sóc Cho Bé', 'pediatrics')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />

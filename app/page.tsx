@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroBanner from '@/components/HeroBanner';
 import SectionInternalMedicine from '@/components/SectionInternalMedicine';
@@ -11,8 +12,13 @@ import ContactFooter from '@/components/ContactFooter';
 import FloatingZalo from '@/components/FloatingZalo';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { ZaloConsultProvider } from '@/components/ZaloConsultContext';
+import { trackPageView } from '@/lib/tracker';
 
 export default function HomePage() {
+  useEffect(() => {
+    trackPageView('home_page');
+  }, []);
+
   return (
     <ZaloConsultProvider>
       <div className="flex flex-col min-h-screen bg-[#F5F2EB]">

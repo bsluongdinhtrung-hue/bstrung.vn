@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Mail, MessageCircle, MapPin, ShieldAlert, ArrowUp } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
+import { trackClick } from '@/lib/tracker';
 
 export default function ContactFooter() {
   const { openZaloModal } = useZaloConsult();
@@ -41,7 +42,10 @@ export default function ContactFooter() {
 
             <div className="pt-2 flex items-center gap-3">
               <button
-                onClick={openZaloModal}
+                onClick={() => {
+                  trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Footer)', 'consultation');
+                  openZaloModal();
+                }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -50,6 +54,7 @@ export default function ContactFooter() {
 
               <a
                 href="mailto:bsluongdinhtrung@gmail.com"
+                onClick={() => trackClick('mail-doctor', 'Liên Hệ Email Bác Sĩ (Footer)', 'contact')}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/15 transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#9BC4BA]" />

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, ExternalLink, ArrowRight, Gauge, Sparkles } from 'lucide-react';
+import { Calculator, ExternalLink, ArrowRight, Gauge, Sparkles, Flame } from 'lucide-react';
+import { trackClick } from '@/lib/tracker';
 
 export default function SectionCalculators() {
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee';
@@ -32,9 +33,15 @@ export default function SectionCalculators() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold mb-2.5">
-            <Calculator className="w-3.5 h-3.5 text-[#1F5C55]" />
-            <span>Công Cụ Đo Lường • Tính Nhanh Thể Trạng Lâm Sàng</span>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+              <Calculator className="w-3.5 h-3.5 text-[#1F5C55]" />
+              <span>Công Cụ Đo Lường • Tính Nhanh Thể Trạng Lâm Sàng</span>
+            </div>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold">
+              <Flame className="w-3 h-3 text-amber-600" />
+              <span>870+ lượt tính & tra cứu</span>
+            </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Tính Nhanh Chỉ Số Thể Trạng & Thang Điểm Y Học
@@ -49,6 +56,7 @@ export default function SectionCalculators() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackClick('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />

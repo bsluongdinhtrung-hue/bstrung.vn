@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Apple, ExternalLink, Check, Copy, HelpCircle, Utensils, HeartPulse, Sparkles, MessageCircle } from 'lucide-react';
+import { Apple, ExternalLink, Check, Copy, HelpCircle, Utensils, HeartPulse, Sparkles, MessageCircle, Flame } from 'lucide-react';
+import { trackClick } from '@/lib/tracker';
 
 const SAMPLE_QUESTIONS = [
   'Tôi bị đái tháo đường và tăng huyết áp, gợi ý giúp tôi thực đơn 7 ngày dễ nấu cho người miền Bắc?',
@@ -27,9 +28,15 @@ export default function SectionNutrition() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold mb-2.5">
-            <Apple className="w-3.5 h-3.5 text-[#1F5C55]" />
-            <span>Chuyên Mục Dinh Dưỡng • Ẩm Thực Chuẩn Y Khoa</span>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+              <Apple className="w-3.5 h-3.5 text-[#1F5C55]" />
+              <span>Chuyên Mục Dinh Dưỡng • Ẩm Thực Chuẩn Y Khoa</span>
+            </div>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[11px] font-semibold">
+              <Flame className="w-3 h-3 text-rose-500" />
+              <span>1.280+ lượt người đã mở thực đơn</span>
+            </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Sổ Tay Dinh Dưỡng & Thực Đơn Cá Nhân Hóa
@@ -44,6 +51,7 @@ export default function SectionNutrition() {
           href={CONSULT_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackClick('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />
@@ -58,7 +66,13 @@ export default function SectionNutrition() {
         {/* Left Column: Visual Book Cover & Quick Guide */}
         <div className="lg:col-span-5 space-y-4">
           <div className="group relative rounded-2xl overflow-hidden border border-[#E8E4DA] shadow-xs bg-[#FAF9F5] hover:shadow-md transition-all duration-300">
-            <a href={CONSULT_URL} target="_blank" rel="noopener noreferrer" className="block relative aspect-square w-full">
+            <a
+              href={CONSULT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackClick('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng (Ảnh Mâm Cơm)', 'nutrition')}
+              className="block relative aspect-square w-full"
+            >
               <Image
                 src="/images/vietnamese-healthy-meal.jpg"
                 alt="Mâm cơm dinh dưỡng chuẩn Y khoa phong cách Việt"

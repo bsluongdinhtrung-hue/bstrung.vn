@@ -3,6 +3,7 @@
 import React from 'react';
 import { Home, Sparkles, Apple, Pill, MessageCircle } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
+import { trackClick } from '@/lib/tracker';
 
 export default function MobileBottomNav() {
   const { openZaloModal } = useZaloConsult();
@@ -52,7 +53,10 @@ export default function MobileBottomNav() {
 
         {/* Item 5: Zalo 1-1 Bác sĩ */}
         <button
-          onClick={openZaloModal}
+          onClick={() => {
+            trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Bottom Nav)', 'consultation');
+            openZaloModal();
+          }}
           className="flex flex-col items-center justify-center py-1 rounded-xl text-[#1F5C55] font-bold transition-transform active:scale-95 cursor-pointer"
         >
           <div className="w-6 h-6 rounded-full bg-[#1F5C55] text-white flex items-center justify-center mb-0.5 shadow-2xs">

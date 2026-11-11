@@ -3,15 +3,21 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
+import { trackClick } from '@/lib/tracker';
 
 export default function FloatingZalo() {
   const { openZaloModal } = useZaloConsult();
+
+  const handleOpenZalo = () => {
+    trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Nút Nổi)', 'consultation');
+    openZaloModal();
+  };
 
   return (
     <aside aria-label="Kênh hỗ trợ trực tuyến" className="fixed bottom-16 md:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-3">
       {/* Tooltip hint on desktop */}
       <button
-        onClick={openZaloModal}
+        onClick={handleOpenZalo}
         className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white text-[#12211F] text-xs font-bold border border-[#E8E4DA] shadow-md hover:border-[#1F5C55] transition-all group cursor-pointer"
       >
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
@@ -20,7 +26,7 @@ export default function FloatingZalo() {
 
       {/* Floating Action Button */}
       <button
-        onClick={openZaloModal}
+        onClick={handleOpenZalo}
         className="floating-zalo flex items-center justify-center w-14 h-14 rounded-full bg-[#1F5C55] hover:bg-[#16443F] text-white shadow-xl transition-transform hover:scale-110 focus:outline-hidden cursor-pointer"
         title="Nhắn tin Zalo trực tiếp với BS. Trung"
       >

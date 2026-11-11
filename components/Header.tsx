@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Menu, X, Mail, MessageCircle } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
+import { trackClick } from '@/lib/tracker';
 
 const NAV_ITEMS = [
   { label: 'Tiện ích Lâm sàng & AI', href: '#tien-ich', badge: 'Hot' },
@@ -68,7 +69,10 @@ export default function Header() {
           {/* Quick Actions (Zalo 1-1 & Mail) */}
           <div className="hidden sm:flex items-center gap-2.5">
             <button
-              onClick={openZaloModal}
+              onClick={() => {
+                trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Header)', 'consultation');
+                openZaloModal();
+              }}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-white text-[#1F5C55] border border-[#CBD5CF] hover:bg-[#EAF0ED] transition-colors shadow-2xs cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
@@ -76,6 +80,7 @@ export default function Header() {
             </button>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"
+              onClick={() => trackClick('mail-doctor', 'Liên Hệ Email Bác Sĩ', 'contact')}
               className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white transition-colors shadow-2xs"
             >
               <Mail className="w-4 h-4" />
