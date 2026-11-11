@@ -29,7 +29,7 @@ interface MedicineApp {
 
 const PRIMARY_APPS: MedicineApp[] = [
   {
-    id: 'so-tay-full',
+    id: 'noi-khoa-icu',
     code: 'MOD-01 • CLINICAL',
     title: 'Thực Hành Nội Khoa & Cấp Cứu ICU',
     subtitle: 'Phác đồ chẩn đoán, xử trí cấp cứu & hồi sức tích cực chuẩn Bộ Y tế',
@@ -51,7 +51,7 @@ const PRIMARY_APPS: MedicineApp[] = [
     icon: Pill,
   },
   {
-    id: 'xet-nghiem',
+    id: 'xet-nghiem-si',
     code: 'MOD-02 • LAB',
     title: 'Xét Nghiệm & Trị Số SI',
     subtitle: 'Chỉ số sinh hóa, huyết học, miễn dịch, marker sinh học & biện luận',
@@ -76,7 +76,7 @@ const PRIMARY_APPS: MedicineApp[] = [
 
 const SECONDARY_APPS: MedicineApp[] = [
   {
-    id: 'dinh-duong-benh-ly',
+    id: 'so-tay-dinh-duong',
     code: 'MOD-05 • DIET',
     title: 'Dinh Dưỡng Bệnh Lý Mạn Tính',
     subtitle: 'Khẩu phần ăn cân đối cho bệnh tim mạch, đái tháo đường & suy thận',
@@ -87,7 +87,7 @@ const SECONDARY_APPS: MedicineApp[] = [
     icon: Apple,
   },
   {
-    id: 'chinh-sach-bhyt',
+    id: 'gia-dvkt-dau-thau',
     code: 'MOD-06 • POLICY',
     title: 'Xây Dựng Giá Dịch Vụ Kỹ Thuật & Đấu Thầu',
     subtitle: 'Định mức kinh tế - kỹ thuật, xây dựng cơ cấu giá DVKT và công tác đấu thầu y tế',
@@ -101,7 +101,7 @@ const SECONDARY_APPS: MedicineApp[] = [
 
 export default function SectionInternalMedicine() {
   const [showMore, setShowMore] = useState(false);
-  const { incrementCounter } = useAnalytics();
+  const { incrementCounter, getDisplayCount } = useAnalytics();
 
   return (
     <section id="tien-ich" className="scroll-mt-24 space-y-6">
@@ -166,7 +166,13 @@ export default function SectionInternalMedicine() {
                 </div>
 
                 {/* Direct Action Link to NotebookLM */}
-                <div className="pt-4 mt-2 border-t border-[#E8E4DA]/60">
+                <div className="pt-3 mt-2 border-t border-[#E8E4DA]/60 space-y-2">
+                  <div className="flex items-center justify-between text-[10px] text-[#63706D]">
+                    <span className={`font-semibold ${app.colorClass.split(' ')[0]} ${app.bgLightClass} px-1.5 py-0.5 rounded flex items-center gap-1`}>
+                      🔥 {getDisplayCount(app.id, 0)} lượt xem
+                    </span>
+                    <span className="opacity-70">BYT chuẩn</span>
+                  </div>
                   <a
                     href={app.link}
                     target="_blank"
@@ -213,7 +219,13 @@ export default function SectionInternalMedicine() {
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-2 border-t border-[#E8E4DA]/60">
+                  <div className="pt-3 mt-2 border-t border-[#E8E4DA]/60 space-y-2">
+                    <div className="flex items-center justify-between text-[10px] text-[#63706D]">
+                      <span className={`font-semibold ${app.colorClass.split(' ')[0]} ${app.bgLightClass} px-1.5 py-0.5 rounded flex items-center gap-1`}>
+                        🔥 {getDisplayCount(app.id, 0)} lượt xem
+                      </span>
+                      <span className="opacity-70">Cập nhật 2026</span>
+                    </div>
                     <a
                       href={app.link}
                       target="_blank"
