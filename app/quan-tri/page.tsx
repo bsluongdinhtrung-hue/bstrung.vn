@@ -25,6 +25,7 @@ import {
   X,
 } from 'lucide-react';
 import Image from 'next/image';
+import AnalyticsTimeChart from '@/components/AnalyticsTimeChart';
 
 interface HandbookItem {
   id: string;
@@ -360,6 +361,12 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
+
+        {/* Section: Biểu Đồ Thống Kê Theo Thời Gian (Ngày / Tháng / Năm & Từng Thẻ) */}
+        <AnalyticsTimeChart
+          dailyStats={stats?.dailyStats || []}
+          handbookRanking={stats?.handbookRanking || []}
+        />
 
         {/* Section: Danh Sách Bệnh Nhân Đăng Ký Tư Vấn 299k (Đã Gửi Hóa Đơn) */}
         <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E8E4DA] shadow-xs">

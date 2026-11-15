@@ -213,8 +213,8 @@ export async function recordEvent(event: Omit<StoredEvent, 'id'>): Promise<void>
   }
 }
 
-// 5. Get Daily Stats (Last 7 days)
-export async function getDailyStatsList(): Promise<any[]> {
+// 5. Get Daily Stats (Up to 365 days for detailed time-series)
+export async function getDailyStatsList(limit: number = 365): Promise<any[]> {
   try {
     const sb = getSupabase();
     const { data } = await sb
@@ -226,7 +226,7 @@ export async function getDailyStatsList(): Promise<any[]> {
     if (data?.content) {
       const daily: StoredDaily = JSON.parse(data.content);
       const keys = Object.keys(daily).sort();
-      return keys.slice(-7).map((k) => daily[k]);
+      return (limit > 0 ? keys.slice(-limit) : keys).map((k) => daily[k]);
     }
   } catch (e) {
     console.warn('Error reading daily stats:', e);
