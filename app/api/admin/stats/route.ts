@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { BASELINE_COUNTERS, BASELINE_TOTAL_VIEWS, BASELINE_TOTAL_CLICKS } from '@/lib/firebase';
-import { getAnalyticsSummary, getDailyStatsList, getRecentEvents } from '@/lib/analytics-storage';
+import { getAnalyticsSummary, getDailyStatsList, getRecentEvents, getConsultationRequests } from '@/lib/analytics-storage';
 
 const EXPECTED_PIN = process.env.ADMIN_PIN || '987214';
 
@@ -26,6 +26,9 @@ export async function POST(req: NextRequest) {
 
     // 3. Fetch recent events
     const recentEvents = await getRecentEvents();
+
+    // 4. Fetch consultation requests
+    const consultations = await getConsultationRequests();
 
     // 4. Calculate handbook rankings
     const handbookRanking = [
@@ -58,6 +61,7 @@ export async function POST(req: NextRequest) {
         handbookRanking,
         dailyStats,
         recentEvents,
+        consultations,
       },
     });
   } catch (err: any) {

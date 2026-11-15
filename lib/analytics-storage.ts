@@ -50,6 +50,17 @@ export interface StoredDaily {
   };
 }
 
+export interface ConsultationRequest {
+  id: string;
+  patientName: string;
+  patientPhone: string;
+  amount: number;
+  billImage?: string;
+  note?: string;
+  createdAt: string;
+  status: 'pending' | 'contacted' | 'completed';
+}
+
 // 1. Get or Init Summary
 export async function getAnalyticsSummary(): Promise<StoredSummary> {
   try {
@@ -221,4 +232,56 @@ export async function getDailyStatsList(): Promise<any[]> {
     console.warn('Error reading daily stats:', e);
   }
   return [];
+}
+
+// 6. Get Consultations List
+export async function getConsultationRequests(): Promise<ConsultationRequest[]> {
+  try {
+    const sb = getSupabase();
+    const { data } = await sb
+      .from('bstrung_articles')
+      .select('content')
+      .eq('slug', 'bstrung_consultations_list')
+      .single();
+
+    if (data?.content) {
+      return JSON.parse(data.content);
+    }
+  } catch (e) {
+    console.warn('Error reading consultations from Supabase:', e);
+  }
+  return [];
+}
+
+// 7. Save Consultation Request
+export async function saveConsultationRequest(
+  item: Omit<ConsultationRequest, 'id' | 'createdAt' | 'status'>
+): Promise<ConsultationRequest> {
+  const newReq: ConsultationRequest = {
+    id: `req_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    ...item,
+    createdAt: new Date().toISOString(),
+    status: 'pending',
+  };
+
+  try {
+    const sb = getSupabase();
+    const list = await getConsultationRequests();
+    list.unshift(newReq);
+    const trimmed = list.slice(0, 100);
+
+    await sb.from('bstrung_articles').upsert({
+      slug: 'bstrung_consultations_list',
+      title: 'Consultation Requests Store',
+      category: 'consultation',
+      priority_order: 996,
+      content: JSON.stringify(trimmed),
+      is_active: false,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'slug' });
+  } catch (e) {
+    console.error('Error saving consultation request:', e);
+  }
+
+  return newReq;
 }

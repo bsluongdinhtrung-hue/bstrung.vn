@@ -19,7 +19,12 @@ import {
   Sparkles,
   BarChart3,
   TrendingUp,
+  UserCheck,
+  ExternalLink,
+  FileText,
+  X,
 } from 'lucide-react';
+import Image from 'next/image';
 
 interface HandbookItem {
   id: string;
@@ -51,6 +56,17 @@ interface EventItem {
   timestamp: string;
 }
 
+interface ConsultationItem {
+  id: string;
+  patientName: string;
+  patientPhone: string;
+  amount: number;
+  billImage?: string;
+  note?: string;
+  createdAt: string;
+  status: 'pending' | 'contacted' | 'completed';
+}
+
 interface StatsData {
   rawViews: number;
   rawClicks: number;
@@ -59,6 +75,7 @@ interface StatsData {
   handbookRanking: HandbookItem[];
   dailyStats: DailyItem[];
   recentEvents: EventItem[];
+  consultations?: ConsultationItem[];
 }
 
 export default function AdminPage() {
@@ -67,6 +84,7 @@ export default function AdminPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<StatsData | null>(null);
+  const [selectedBillImage, setSelectedBillImage] = useState<string | null>(null);
 
   // Auto-login if previously verified in sessionStorage
   useEffect(() => {
@@ -296,20 +314,22 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Card 3: Bấm liên hệ Zalo */}
+          {/* Card 3: Đăng ký tư vấn 299k */}
           <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E8E4DA] shadow-xs flex flex-col justify-between">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-[#63706D]">Lượt Bấm Tư Vấn Zalo</span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
-                <MessageCircle className="w-4 h-4" />
+              <span className="text-xs font-semibold text-[#63706D]">Đăng Ký Tư Vấn 299k</span>
+              <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <UserCheck className="w-4 h-4" />
               </div>
             </div>
             <div>
               <span className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] block">
-                {zaloClicks.toLocaleString('vi-VN')}
+                {(stats?.consultations?.length || 0).toLocaleString('vi-VN')}
               </span>
-              <span className="text-[11px] text-blue-700 font-medium mt-1 block">
-                Tư vấn trực tiếp 1-1
+              <span className="text-[11px] text-emerald-700 font-medium mt-1 block">
+                {stats?.consultations?.length
+                  ? `${((stats.consultations.length) * 299000).toLocaleString('vi-VN')} đ đã xác nhận`
+                  : 'Chờ ca chuyển khoản mới'}
               </span>
             </div>
           </div>
@@ -339,6 +359,135 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Section: Danh Sách Bệnh Nhân Đăng Ký Tư Vấn 299k (Đã Gửi Hóa Đơn) */}
+        <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E8E4DA] shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-[#E8E4DA]">
+            <div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-700" />
+                <h2 className="text-lg font-bold font-serif text-[#12211F]">
+                  Danh Sách Đăng Ký Tư Vấn 1-1 (Đã Gửi Hóa Đơn 299k)
+                </h2>
+              </div>
+              <p className="text-xs text-[#63706D] mt-0.5">
+                Thông tin bệnh nhân đã chuyển khoản và gửi kèm ảnh chụp hóa đơn ngân hàng
+              </p>
+            </div>
+            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 self-start sm:self-auto">
+              {stats?.consultations?.length || 0} ca đăng ký
+            </span>
+          </div>
+
+          {stats?.consultations && stats.consultations.length > 0 ? (
+            <div className="space-y-3.5">
+              {stats.consultations.map((item) => {
+                const dateObj = new Date(item.createdAt);
+                const timeStr = dateObj.toLocaleTimeString('vi-VN', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                });
+                const dateFormatted = dateObj.toLocaleDateString('vi-VN', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                });
+
+                return (
+                  <div
+                    key={item.id}
+                    className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA] hover:border-emerald-600/50 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4"
+                  >
+                    <div className="flex items-start gap-3.5 min-w-0">
+                      {/* Bill Thumbnail */}
+                      {item.billImage ? (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedBillImage(item.billImage || null)}
+                          className="relative w-16 h-16 rounded-xl overflow-hidden border border-emerald-300 bg-white shrink-0 group hover:ring-2 hover:ring-emerald-500 transition-all cursor-pointer"
+                          title="Bấm để xem ảnh bill phóng to"
+                        >
+                          <Image
+                            src={item.billImage}
+                            alt="Biên lai chuyển khoản"
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[10px] font-bold transition-opacity">
+                            Xem bill
+                          </div>
+                        </button>
+                      ) : (
+                        <div className="w-16 h-16 rounded-xl bg-[#EAE6DD] flex items-center justify-center text-xs text-[#8C9895] shrink-0">
+                          Không có bill
+                        </div>
+                      )}
+
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-bold text-sm sm:text-base text-[#12211F]">
+                            {item.patientName}
+                          </span>
+                          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                            {item.amount.toLocaleString('vi-VN')} đ
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2 text-xs text-[#63706D] flex-wrap">
+                          <span className="font-mono text-emerald-800 font-semibold">
+                            📱 {item.patientPhone}
+                          </span>
+                          <span>•</span>
+                          <span>{timeStr} ngày {dateFormatted}</span>
+                        </div>
+
+                        {item.note && (
+                          <p className="text-xs text-[#63706D] bg-white p-2 rounded-lg border border-[#E8E4DA] mt-1 line-clamp-2">
+                            <strong>Ghi chú:</strong> {item.note}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
+                      {item.billImage && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedBillImage(item.billImage || null)}
+                          className="px-3 py-2 rounded-xl bg-white hover:bg-[#FAF9F5] text-xs font-semibold text-[#1F5C55] border border-[#CBD5CF] transition-colors cursor-pointer"
+                        >
+                          Xem hóa đơn
+                        </button>
+                      )}
+                      <a
+                        href={`https://zalo.me/${item.patientPhone}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-xs font-bold text-white shadow-xs transition-colors"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Mở Zalo nhắn tin</span>
+                        <ExternalLink className="w-3 h-3 opacity-70" />
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="p-8 rounded-2xl bg-[#FAF9F5] border border-dashed border-[#CBD5CF] text-center">
+              <UserCheck className="w-8 h-8 text-[#8C9895] mx-auto mb-2 opacity-60" />
+              <p className="text-xs text-[#63706D] font-medium">
+                Chưa có bệnh nhân nào gửi xác nhận chuyển khoản mới.
+              </p>
+              <p className="text-[11px] text-[#8C9895] mt-0.5">
+                Khi bệnh nhân hoàn tất gửi ảnh bill 299k trên web, thông tin sẽ xuất hiện ngay tại đây.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Section: Bảng Xếp Hạng Mức Độ Quan Tâm Sổ Tay */}
@@ -478,6 +627,41 @@ export default function AdminPage() {
             </p>
           )}
         </div>
+
+        {/* Modal: Xem Hóa Đơn Phóng To */}
+        {selectedBillImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fadeIn">
+            <div className="fixed inset-0" onClick={() => setSelectedBillImage(null)} />
+            <div className="relative max-w-lg w-full bg-white rounded-3xl p-4 shadow-2xl z-10 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-[#E8E4DA]">
+                <span className="font-bold text-sm text-[#12211F]">Biên Lai Chuyển Khoản 299.000đ</span>
+                <button
+                  onClick={() => setSelectedBillImage(null)}
+                  className="p-1 rounded-full bg-[#EAE6DD] hover:bg-[#DDD8CD] transition-colors cursor-pointer"
+                >
+                  <X className="w-4 h-4 text-[#12211F]" />
+                </button>
+              </div>
+              <div className="relative w-full max-h-[70vh] aspect-3/4 rounded-xl overflow-hidden bg-stone-100 border border-[#E8E4DA]">
+                <Image
+                  src={selectedBillImage}
+                  alt="Ảnh hóa đơn phóng to"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+              <div className="text-center pt-1">
+                <button
+                  onClick={() => setSelectedBillImage(null)}
+                  className="px-5 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-xs font-bold text-white transition-colors cursor-pointer"
+                >
+                  Đóng cửa sổ
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
