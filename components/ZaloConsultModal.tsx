@@ -18,12 +18,12 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
     bankName: 'VietinBank (Ngân hàng TMCP Công thương Việt Nam)',
     accountNumber: '108005198338',
     accountName: 'LUONG DINH TRUNG',
-    amount: '50.000',
+    amount: '299.000',
     content: 'Tu van Zalo BS Trung',
   };
 
-  const QR_URL = `https://img.vietqr.io/image/vietinbank-108005198338-compact2.png?amount=50000&addInfo=Tu%20van%20Zalo%20BS%20Trung&accountName=LUONG%20DINH%20TRUNG`;
-  const ZALO_LINK = 'https://zalo.me/0559148032';
+  const QR_URL = `https://img.vietqr.io/image/vietinbank-108005198338-compact2.png?amount=299000&addInfo=Tu%20van%20Zalo%20BS%20Trung&accountName=LUONG%20DINH%20TRUNG`;
+  const ZALO_LINK = 'https://zalo.me/0383745415';
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -68,11 +68,11 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
           {/* Fee Notice */}
           <div className="p-3.5 rounded-2xl bg-[#E3EFEC] border border-[#B8D5CE] flex items-center justify-between gap-3">
             <div>
-              <span className="text-[11px] font-bold text-[#16443F] uppercase block tracking-wider">Phí tư vấn chuyên môn:</span>
-              <span className="text-xs text-[#5C6B68]">Hỗ trợ duy trì cổng thông tin & Bác sĩ phản hồi riêng</span>
+              <span className="text-[11px] font-bold text-[#16443F] uppercase block tracking-wider">Phí tư vấn chuyên môn 1-1:</span>
+              <span className="text-xs text-[#5C6B68]">BSCKI trực tiếp phân tích bệnh án, đơn thuốc & xét nghiệm</span>
             </div>
             <div className="text-right shrink-0">
-              <span className="text-lg font-black text-[#1F5C55]">50.000 đ</span>
+              <span className="text-lg font-black text-[#1F5C55]">299.000 đ</span>
               <span className="text-[10px] text-[#5C6B68] block">/ lượt tư vấn</span>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
             </div>
 
             <p className="text-[11px] text-[#5C6B68] mt-2 text-center">
-              Mã chuẩn Napas 24/7 • Tiền vào trực tiếp tài khoản Bác sĩ trong 2 giây • Không có quảng cáo
+              Mã chuẩn Napas 24/7 • Tự động điền đúng số tiền 299.000đ • Chuyển trực tiếp tới Bác sĩ
             </p>
           </div>
 
@@ -126,6 +126,11 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
               <span className="font-bold text-[#12211F]">{BANK_INFO.accountName}</span>
             </div>
 
+            <div className="flex items-center justify-between py-1 border-b border-[#E3EFEC]">
+              <span className="text-[#5C6B68]">Số tiền:</span>
+              <span className="font-bold text-[#1F5C55]">{BANK_INFO.amount} đ</span>
+            </div>
+
             <div className="flex items-center justify-between py-1">
               <span className="text-[#5C6B68]">Nội dung CK:</span>
               <div className="flex items-center gap-2">
@@ -142,10 +147,13 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
           </div>
 
           {/* 2-Step Instructions */}
-          <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-950 space-y-1">
+          <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-950 space-y-1.5">
             <span className="font-bold block text-amber-900">Quy trình kết nối tư vấn:</span>
-            <p>1. Quét mã QR chuyển khoản <strong>50.000đ</strong> bằng ứng dụng ngân hàng.</p>
-            <p>2. Bấm nút bên dưới để mở Zalo, gửi <strong>ảnh chụp màn hình chuyển khoản + câu hỏi</strong> cho Bác sĩ.</p>
+            <p>1. Quét mã VietQR chuyển khoản <strong>299.000đ</strong> bằng ứng dụng ngân hàng.</p>
+            <p>2. Bấm nút bên dưới để mở Zalo, gửi <strong>ảnh chụp màn hình chuyển khoản + câu hỏi hoặc bệnh án</strong> cho Bác sĩ.</p>
+            <p className="text-[11px] text-amber-800 font-semibold pt-1 border-t border-amber-200/80">
+              ⚡ Lưu ý: Bác sĩ chỉ thụ lý và phản hồi riêng các ca gửi kèm ảnh bill chuyển khoản 299.000đ thành công.
+            </p>
           </div>
 
           {/* Primary Action Button */}
@@ -157,7 +165,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
             className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-sm shadow-md transition-all group"
           >
             <MessageCircle className="w-4 h-4 text-emerald-200" />
-            <span>Tôi đã chuyển khoản — Mở Zalo nhắn tin với Bác sĩ</span>
+            <span>Tôi đã chuyển khoản 299.000đ — Mở Zalo kết nối Bác sĩ</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
 
