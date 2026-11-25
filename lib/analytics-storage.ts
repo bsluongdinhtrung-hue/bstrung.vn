@@ -2,7 +2,11 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { BASELINE_COUNTERS, BASELINE_TOTAL_VIEWS, BASELINE_TOTAL_CLICKS } from './firebase';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://wxdpzmjbhqjggqvyxguh.supabase.co';
+// Chỉ dùng phía máy chủ. Cần SUPABASE_SERVICE_ROLE_KEY để ghi khi bảng đã bật RLS chặt.
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_oQW8IYMr1MT-LmvFIpVWhA_8a9Ey__z';
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.warn('[analytics-storage] Thiếu SUPABASE_SERVICE_ROLE_KEY: không ghi được thống kê và đăng ký tư vấn khi RLS đã siết.');
+}
 
 let supabaseClient: SupabaseClient | null = null;
 
@@ -270,7 +274,7 @@ export async function saveConsultationRequest(
     list.unshift(newReq);
     const trimmed = list.slice(0, 100);
 
-    await sb.from('bstrung_articles').upsert({
+    const { error } = await sb.from('bstrung_articles').upsert({
       slug: 'bstrung_consultations_list',
       title: 'Consultation Requests Store',
       category: 'consultation',
@@ -279,8 +283,11 @@ export async function saveConsultationRequest(
       is_active: false,
       updated_at: new Date().toISOString(),
     }, { onConflict: 'slug' });
+    if (error) throw error;
   } catch (e) {
+    // Không nuốt lỗi: người bệnh đã chuyển khoản, phải biết là chưa lưu được.
     console.error('Error saving consultation request:', e);
+    throw new Error('Chưa lưu được thông tin. Vui lòng gửi ảnh biên lai kèm họ tên, số Zalo qua email bsluongdinhtrung@gmail.com.');
   }
 
   return newReq;

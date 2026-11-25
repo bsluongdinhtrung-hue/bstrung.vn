@@ -24,16 +24,16 @@ CREATE TABLE IF NOT EXISTS public.bstrung_articles (
 ALTER TABLE public.bstrung_articles ENABLE ROW LEVEL SECURITY;
 
 -- Cho phép người dùng web đọc công khai các bài viết đang kích hoạt
+-- (không đọc được các dòng hệ thống bstrung_*: thống kê, danh sách tư vấn)
 DROP POLICY IF EXISTS "Cho phép đọc bài viết bstrung công khai" ON public.bstrung_articles;
-CREATE POLICY "Cho phép đọc bài viết bstrung công khai" 
-ON public.bstrung_articles FOR SELECT 
-USING (is_active = true);
+CREATE POLICY "Cho phép đọc bài viết bstrung công khai"
+ON public.bstrung_articles FOR SELECT
+TO anon, authenticated
+USING (is_active = true AND slug NOT LIKE 'bstrung\_%');
 
--- Cho phép Service Role có toàn quyền quản trị
+-- Ghi/xóa chỉ qua máy chủ bằng SUPABASE_SERVICE_ROLE_KEY (service_role bỏ qua RLS).
+-- KHÔNG tạo policy FOR ALL USING (true): nó mở quyền ghi cho cả khóa publishable.
 DROP POLICY IF EXISTS "Toàn quyền quản trị bài viết bstrung" ON public.bstrung_articles;
-CREATE POLICY "Toàn quyền quản trị bài viết bstrung" 
-ON public.bstrung_articles FOR ALL 
-USING (true);
 
 -- ====================================================================
 -- DỮ LIỆU KHỞI TẠO 5 CHUYÊN MỤC TRỌNG TÂM CỦA BS. LƯƠNG ĐÌNH TRUNG
