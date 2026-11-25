@@ -9,7 +9,6 @@ import {
   Pill,
   Apple,
   Scale,
-  Sparkles,
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
@@ -114,17 +113,12 @@ export default function SectionInternalMedicine() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-[#E8E4DA] mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold mb-2.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Cổng Tiện Ích Bác Sĩ & Trợ Lý Y Khoa AI</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
-              Sổ Tay Lâm Sàng & Bộ Công Cụ Y Sinh
-            </h2>
+            Tra cứu lâm sàng cùng Trợ lý AI
+          </h2>
             <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
-              Trích xuất dữ liệu phác đồ chuẩn hóa, dược lý và cận lâm sàng được biên soạn bởi BSCKI. Lương Đình Trung.
-              Tra cứu và trò chuyện trực tiếp cùng Trợ lý AI (Google NotebookLM) hoàn toàn miễn phí.
-            </p>
+            Phác đồ, dược lý và cận lâm sàng do BSCKI. Lương Đình Trung biên soạn. Hỏi Trợ lý AI (Google NotebookLM) miễn phí.
+          </p>
           </div>
         </div>
 

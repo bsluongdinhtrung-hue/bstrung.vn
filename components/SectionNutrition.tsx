@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Apple, ExternalLink, Check, Copy, HelpCircle, Utensils, HeartPulse, Sparkles, MessageCircle, Flame } from 'lucide-react';
+import { ExternalLink, Check, Copy, HelpCircle, Utensils, HeartPulse, Flame } from 'lucide-react';
 import { useAnalytics } from './AnalyticsContext';
 
 const SAMPLE_QUESTIONS = [
@@ -14,6 +14,7 @@ const SAMPLE_QUESTIONS = [
 
 export default function SectionNutrition() {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [showAllQuestions, setShowAllQuestions] = useState(false);
   const { incrementCounter, getDisplayCount, isCountPublic } = useAnalytics();
 
   const handleCopy = (text: string, index: number) => {
@@ -29,36 +30,19 @@ export default function SectionNutrition() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
-              <Apple className="w-3.5 h-3.5 text-[#1F5C55]" />
-              <span>Chuyên Mục Dinh Dưỡng • Ẩm Thực Chuẩn Y Khoa</span>
-            </div>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5 empty:hidden">
             {isCountPublic('so-tay-dinh-duong') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold">
               <Flame className="w-3 h-3 text-rose-500" />
               <span>{getDisplayCount('so-tay-dinh-duong', 0)} lượt người đã mở thực đơn</span>
             </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
-            Sổ Tay Dinh Dưỡng & Thực Đơn Cá Nhân Hóa
+            Dinh dưỡng và thực đơn theo bệnh
           </h2>
           <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
-            Mỗi thể trạng và bệnh nền đều cần một chế độ dinh dưỡng riêng. Bạn chỉ cần nhập độ tuổi, sở thích ăn uống 
-            và bệnh lý hiện tại — Trợ lý AI sẽ gợi ý thực đơn khoa học, dễ nấu và tốt nhất cho bạn.
+            Cho Trợ lý AI biết tuổi, chiều cao, cân nặng, bệnh nền và thói quen ăn uống để nhận thực đơn dễ nấu, hợp với bệnh của mình.
           </p>
         </div>
-
-        <a
-          href={CONSULT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => incrementCounter('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
-          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
-        >
-          <Sparkles className="w-4 h-4" aria-hidden="true" />
-          <span>Hỏi AI gợi ý thực đơn riêng</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
       </div>
 
       {/* Bento Content */}
@@ -99,14 +83,6 @@ export default function SectionNutrition() {
               </div>
             </a>
           </div>
-
-          {/* Practical Note */}
-          <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start gap-3">
-            <MessageCircle className="w-4 h-4 text-[#1F5C55] shrink-0 mt-0.5" />
-            <div className="text-sm text-[#3D4745] leading-relaxed">
-              <span className="font-bold text-[#1F5C55]">Mẹo nhận thực đơn nhanh:</span> Hãy gửi kèm chiều cao, cân nặng, thói quen ăn uống và bệnh nền để Trợ lý AI phân tích và đưa ra khẩu phần chuẩn xác nhất.
-            </div>
-          </div>
         </div>
 
         {/* Right Column: Capabilities & Interactive Prompts */}
@@ -145,14 +121,14 @@ export default function SectionNutrition() {
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-4 h-4 text-[#1F5C55]" />
                 <h3 className="text-sm font-bold text-[#12211F]">
-                  Một số câu hỏi mẫu (Bấm để sao chép vào NotebookLM):
+                  Câu hỏi mẫu, bấm để chép rồi dán vào Trợ lý AI
                 </h3>
               </div>
               <span className="text-xs text-[#63706D] font-medium hidden sm:inline">Sao chép 1 chạm</span>
             </div>
 
             <div className="space-y-2">
-              {SAMPLE_QUESTIONS.map((question, idx) => (
+              {(showAllQuestions ? SAMPLE_QUESTIONS : SAMPLE_QUESTIONS.slice(0, 2)).map((question, idx) => (
                 <button
                   type="button"
                   key={idx}
@@ -171,6 +147,15 @@ export default function SectionNutrition() {
                   </span>
                 </button>
               ))}
+            {!showAllQuestions && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllQuestions(true)}
+                  className="w-full min-h-11 text-sm font-semibold text-[#1F5C55] hover:underline cursor-pointer"
+                >
+                  Xem thêm {SAMPLE_QUESTIONS.length - 2} câu hỏi mẫu
+                </button>
+              )}
             </div>
           </div>
 
@@ -186,6 +171,7 @@ export default function SectionNutrition() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => incrementCounter('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white text-[#1F5C55] font-bold text-sm hover:bg-[#FAF9F5] transition-colors shrink-0 shadow-2xs"
             >
               <span>Mở Trợ lý AI ngay</span>

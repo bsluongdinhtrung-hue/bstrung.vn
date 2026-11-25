@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroBanner from '@/components/HeroBanner';
+import SectionConsult from '@/components/SectionConsult';
 import SectionInternalMedicine from '@/components/SectionInternalMedicine';
 import SectionNutrition from '@/components/SectionNutrition';
 import SectionMedication from '@/components/SectionMedication';
@@ -32,6 +33,9 @@ export default function HomePage() {
           {/* Hệ thống các khối Bento Cards độc lập nổi trên nền Warm Canvas */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-8 md:space-y-12">
             
+            {/* Về bác sĩ & tư vấn 1-1 */}
+            <SectionConsult />
+
             {/* Phân khu 1: Cổng tiện ích lâm sàng & Trợ lý AI (Grid 2 cột mobile, 4 cột desktop) */}
             <SectionInternalMedicine />
 

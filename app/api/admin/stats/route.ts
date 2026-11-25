@@ -2,15 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 import { BASELINE_COUNTERS, BASELINE_TOTAL_VIEWS, BASELINE_TOTAL_CLICKS } from '@/lib/firebase';
 import { getAnalyticsSummary, getDailyStatsList, getRecentEvents, getConsultationRequests } from '@/lib/analytics-storage';
 
-const EXPECTED_PIN = process.env.ADMIN_PIN || '987214';
+// Trang quản trị tạm khóa. Muốn mở lại: trên Vercel đặt ADMIN_ENABLED=true
+// và ADMIN_PIN=<mã mới>, rồi triển khai lại. Không viết mã PIN vào code.
+const ADMIN_ENABLED = process.env.ADMIN_ENABLED === 'true';
+const EXPECTED_PIN = (process.env.ADMIN_PIN || '').trim();
 
 export async function POST(req: NextRequest) {
   try {
+    if (!ADMIN_ENABLED || !EXPECTED_PIN) {
+      return NextResponse.json({ error: 'Trang quản trị đang tạm khóa.' }, { status: 503 });
+    }
+
     const body = await req.json();
     const { pin } = body;
 
     const trimmedPin = (pin || '').trim();
-    if (!trimmedPin || (trimmedPin !== EXPECTED_PIN.trim() && trimmedPin !== '987214')) {
+    if (!trimmedPin || trimmedPin !== EXPECTED_PIN) {
       return NextResponse.json({ error: 'Mã PIN bảo mật không chính xác' }, { status: 401 });
     }
 

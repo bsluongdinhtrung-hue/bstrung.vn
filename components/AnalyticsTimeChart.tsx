@@ -47,7 +47,7 @@ const TARGET_OPTIONS = [
   { id: 'thang-diem', label: 'Thang Điểm & Tiên Lượng Lâm Sàng', icon: '⚖️', color: '#D97706' },
   { id: 'cham-soc-nhi-khoa', label: 'Sổ Tay Chăm Sóc Cho Bé', icon: '👶', color: '#0284C7' },
   { id: 'gia-dvkt-dau-thau', label: 'Xây Dựng Giá DVKT & Đấu Thầu Y Tế', icon: '📋', color: '#57534E' },
-  { id: 'zalo-consult', label: 'Tư Vấn Zalo 1-1 BS. Trung (299k)', icon: '💬', color: '#2563EB' },
+  { id: 'zalo-consult', label: 'Tư Vấn Zalo 1-1 BS. Trung', icon: '💬', color: '#2563EB' },
 ];
 
 export default function AnalyticsTimeChart({

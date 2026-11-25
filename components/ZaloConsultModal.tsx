@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+import { CONSULT_FEE, CONSULT_FEE_LABEL } from '@/lib/consult';
 import {
   X,
   Check,
@@ -46,11 +47,11 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
     bankName: 'VietinBank (Ngân hàng TMCP Công thương Việt Nam)',
     accountNumber: '108005198338',
     accountName: 'LUONG DINH TRUNG',
-    amount: '299.000',
+    amount: CONSULT_FEE.toLocaleString('vi-VN'),
     content: 'Tu van Zalo BS Trung',
   };
 
-  const QR_URL = `https://img.vietqr.io/image/vietinbank-108005198338-compact2.png?amount=299000&addInfo=Tu%20van%20Zalo%20BS%20Trung&accountName=LUONG%20DINH%20TRUNG`;
+  const QR_URL = `https://img.vietqr.io/image/vietinbank-108005198338-compact2.png?amount=${CONSULT_FEE}&addInfo=Tu%20van%20Zalo%20BS%20Trung&accountName=LUONG%20DINH%20TRUNG`;
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -133,7 +134,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
     }
 
     if (!billImage) {
-      setErrorMsg('Vui lòng tải lên ảnh chụp màn hình hóa đơn chuyển khoản 299.000đ.');
+      setErrorMsg(`Vui lòng tải lên ảnh chụp màn hình hóa đơn chuyển khoản ${CONSULT_FEE_LABEL}.`);
       return;
     }
 
@@ -216,7 +217,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                   Đã Tiếp Nhận Xác Nhận Chuyển Khoản!
                 </h4>
                 <p className="text-xs text-emerald-800 mt-1 max-w-md mx-auto leading-relaxed">
-                  Thông tin và ảnh hóa đơn 299.000đ của <strong>{patientName}</strong> đã được ghi nhận. Bác sĩ Trung sẽ ưu tiên xem bệnh án và phản hồi qua Zalo.
+                  Thông tin và ảnh hóa đơn {CONSULT_FEE_LABEL} của <strong>{patientName}</strong> đã được ghi nhận. Bác sĩ Trung sẽ ưu tiên xem bệnh án và phản hồi qua Zalo.
                 </p>
               </div>
 
@@ -245,7 +246,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                   <span className="text-xs text-[#5C6B68]">BSCKI trực tiếp phân tích bệnh án, đơn thuốc & xét nghiệm</span>
                 </div>
                 <div className="text-right shrink-0">
-                  <span className="text-lg font-black text-[#1F5C55]">299.000 đ</span>
+                  <span className="text-lg font-black text-[#1F5C55]">{CONSULT_FEE_LABEL}</span>
                   <span className="text-xs text-[#5C6B68] block">/ lượt tư vấn</span>
                 </div>
               </div>
@@ -255,7 +256,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                 <div className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#1F5C55] text-white text-xs font-bold flex items-center justify-center">1</span>
                   <h4 className="font-bold text-sm text-[#12211F]">
-                    Quét mã VietQR chuyển khoản 299.000đ
+                    Quét mã VietQR chuyển khoản {CONSULT_FEE_LABEL}
                   </h4>
                 </div>
 
@@ -466,7 +467,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                   ) : (
                     <>
                       <MessageCircle className="w-4 h-4 text-emerald-200" />
-                      <span>Xác Nhận Đã Chuyển 299.000đ & Mở Zalo Bác Sĩ</span>
+                      <span>Xác Nhận Đã Chuyển {CONSULT_FEE_LABEL} & Mở Zalo Bác Sĩ</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}

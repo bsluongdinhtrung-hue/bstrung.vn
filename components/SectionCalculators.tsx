@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, ExternalLink, ArrowRight, Gauge, Sparkles, Flame } from 'lucide-react';
+import { ArrowRight, Gauge, Flame } from 'lucide-react';
 import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionCalculators() {
@@ -34,36 +34,19 @@ export default function SectionCalculators() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
-              <Calculator className="w-3.5 h-3.5 text-[#1F5C55]" />
-              <span>Công Cụ Đo Lường • Tính Nhanh Thể Trạng Lâm Sàng</span>
-            </div>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5 empty:hidden">
             {isCountPublic('thang-diem') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold">
               <Flame className="w-3 h-3 text-amber-600" />
               <span>{getDisplayCount('thang-diem', 0)} lượt tính & tra cứu</span>
             </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
-            Tính Nhanh Chỉ Số Thể Trạng & Thang Điểm Y Học
+            Tính nhanh BMI, chức năng thận và thang điểm
           </h2>
           <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
-            Kiểm tra ngay chỉ số khối cơ thể (BMI) và chức năng lọc cầu thận (eGFR) trực tiếp trên trang,
-            đồng thời tra cứu các thang điểm tiên lượng lâm sàng chuyên sâu.
+            Tính BMI và độ thanh thải creatinin ngay trên trang; tra các thang điểm tiên lượng thường dùng.
           </p>
         </div>
-
-        <a
-          href={CONSULT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
-          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
-        >
-          <Sparkles className="w-4 h-4" aria-hidden="true" />
-          <span>Hỏi AI tra cứu thang điểm nâng cao</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
       </div>
 
       {/* Bento Grid */}
@@ -226,6 +209,7 @@ export default function SectionCalculators() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
               className="w-full min-h-11 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#FAF9F5] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-sm border border-[#CBD5CF] transition-colors"
             >
               <span>Hỏi Trợ lý AI chi tiết cách tính các thang điểm</span>

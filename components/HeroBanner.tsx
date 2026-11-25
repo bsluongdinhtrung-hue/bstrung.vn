@@ -15,8 +15,8 @@ import {
   Clock,
   UserRound,
 } from 'lucide-react';
-import { useZaloConsult } from './ZaloConsultContext';
 import { useAnalytics } from './AnalyticsContext';
+import { CONSULT_FEE_LABEL } from '@/lib/consult';
 
 const TOPICS = [
   { href: '#noi-khoa', title: 'Nội khoa & cấp cứu', note: 'Phác đồ, xét nghiệm, thang điểm', icon: Stethoscope },
@@ -29,11 +29,10 @@ const TOPICS = [
 const FACTS = [
   { icon: BookOpenCheck, text: 'Nội dung biên soạn theo phác đồ Bộ Y tế' },
   { icon: Clock, text: 'Trợ lý AI trả lời 24/7, không mất phí' },
-  { icon: UserRound, text: 'Tư vấn 1-1: bác sĩ xem bệnh án, trả lời qua Zalo' },
+  { icon: UserRound, text: '12 năm kinh nghiệm Nội khoa: cơ xương khớp, hen, COPD' },
 ];
 
 export default function HeroBanner() {
-  const { openZaloModal } = useZaloConsult();
   const { incrementCounter } = useAnalytics();
 
   return (
@@ -60,17 +59,14 @@ export default function HeroBanner() {
               <span>Tra cứu miễn phí với Trợ lý AI</span>
               <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </a>
-            <button
-              type="button"
-              onClick={() => {
-                incrementCounter('zalo-consult', 'Tư Vấn Zalo 1-1 (Hero)', 'consultation');
-                openZaloModal();
-              }}
-              className="w-full sm:w-auto min-h-14 inline-flex items-center justify-center gap-2 px-6 rounded-2xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] font-bold text-base border border-[#CBD5CF] transition-colors cursor-pointer"
+            <a
+              href="#tu-van"
+              onClick={() => incrementCounter('zalo-consult-hero', 'Xem Tư Vấn 1-1 (Hero)', 'consultation')}
+              className="w-full sm:w-auto min-h-14 inline-flex items-center justify-center gap-2 px-6 rounded-2xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] font-bold text-base border border-[#CBD5CF] transition-colors"
             >
               <MessageCircle className="w-5 h-5" aria-hidden="true" />
-              <span>Đặt tư vấn 1-1 qua Zalo · 299.000đ</span>
-            </button>
+              <span>Tư vấn 1-1 với bác sĩ · {CONSULT_FEE_LABEL}</span>
+            </a>
           </div>
 
           <ul className="mt-7 grid gap-2.5 text-sm text-[#3D4745]">

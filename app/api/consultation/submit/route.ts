@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveConsultationRequest } from '@/lib/analytics-storage';
+import { CONSULT_FEE, CONSULT_FEE_LABEL } from '@/lib/consult';
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,13 +20,13 @@ export async function POST(req: NextRequest) {
     }
 
     if (!billImage) {
-      return NextResponse.json({ error: 'Vui lòng đính kèm ảnh chụp màn hình bill chuyển khoản 299.000đ' }, { status: 400 });
+      return NextResponse.json({ error: `Vui lòng đính kèm ảnh chụp màn hình bill chuyển khoản ${CONSULT_FEE_LABEL}` }, { status: 400 });
     }
 
     const saved = await saveConsultationRequest({
       patientName: trimmedName,
       patientPhone: trimmedPhone,
-      amount: 299000,
+      amount: CONSULT_FEE,
       billImage,
       note: (note || '').trim(),
     });

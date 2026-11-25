@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Pill, ExternalLink, ShieldAlert, CheckCircle2, ArrowRight, Clock, AlertTriangle, Sparkles, Flame } from 'lucide-react';
+import { ShieldAlert, CheckCircle2, ArrowRight, Clock, AlertTriangle, Sparkles, Flame } from 'lucide-react';
 import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionMedication() {
@@ -14,36 +14,19 @@ export default function SectionMedication() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
-          <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
-              <Pill className="w-3.5 h-3.5 text-[#1F5C55]" />
-              <span>Dược Lý Lâm Sàng • An Toàn Kê Đơn Thuốc</span>
-            </div>
+          <div className="flex items-center gap-2 flex-wrap mb-2.5 empty:hidden">
             {isCountPublic('tuong-tac-thuoc') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
               <Flame className="w-3 h-3 text-emerald-600" />
               <span>{getDisplayCount('tuong-tac-thuoc', 0)} lượt tra cứu tương tác</span>
             </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
-            Hướng Dẫn Dùng Thuốc An Toàn & Tránh Tương Tác
+            Dùng thuốc an toàn, tránh tương tác
           </h2>
           <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
-            Bạn đang dùng nhiều loại thuốc cùng lúc? Thuốc nào nên uống trước bữa ăn, thuốc nào cần uống sau ăn? 
-            Tra cứu nhanh để đảm bảo hiệu quả điều trị tối ưu và phòng ngừa các tương tác bất lợi.
+            Thuốc nào uống trước ăn, thuốc nào sau ăn, và những thuốc nào không nên dùng cùng nhau.
           </p>
         </div>
-
-        <a
-          href={CONSULT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
-          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
-        >
-          <Sparkles className="w-4 h-4" aria-hidden="true" />
-          <span>Hỏi AI kiểm tra đơn thuốc</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
       </div>
 
       {/* Content Bento */}
@@ -122,6 +105,7 @@ export default function SectionMedication() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
               className="inline-flex items-center gap-1.5 min-h-11 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-sm transition-colors shrink-0 shadow-2xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-emerald-200" />

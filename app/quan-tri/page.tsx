@@ -315,10 +315,10 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Card 3: Đăng ký tư vấn 299k */}
+          {/* Card 3: Đăng ký tư vấn 1-1 */}
           <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E8E4DA] shadow-xs flex flex-col justify-between">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-[#63706D]">Đăng Ký Tư Vấn 299k</span>
+              <span className="text-xs font-semibold text-[#63706D]">Đăng Ký Tư Vấn 1-1</span>
               <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
                 <UserCheck className="w-4 h-4" />
               </div>
@@ -329,7 +329,7 @@ export default function AdminPage() {
               </span>
               <span className="text-[11px] text-emerald-700 font-medium mt-1 block">
                 {stats?.consultations?.length
-                  ? `${((stats.consultations.length) * 299000).toLocaleString('vi-VN')} đ đã xác nhận`
+                  ? `${stats.consultations.reduce((sum, c) => sum + (c.amount || 0), 0).toLocaleString('vi-VN')} đ đã xác nhận`
                   : 'Chờ ca chuyển khoản mới'}
               </span>
             </div>
@@ -368,14 +368,14 @@ export default function AdminPage() {
           handbookRanking={stats?.handbookRanking || []}
         />
 
-        {/* Section: Danh Sách Bệnh Nhân Đăng Ký Tư Vấn 299k (Đã Gửi Hóa Đơn) */}
+        {/* Section: Danh Sách Bệnh Nhân Đăng Ký Tư Vấn 1-1 (Đã Gửi Hóa Đơn) */}
         <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E8E4DA] shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-[#E8E4DA]">
             <div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-emerald-700" />
                 <h2 className="text-lg font-bold font-serif text-[#12211F]">
-                  Danh Sách Đăng Ký Tư Vấn 1-1 (Đã Gửi Hóa Đơn 299k)
+                  Danh Sách Đăng Ký Tư Vấn 1-1 (Đã Gửi Hóa Đơn)
                 </h2>
               </div>
               <p className="text-xs text-[#63706D] mt-0.5">
@@ -491,7 +491,7 @@ export default function AdminPage() {
                 Chưa có bệnh nhân nào gửi xác nhận chuyển khoản mới.
               </p>
               <p className="text-[11px] text-[#8C9895] mt-0.5">
-                Khi bệnh nhân hoàn tất gửi ảnh bill 299k trên web, thông tin sẽ xuất hiện ngay tại đây.
+                Khi bệnh nhân hoàn tất gửi ảnh bill trên web, thông tin sẽ xuất hiện ngay tại đây.
               </p>
             </div>
           )}
@@ -641,7 +641,7 @@ export default function AdminPage() {
             <div className="fixed inset-0" onClick={() => setSelectedBillImage(null)} />
             <div className="relative max-w-lg w-full bg-white rounded-3xl p-4 shadow-2xl z-10 space-y-3">
               <div className="flex items-center justify-between pb-2 border-b border-[#E8E4DA]">
-                <span className="font-bold text-sm text-[#12211F]">Biên Lai Chuyển Khoản 299.000đ</span>
+                <span className="font-bold text-sm text-[#12211F]">Biên Lai Chuyển Khoản</span>
                 <button
                   onClick={() => setSelectedBillImage(null)}
                   className="p-1 rounded-full bg-[#EAE6DD] hover:bg-[#DDD8CD] transition-colors cursor-pointer"
