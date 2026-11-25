@@ -14,13 +14,12 @@ export default function FloatingZalo() {
   };
 
   return (
-    <aside aria-label="Kênh hỗ trợ trực tuyến" className="fixed bottom-16 md:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-3">
+    <aside aria-label="Kênh hỗ trợ trực tuyến" className="hidden md:flex fixed bottom-6 right-6 z-40 items-center gap-3">
       {/* Tooltip hint on desktop */}
       <button
         onClick={handleOpenZalo}
-        className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white text-[#12211F] text-xs font-bold border border-[#E8E4DA] shadow-md hover:border-[#1F5C55] transition-all group cursor-pointer"
+        className="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-[#12211F] text-sm font-bold border border-[#E8E4DA] shadow-md hover:border-[#1F5C55] transition-all group cursor-pointer"
       >
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
         <span className="group-hover:text-[#1F5C55]">Tư vấn 1-1 riêng cùng Bác sĩ</span>
       </button>
 
@@ -29,6 +28,7 @@ export default function FloatingZalo() {
         onClick={handleOpenZalo}
         className="floating-zalo flex items-center justify-center w-14 h-14 rounded-full bg-[#1F5C55] hover:bg-[#16443F] text-white shadow-xl transition-transform hover:scale-110 focus:outline-hidden cursor-pointer"
         title="Nhắn tin Zalo trực tiếp với BS. Trung"
+        aria-label="Đặt tư vấn 1-1 qua Zalo với BS. Trung"
       >
         <MessageCircle className="w-7 h-7 text-white fill-white/20" />
       </button>

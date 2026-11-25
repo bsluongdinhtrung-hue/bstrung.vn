@@ -36,3 +36,6 @@ next-env.d.ts
 Thumbs.db
 .vscode/
 .idea/
+
+# Ảnh và báo cáo kiểm tra giao diện (2anh-ui)
+.2anh-ui/

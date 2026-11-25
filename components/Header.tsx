@@ -7,9 +7,9 @@ import { useZaloConsult } from './ZaloConsultContext';
 import { trackClick } from '@/lib/tracker';
 
 const NAV_ITEMS = [
-  { label: 'Tiện ích Lâm sàng & AI', href: '#tien-ich', badge: 'Hot' },
-  { label: 'Sổ tay Dinh dưỡng', href: '#dinh-duong', badge: 'Thực đơn' },
-  { label: 'Thuốc & Tương tác', href: '#thuoc' },
+  { label: 'Tra cứu AI', href: '#tien-ich' },
+  { label: 'Dinh dưỡng', href: '#dinh-duong' },
+  { label: 'Thuốc', href: '#thuoc' },
   { label: 'Chăm sóc bé', href: '#nhi-khoa' },
 ];
 
@@ -38,12 +38,9 @@ export default function Header() {
                 <span className="text-base md:text-lg font-bold font-serif text-[#12211F] group-hover:text-[#1F5C55] transition-colors tracking-tight">
                   BSCKI. Lương Đình Trung
                 </span>
-                <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10.5px] font-bold bg-[#E2EBE8] text-[#1F5C55] border border-[#BDD3CC]">
-                  Bác sĩ Chuyên khoa I
-                </span>
               </div>
               <p className="text-xs text-[#63706D] font-medium hidden md:block">
-                Cổng Y Khoa & Sổ Tay Lâm Sàng Gia Đình
+                Bác sĩ Chuyên khoa I · Sổ tay lâm sàng gia đình
               </p>
             </div>
           </a>
@@ -54,14 +51,9 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="px-3.5 py-2 text-xs md:text-sm font-semibold text-[#3D4745] hover:text-[#1F5C55] rounded-xl hover:bg-white/80 transition-all flex items-center gap-1.5"
+                className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-[#3D4745] hover:text-[#1F5C55] rounded-xl hover:bg-white/80 transition-all flex items-center gap-1.5"
               >
                 <span>{item.label}</span>
-                {item.badge && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-md font-bold bg-[#E2EBE8] text-[#1F5C55] border border-[#BDD3CC]">
-                    {item.badge}
-                  </span>
-                )}
               </a>
             ))}
           </nav>
@@ -73,26 +65,27 @@ export default function Header() {
                 trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Header)', 'consultation');
                 openZaloModal();
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-white text-[#1F5C55] border border-[#CBD5CF] hover:bg-[#EAF0ED] transition-colors shadow-2xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-11 whitespace-nowrap text-sm font-bold rounded-xl bg-white text-[#1F5C55] border border-[#CBD5CF] hover:bg-[#EAF0ED] transition-colors shadow-2xs cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
-              <span>Tư vấn trực tiếp 1-1</span>
+              <span>Tư vấn 1-1</span>
             </button>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"
               onClick={() => trackClick('mail-doctor', 'Liên Hệ Email Bác Sĩ', 'contact')}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white transition-colors shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 min-h-11 whitespace-nowrap text-sm font-bold rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white transition-colors shadow-2xs"
             >
               <Mail className="w-4 h-4" />
-              <span>Liên hệ Bác sĩ</span>
+              <span>Email bác sĩ</span>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-[#12211F] bg-white border border-[#E8E4DA] hover:bg-[#EAF0ED] transition-colors"
-            aria-label="Toggle navigation menu"
+            className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl text-[#12211F] bg-white border border-[#E8E4DA] hover:bg-[#EAF0ED] transition-colors"
+            aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -110,11 +103,6 @@ export default function Header() {
               className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white text-sm font-semibold text-[#12211F] border border-[#E8E4DA] hover:bg-[#EAF0ED] hover:text-[#1F5C55] transition-colors"
             >
               <span>{item.label}</span>
-              {item.badge && (
-                <span className="text-[10px] px-2 py-0.5 rounded-md font-bold bg-[#E2EBE8] text-[#1F5C55] border border-[#BDD3CC]">
-                  {item.badge}
-                </span>
-              )}
             </a>
           ))}
           <div className="pt-3 border-t border-[#E8E4DA] flex gap-2">
@@ -123,14 +111,14 @@ export default function Header() {
                 setMobileMenuOpen(false);
                 openZaloModal();
               }}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-bold rounded-xl bg-white text-[#1F5C55] border border-[#CBD5CF] cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 min-h-11 py-2.5 text-sm font-bold rounded-xl bg-white text-[#1F5C55] border border-[#CBD5CF] cursor-pointer"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Tư vấn 1-1 (Zalo)</span>
             </button>
             <a
               href="mailto:bsluongdinhtrung@gmail.com"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-bold rounded-xl bg-[#1F5C55] text-white"
+              className="flex-1 flex items-center justify-center gap-2 min-h-11 py-2.5 text-sm font-bold rounded-xl bg-[#1F5C55] text-white"
             >
               <Mail className="w-4 h-4" />
               <span>Gửi Email</span>

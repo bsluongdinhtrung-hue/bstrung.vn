@@ -232,7 +232,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-              <p className="text-[11px] text-[#63706D]">
+              <p className="text-xs text-[#63706D]">
                 (Nếu Zalo không tự mở, vui lòng bấm vào nút màu xanh ở trên)
               </p>
             </div>
@@ -241,19 +241,19 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
               {/* Fee Notice */}
               <div className="p-3.5 rounded-2xl bg-[#E3EFEC] border border-[#B8D5CE] flex items-center justify-between gap-3">
                 <div>
-                  <span className="text-[11px] font-bold text-[#16443F] uppercase block tracking-wider">Phí tư vấn chuyên môn 1-1:</span>
+                  <span className="text-xs font-bold text-[#16443F] uppercase block tracking-wider">Phí tư vấn chuyên môn 1-1:</span>
                   <span className="text-xs text-[#5C6B68]">BSCKI trực tiếp phân tích bệnh án, đơn thuốc & xét nghiệm</span>
                 </div>
                 <div className="text-right shrink-0">
                   <span className="text-lg font-black text-[#1F5C55]">299.000 đ</span>
-                  <span className="text-[10px] text-[#5C6B68] block">/ lượt tư vấn</span>
+                  <span className="text-xs text-[#5C6B68] block">/ lượt tư vấn</span>
                 </div>
               </div>
 
               {/* BƯỚC 1: Quét mã VietQR */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-[#1F5C55] text-white text-[11px] font-bold flex items-center justify-center">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[#1F5C55] text-white text-xs font-bold flex items-center justify-center">1</span>
                   <h4 className="font-bold text-sm text-[#12211F]">
                     Quét mã VietQR chuyển khoản 299.000đ
                   </h4>
@@ -285,7 +285,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                         <button
                           type="button"
                           onClick={() => copyToClipboard(BANK_INFO.accountNumber, 'acc')}
-                          className="px-1.5 py-0.5 rounded bg-[#E3EFEC] text-[#1F5C55] hover:bg-[#D4E8E3] text-[10px] font-bold inline-flex items-center gap-1 transition-colors cursor-pointer"
+                          className="min-h-9 px-2.5 py-1 rounded-md bg-[#E3EFEC] text-[#1F5C55] hover:bg-[#D4E8E3] text-xs font-bold inline-flex items-center gap-1 transition-colors cursor-pointer"
                         >
                           {copiedField === 'acc' ? <Check className="w-2.5 h-2.5 text-emerald-600" /> : <Copy className="w-2.5 h-2.5" />}
                           <span>{copiedField === 'acc' ? 'Đã chép' : 'Chép'}</span>
@@ -310,7 +310,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                         <button
                           type="button"
                           onClick={() => copyToClipboard(BANK_INFO.content, 'content')}
-                          className="px-1.5 py-0.5 rounded bg-[#E3EFEC] text-[#1F5C55] hover:bg-[#D4E8E3] text-[10px] font-bold inline-flex items-center gap-1 transition-colors cursor-pointer"
+                          className="min-h-9 px-2.5 py-1 rounded-md bg-[#E3EFEC] text-[#1F5C55] hover:bg-[#D4E8E3] text-xs font-bold inline-flex items-center gap-1 transition-colors cursor-pointer"
                         >
                           {copiedField === 'content' ? <Check className="w-2.5 h-2.5 text-emerald-600" /> : <Copy className="w-2.5 h-2.5" />}
                           <span>{copiedField === 'content' ? 'Đã chép' : 'Chép'}</span>
@@ -324,7 +324,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
               {/* BƯỚC 2: Form xác nhận & Đính kèm ảnh bill */}
               <form onSubmit={handleSubmit} className="space-y-4 pt-3 border-t border-[#E8E4DA]">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-[#1F5C55] text-white text-[11px] font-bold flex items-center justify-center">2</span>
+                  <span className="w-5 h-5 rounded-full bg-[#1F5C55] text-white text-xs font-bold flex items-center justify-center">2</span>
                   <h4 className="font-bold text-sm text-[#12211F]">
                     Xác nhận chuyển khoản để mở kết nối Zalo Bác sĩ
                   </h4>
@@ -397,7 +397,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                           <span className="text-xs font-bold text-emerald-900 block truncate">
                             {imageFileName || 'Ảnh biên lai chuyển khoản'}
                           </span>
-                          <span className="text-[11px] text-emerald-700 flex items-center gap-1">
+                          <span className="text-xs text-emerald-700 flex items-center gap-1">
                             <Check className="w-3 h-3" /> Đã tải lên và nén ảnh sẵn sàng
                           </span>
                         </div>
@@ -423,7 +423,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                       <span className="text-xs font-bold text-[#1F5C55]">
                         Bấm để chọn hoặc chụp ảnh màn hình chuyển khoản
                       </span>
-                      <span className="text-[11px] text-[#8C9895] mt-0.5">
+                      <span className="text-xs text-[#8C9895] mt-0.5">
                         Hỗ trợ định dạng JPG, PNG, HEIC (Ảnh tự động tối ưu hóa)
                       </span>
                     </button>
@@ -472,7 +472,7 @@ export default function ZaloConsultModal({ isOpen, onClose }: ZaloConsultModalPr
                   )}
                 </button>
 
-                <p className="text-[11px] text-[#5C6B68] text-center leading-relaxed">
+                <p className="text-xs text-[#5C6B68] text-center leading-relaxed">
                   🛡️ Bác sĩ chỉ thụ lý các trường hợp đã đính kèm biên lai chuyển khoản thành công. Thông tin của bạn được cam kết bảo mật theo tiêu chuẩn y khoa.
                 </p>
               </form>

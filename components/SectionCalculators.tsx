@@ -5,7 +5,7 @@ import { Calculator, ExternalLink, ArrowRight, Gauge, Sparkles, Flame } from 'lu
 import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionCalculators() {
-  const { incrementCounter, getDisplayCount } = useAnalytics();
+  const { incrementCounter, getDisplayCount, isCountPublic } = useAnalytics();
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee';
 
   // Quick Calculator (BMI & eGFR Cockcroft-Gault)
@@ -35,19 +35,19 @@ export default function SectionCalculators() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
               <Calculator className="w-3.5 h-3.5 text-[#1F5C55]" />
               <span>Công Cụ Đo Lường • Tính Nhanh Thể Trạng Lâm Sàng</span>
             </div>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold">
+            {isCountPublic('thang-diem') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold">
               <Flame className="w-3 h-3 text-amber-600" />
               <span>{getDisplayCount('thang-diem', 0)} lượt tính & tra cứu</span>
-            </span>
+            </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Tính Nhanh Chỉ Số Thể Trạng & Thang Điểm Y Học
           </h2>
-          <p className="text-[#63706D] text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+          <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
             Kiểm tra ngay chỉ số khối cơ thể (BMI) và chức năng lọc cầu thận (eGFR) trực tiếp trên trang,
             đồng thời tra cứu các thang điểm tiên lượng lâm sàng chuyên sâu.
           </p>
@@ -58,9 +58,9 @@ export default function SectionCalculators() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Công Cụ Y Học', 'clinical')}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
+          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
         >
-          <Sparkles className="w-4 h-4 text-emerald-200" />
+          <Sparkles className="w-4 h-4" aria-hidden="true" />
           <span>Hỏi AI tra cứu thang điểm nâng cao</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
@@ -78,58 +78,67 @@ export default function SectionCalculators() {
                 Công Cụ Tính Nhanh Thể Trạng & Mức Lọc Thận
               </h3>
             </div>
-            <span className="text-[10.5px] px-2.5 py-0.5 rounded-md font-bold bg-white text-[#1F5C55] border border-[#CBD5CF]">
+            <span className="shrink-0 whitespace-nowrap text-xs px-2.5 py-0.5 rounded-md font-bold bg-white text-[#1F5C55] border border-[#CBD5CF]">
               Kết quả tức thì
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 text-xs">
+          <div className="grid grid-cols-2 gap-3.5 text-sm">
             <div>
-              <label className="block text-[#63706D] font-bold mb-1">Cân nặng (kg):</label>
+              <label htmlFor="calc-weight" className="block text-[#63706D] font-bold mb-1">Cân nặng (kg):</label>
               <input
+                id="calc-weight"
+                inputMode="decimal"
                 type="number"
                 value={weight}
                 onChange={(e) => setWeight(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-sm focus:outline-hidden focus:border-[#1F5C55]"
+                className="w-full min-h-11 px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-base focus:outline-hidden focus:border-[#1F5C55]"
               />
             </div>
 
             <div>
-              <label className="block text-[#63706D] font-bold mb-1">Chiều cao (cm):</label>
+              <label htmlFor="calc-height" className="block text-[#63706D] font-bold mb-1">Chiều cao (cm):</label>
               <input
+                id="calc-height"
+                inputMode="decimal"
                 type="number"
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-sm focus:outline-hidden focus:border-[#1F5C55]"
+                className="w-full min-h-11 px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-base focus:outline-hidden focus:border-[#1F5C55]"
               />
             </div>
 
             <div>
-              <label className="block text-[#63706D] font-bold mb-1">Tuổi (năm):</label>
+              <label htmlFor="calc-age" className="block text-[#63706D] font-bold mb-1">Tuổi (năm):</label>
               <input
+                id="calc-age"
+                inputMode="decimal"
                 type="number"
                 value={age}
                 onChange={(e) => setAge(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-sm focus:outline-hidden focus:border-[#1F5C55]"
+                className="w-full min-h-11 px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-base focus:outline-hidden focus:border-[#1F5C55]"
               />
             </div>
 
             <div>
-              <label className="block text-[#63706D] font-bold mb-1">Creatinine máu (µmol/L):</label>
+              <label htmlFor="calc-creatinine" className="block text-[#63706D] font-bold mb-1">Creatinine máu (µmol/L):</label>
               <input
+                id="calc-creatinine"
+                inputMode="decimal"
                 type="number"
                 value={creatinine}
                 onChange={(e) => setCreatinine(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-sm focus:outline-hidden focus:border-[#1F5C55]"
+                className="w-full min-h-11 px-3 py-2 rounded-xl bg-white border border-[#CBD5CF] font-bold text-[#12211F] text-base focus:outline-hidden focus:border-[#1F5C55]"
               />
             </div>
 
-            <div className="col-span-2 flex items-center gap-3 pt-1">
-              <span className="text-[#63706D] font-bold">Giới tính:</span>
+            <div role="group" aria-labelledby="calc-sex" className="col-span-2 flex items-center gap-3 pt-1">
+              <span id="calc-sex" className="text-[#63706D] font-bold">Giới tính:</span>
               <button
                 type="button"
                 onClick={() => setIsFemale(false)}
-                className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors ${
+                aria-pressed={!isFemale}
+                className={`min-h-11 min-w-14 px-4 py-2 rounded-lg font-bold text-sm transition-colors ${
                   !isFemale ? 'bg-[#1F5C55] text-white' : 'bg-white text-[#63706D] border border-[#CBD5CF]'
                 }`}
               >
@@ -138,7 +147,8 @@ export default function SectionCalculators() {
               <button
                 type="button"
                 onClick={() => setIsFemale(true)}
-                className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors ${
+                aria-pressed={isFemale}
+                className={`min-h-11 min-w-14 px-4 py-2 rounded-lg font-bold text-sm transition-colors ${
                   isFemale ? 'bg-[#1F5C55] text-white' : 'bg-white text-[#63706D] border border-[#CBD5CF]'
                 }`}
               >
@@ -150,17 +160,17 @@ export default function SectionCalculators() {
           {/* Results Output */}
           <div className="mt-4 pt-4 border-t border-[#E8E4DA] grid grid-cols-2 gap-3">
             <div className="p-3.5 rounded-xl bg-white border border-[#E8E4DA]">
-              <div className="text-[10.5px] font-bold text-[#63706D] uppercase">Chỉ số BMI</div>
-              <div className="text-xl font-bold font-serif text-[#12211F] mt-1">{bmi.toFixed(1)} kg/m²</div>
-              <div className={`text-[11px] font-bold mt-1 ${getBmiStatus(bmi).color}`}>
+              <div className="text-xs font-bold text-[#63706D] uppercase">Chỉ số BMI</div>
+              <div className="text-lg sm:text-xl whitespace-nowrap font-bold font-serif text-[#12211F] mt-1">{bmi.toFixed(1)} kg/m²</div>
+              <div className={`text-sm font-bold mt-1 ${getBmiStatus(bmi).color}`}>
                 {getBmiStatus(bmi).text}
               </div>
             </div>
 
             <div className="p-3.5 rounded-xl bg-white border border-[#E8E4DA]">
-              <div className="text-[10.5px] font-bold text-[#63706D] uppercase">Thanh thải ClCr (CG)</div>
-              <div className="text-xl font-bold font-serif text-[#12211F] mt-1">{finalClcr.toFixed(1)} ml/phút</div>
-              <div className="text-[11px] font-bold text-[#63706D] mt-1">
+              <div className="text-xs font-bold text-[#63706D] uppercase">Thanh thải ClCr (CG)</div>
+              <div className="text-lg sm:text-xl whitespace-nowrap font-bold font-serif text-[#12211F] mt-1">{finalClcr.toFixed(1)} ml/phút</div>
+              <div className="text-sm font-bold text-[#63706D] mt-1">
                 {finalClcr >= 90 ? 'Chức năng thận tốt' : finalClcr >= 60 ? 'Giảm nhẹ (G2)' : 'Cần chú ý giảm liều thuốc'}
               </div>
             </div>
@@ -173,7 +183,7 @@ export default function SectionCalculators() {
           <h3 className="font-bold text-[#12211F] text-base">
             Hệ Thống Thang Điểm Tiên Lượng Lâm Sàng Thường Dùng
           </h3>
-          <p className="text-xs text-[#63706D] leading-relaxed">
+          <p className="text-sm text-[#63706D] leading-relaxed">
             Các thang điểm đối chiếu triệu chứng lâm sàng và xét nghiệm chuyên sâu, hỗ trợ phân tầng nguy cơ và quyết định hướng điều trị:
           </p>
 
@@ -181,33 +191,33 @@ export default function SectionCalculators() {
             <div className="p-3.5 rounded-xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start justify-between gap-3">
               <div>
                 <h4 className="font-bold text-[#12211F] text-xs sm:text-sm">Thang Điểm CURB-65 (Hô hấp)</h4>
-                <p className="text-[11px] text-[#63706D] mt-0.5">Đánh giá mức độ nặng viêm phổi cộng đồng và chỉ định điều trị ngoại trú/nhập viện</p>
+                <p className="text-sm text-[#63706D] mt-0.5">Đánh giá mức độ nặng viêm phổi cộng đồng và chỉ định điều trị ngoại trú/nhập viện</p>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white text-[#1F5C55] border border-[#CBD5CF] shrink-0">Hô hấp</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-white text-[#1F5C55] border border-[#CBD5CF] shrink-0">Hô hấp</span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start justify-between gap-3">
               <div>
                 <h4 className="font-bold text-[#12211F] text-xs sm:text-sm">CHA2DS2-VASc & HAS-BLED (Tim mạch)</h4>
-                <p className="text-[11px] text-[#63706D] mt-0.5">Đánh giá nguy cơ tắc mạch và xuất huyết khi dùng chống đông ở bệnh nhân rung nhĩ</p>
+                <p className="text-sm text-[#63706D] mt-0.5">Đánh giá nguy cơ tắc mạch và xuất huyết khi dùng chống đông ở bệnh nhân rung nhĩ</p>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 shrink-0">Tim mạch</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 shrink-0">Tim mạch</span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start justify-between gap-3">
               <div>
                 <h4 className="font-bold text-[#12211F] text-xs sm:text-sm">Child-Pugh & MELD Score (Tiêu hóa)</h4>
-                <p className="text-[11px] text-[#63706D] mt-0.5">Phân độ xơ gan, đánh giá chức năng gan mạn tính và tiên lượng sinh tồn</p>
+                <p className="text-sm text-[#63706D] mt-0.5">Phân độ xơ gan, đánh giá chức năng gan mạn tính và tiên lượng sinh tồn</p>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 shrink-0">Tiêu hóa</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 shrink-0">Tiêu hóa</span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start justify-between gap-3">
               <div>
                 <h4 className="font-bold text-[#12211F] text-xs sm:text-sm">Glasgow Coma Scale (GCS - Thần kinh)</h4>
-                <p className="text-[11px] text-[#63706D] mt-0.5">Thang điểm tri giác thần kinh và đánh giá mức độ hôn mê chuẩn mực</p>
+                <p className="text-sm text-[#63706D] mt-0.5">Thang điểm tri giác thần kinh và đánh giá mức độ hôn mê chuẩn mực</p>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-purple-50 text-purple-700 border border-purple-200 shrink-0">Thần kinh</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-purple-50 text-purple-700 border border-purple-200 shrink-0">Thần kinh</span>
             </div>
           </div>
 
@@ -216,7 +226,7 @@ export default function SectionCalculators() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#FAF9F5] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-xs border border-[#CBD5CF] transition-colors"
+              className="w-full min-h-11 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#FAF9F5] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-sm border border-[#CBD5CF] transition-colors"
             >
               <span>Hỏi Trợ lý AI chi tiết cách tính các thang điểm</span>
               <ArrowRight className="w-3.5 h-3.5" />

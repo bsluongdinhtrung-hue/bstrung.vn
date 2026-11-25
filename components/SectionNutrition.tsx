@@ -14,7 +14,7 @@ const SAMPLE_QUESTIONS = [
 
 export default function SectionNutrition() {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const { incrementCounter, getDisplayCount } = useAnalytics();
+  const { incrementCounter, getDisplayCount, isCountPublic } = useAnalytics();
 
   const handleCopy = (text: string, index: number) => {
     navigator.clipboard.writeText(text);
@@ -30,19 +30,19 @@ export default function SectionNutrition() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
               <Apple className="w-3.5 h-3.5 text-[#1F5C55]" />
               <span>Chuyên Mục Dinh Dưỡng • Ẩm Thực Chuẩn Y Khoa</span>
             </div>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[11px] font-semibold">
+            {isCountPublic('so-tay-dinh-duong') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold">
               <Flame className="w-3 h-3 text-rose-500" />
               <span>{getDisplayCount('so-tay-dinh-duong', 0)} lượt người đã mở thực đơn</span>
-            </span>
+            </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Sổ Tay Dinh Dưỡng & Thực Đơn Cá Nhân Hóa
           </h2>
-          <p className="text-[#63706D] text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+          <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
             Mỗi thể trạng và bệnh nền đều cần một chế độ dinh dưỡng riêng. Bạn chỉ cần nhập độ tuổi, sở thích ăn uống 
             và bệnh lý hiện tại — Trợ lý AI sẽ gợi ý thực đơn khoa học, dễ nấu và tốt nhất cho bạn.
           </p>
@@ -53,9 +53,9 @@ export default function SectionNutrition() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => incrementCounter('so-tay-dinh-duong', 'Sổ Tay Dinh Dưỡng & Thực Đơn', 'nutrition')}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
+          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
         >
-          <Sparkles className="w-4 h-4 text-emerald-200" />
+          <Sparkles className="w-4 h-4" aria-hidden="true" />
           <span>Hỏi AI gợi ý thực đơn riêng</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
@@ -86,14 +86,14 @@ export default function SectionNutrition() {
                   <span className="inline-block px-2.5 py-1 rounded-md bg-[#1F5C55] text-white text-xs font-bold">
                     Thực đơn chuẩn Y khoa
                   </span>
-                  <span className="inline-block px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-xs text-white text-[11px] font-medium">
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-xs text-white text-xs font-medium">
                     Ẩm thực gia đình Việt
                   </span>
                 </div>
                 <p className="text-sm font-semibold text-white drop-shadow-xs">
                   Cơm gạo lứt, cá hấp gừng, rau củ ngũ sắc & bưởi hồng thanh đạm
                 </p>
-                <p className="text-xs text-[#E2EBE8] mt-1 font-medium">
+                <p className="text-sm text-[#E2EBE8] mt-1 font-medium">
                   Bấm vào ảnh để hỏi Trợ lý AI thực đơn cá nhân hóa cho bạn →
                 </p>
               </div>
@@ -103,7 +103,7 @@ export default function SectionNutrition() {
           {/* Practical Note */}
           <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA] flex items-start gap-3">
             <MessageCircle className="w-4 h-4 text-[#1F5C55] shrink-0 mt-0.5" />
-            <div className="text-xs text-[#3D4745] leading-relaxed">
+            <div className="text-sm text-[#3D4745] leading-relaxed">
               <span className="font-bold text-[#1F5C55]">Mẹo nhận thực đơn nhanh:</span> Hãy gửi kèm chiều cao, cân nặng, thói quen ăn uống và bệnh nền để Trợ lý AI phân tích và đưa ra khẩu phần chuẩn xác nhất.
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function SectionNutrition() {
               </div>
               <div>
                 <h4 className="text-xs sm:text-sm font-bold text-[#12211F]">Thực đơn bệnh lý mạn tính</h4>
-                <p className="text-[11.5px] text-[#63706D] mt-1 leading-relaxed">
+                <p className="text-sm text-[#63706D] mt-1 leading-relaxed">
                   Đái tháo đường, tăng huyết áp, rối loạn mỡ máu, suy thận mạn, Gout và bệnh dạ dày.
                 </p>
               </div>
@@ -132,7 +132,7 @@ export default function SectionNutrition() {
               </div>
               <div>
                 <h4 className="text-xs sm:text-sm font-bold text-[#12211F]">Dinh dưỡng theo chu kỳ đời</h4>
-                <p className="text-[11.5px] text-[#63706D] mt-1 leading-relaxed">
+                <p className="text-sm text-[#63706D] mt-1 leading-relaxed">
                   Chăm sóc mẹ bầu, phụ nữ sau sinh, ăn dặm cho trẻ và thực đơn dễ nuốt cho người cao tuổi.
                 </p>
               </div>
@@ -144,35 +144,32 @@ export default function SectionNutrition() {
             <div className="flex items-center justify-between mb-3.5">
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-4 h-4 text-[#1F5C55]" />
-                <h3 className="text-xs sm:text-sm font-bold text-[#12211F]">
+                <h3 className="text-sm font-bold text-[#12211F]">
                   Một số câu hỏi mẫu (Bấm để sao chép vào NotebookLM):
                 </h3>
               </div>
-              <span className="text-[10.5px] text-[#63706D] font-medium hidden sm:inline">Sao chép 1 chạm</span>
+              <span className="text-xs text-[#63706D] font-medium hidden sm:inline">Sao chép 1 chạm</span>
             </div>
 
             <div className="space-y-2">
               {SAMPLE_QUESTIONS.map((question, idx) => (
-                <div
+                <button
+                  type="button"
                   key={idx}
                   onClick={() => handleCopy(question, idx)}
-                  className="group flex items-center justify-between p-3 rounded-xl bg-white border border-[#E8E4DA] hover:border-[#1F5C55] cursor-pointer transition-all shadow-2xs"
+                  className="group w-full text-left flex items-center justify-between gap-3 p-3 min-h-11 rounded-xl bg-white border border-[#E8E4DA] hover:border-[#1F5C55] cursor-pointer transition-all shadow-2xs"
                 >
-                  <span className="text-xs text-[#12211F] leading-relaxed pr-3 font-medium">
+                  <span className="text-sm text-[#12211F] leading-relaxed font-medium">
                     &ldquo;{question}&rdquo;
                   </span>
-                  <button
-                    type="button"
-                    className="shrink-0 p-1.5 rounded-lg bg-[#FAF9F5] group-hover:bg-[#E2EBE8] text-[#63706D] group-hover:text-[#1F5C55] transition-colors"
-                    title="Sao chép câu hỏi"
-                  >
+                  <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-[#63706D] group-hover:text-[#1F5C55]">
                     {copiedIndex === idx ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <><Check className="w-4 h-4 text-emerald-700" aria-hidden="true" /><span>Đã chép</span></>
                     ) : (
-                      <Copy className="w-3.5 h-3.5" />
+                      <><Copy className="w-4 h-4" aria-hidden="true" /><span>Chép</span></>
                     )}
-                  </button>
-                </div>
+                  </span>
+                </button>
               ))}
             </div>
           </div>
@@ -181,7 +178,7 @@ export default function SectionNutrition() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-[#1F5C55] text-white shadow-sm">
             <div>
               <h4 className="font-bold text-sm font-serif">Cần thực đơn cho bữa ăn hôm nay?</h4>
-              <p className="text-xs text-emerald-100 mt-0.5">
+              <p className="text-sm text-emerald-100 mt-0.5">
                 Trò chuyện cùng Trợ lý AI NotebookLM được xây dựng từ dữ liệu của BS. Trung
               </p>
             </div>
@@ -189,7 +186,7 @@ export default function SectionNutrition() {
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#1F5C55] font-bold text-xs hover:bg-[#FAF9F5] transition-colors shrink-0 shadow-2xs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white text-[#1F5C55] font-bold text-sm hover:bg-[#FAF9F5] transition-colors shrink-0 shadow-2xs"
             >
               <span>Mở Trợ lý AI ngay</span>
               <ExternalLink className="w-3.5 h-3.5" />

@@ -40,13 +40,13 @@ export default function ContactFooter() {
               sử dụng thuốc an toàn và chăm sóc sức khỏe ban đầu cho cộng đồng.
             </p>
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => {
                   trackClick('zalo-consult', 'Tư Vấn Zalo 1-1 (Footer)', 'consultation');
                   openZaloModal();
                 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-2 min-h-11 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-sm transition-colors shadow-xs cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Tư vấn 1-1 cùng Bác sĩ (Zalo)</span>
@@ -55,7 +55,7 @@ export default function ContactFooter() {
               <a
                 href="mailto:bsluongdinhtrung@gmail.com"
                 onClick={() => trackClick('mail-doctor', 'Liên Hệ Email Bác Sĩ (Footer)', 'contact')}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/15 transition-colors"
+                className="inline-flex items-center gap-2 min-h-11 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/15 transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#9BC4BA]" />
                 <span>Gửi Email</span>
@@ -68,16 +68,16 @@ export default function ContactFooter() {
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">
               Kênh Tư Vấn & Trao Đổi
             </h4>
-            <div className="space-y-3 text-xs text-[#DDE3E0]">
+            <div className="space-y-3 text-sm text-[#DDE3E0]">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#9BC4BA] shrink-0">
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Zalo tư vấn trực tiếp:</span>
+                  <span className="text-xs text-[#9BC4BA] block uppercase font-bold">Zalo tư vấn trực tiếp:</span>
                   <button
                     onClick={openZaloModal}
-                    className="text-white hover:text-[#9BC4BA] transition-colors font-bold text-sm text-left cursor-pointer"
+                    className="min-h-11 text-white hover:text-[#9BC4BA] transition-colors font-bold text-sm text-left cursor-pointer"
                   >
                     Bấm để kết nối Zalo với BS. Trung →
                   </button>
@@ -89,7 +89,7 @@ export default function ContactFooter() {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Email chính thức:</span>
+                  <span className="text-xs text-[#9BC4BA] block uppercase font-bold">Email chính thức:</span>
                   <a href="mailto:bsluongdinhtrung@gmail.com" className="text-white hover:text-[#9BC4BA] transition-colors font-medium">
                     bsluongdinhtrung@gmail.com
                   </a>
@@ -101,7 +101,7 @@ export default function ContactFooter() {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#9BC4BA] block uppercase font-bold">Địa bàn:</span>
+                  <span className="text-xs text-[#9BC4BA] block uppercase font-bold">Địa bàn:</span>
                   <span className="text-white">Hà Nội, Việt Nam</span>
                 </div>
               </div>
@@ -113,19 +113,19 @@ export default function ContactFooter() {
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">
               Chuyên Mục Sức Khỏe
             </h4>
-            <ul className="space-y-2 text-xs text-[#9BC4BA]">
-              <li><a href="#dinh-duong" className="hover:text-white transition-colors">🌟 Sổ tay Dinh dưỡng & Thực đơn</a></li>
-              <li><a href="#noi-khoa" className="hover:text-white transition-colors">🩺 Sổ tay Lâm sàng Nội khoa</a></li>
-              <li><a href="#thuoc" className="hover:text-white transition-colors">💊 Hướng dẫn Dùng thuốc An toàn</a></li>
-              <li><a href="#tinh-toan" className="hover:text-white transition-colors">🧮 Tính nhanh Chỉ số Sức khỏe</a></li>
-              <li><a href="#nhi-khoa" className="hover:text-white transition-colors">👶 Sổ tay Chăm sóc Bé</a></li>
+            <ul className="space-y-1 text-sm text-[#C9DCD6]">
+              <li><a href="#dinh-duong" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Sổ tay Dinh dưỡng & Thực đơn</a></li>
+              <li><a href="#noi-khoa" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Sổ tay Lâm sàng Nội khoa</a></li>
+              <li><a href="#thuoc" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Hướng dẫn Dùng thuốc An toàn</a></li>
+              <li><a href="#tinh-toan" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Tính nhanh Chỉ số Sức khỏe</a></li>
+              <li><a href="#nhi-khoa" className="inline-flex items-center min-h-11 hover:text-white transition-colors">Sổ tay Chăm sóc Bé</a></li>
             </ul>
           </div>
 
         </div>
 
         {/* Medical Disclaimer */}
-        <div className="py-6 border-b border-white/10 text-[11px] text-[#9BC4BA]/80 flex items-start gap-3">
+        <div className="py-6 border-b border-white/10 text-sm text-[#C9DCD6] flex items-start gap-3">
           <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
             <strong>Lưu ý y khoa:</strong> Các thông tin, công thức và gợi ý thực đơn trên website được xây dựng nhằm mục đích cung cấp kiến thức chăm sóc sức khỏe khoa học và tham khảo chuyên môn. Trong các trường hợp bệnh lý cấp tính hoặc khi có triệu chứng bất thường, người bệnh cần đến cơ sở y tế để được bác sĩ thăm khám và chỉ định điều trị trực tiếp.
@@ -140,7 +140,7 @@ export default function ContactFooter() {
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white transition-colors"
+            className="flex items-center gap-1.5 min-h-11 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-white transition-colors"
           >
             <span>Về đầu trang</span>
             <ArrowUp className="w-3.5 h-3.5" />

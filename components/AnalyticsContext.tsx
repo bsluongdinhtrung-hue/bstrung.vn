@@ -7,12 +7,17 @@ export interface AnalyticsContextType {
   counters: Record<string, number>;
   incrementCounter: (targetId: string, targetLabel: string, category?: string) => void;
   getDisplayCount: (targetId: string, fallback: number) => string;
+  isCountPublic: (targetId: string) => boolean;
 }
+
+// Dưới ngưỡng này bộ đếm bị ẩn: số quá nhỏ làm trang trông vắng người dùng.
+const MIN_PUBLIC_COUNT = 50;
 
 const AnalyticsContext = createContext<AnalyticsContextType>({
   counters: {},
   incrementCounter: () => {},
   getDisplayCount: (_id, fallback) => `${fallback.toLocaleString('vi-VN')}`,
+  isCountPublic: () => false,
 });
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
@@ -49,8 +54,10 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     return `${val.toLocaleString('vi-VN')}`;
   };
 
+  const isCountPublic = (targetId: string): boolean => (counters[targetId] ?? 0) >= MIN_PUBLIC_COUNT;
+
   return (
-    <AnalyticsContext.Provider value={{ counters, incrementCounter, getDisplayCount }}>
+    <AnalyticsContext.Provider value={{ counters, incrementCounter, getDisplayCount, isCountPublic }}>
       {children}
     </AnalyticsContext.Provider>
   );

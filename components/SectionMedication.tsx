@@ -6,7 +6,7 @@ import { Pill, ExternalLink, ShieldAlert, CheckCircle2, ArrowRight, Clock, Alert
 import { useAnalytics } from './AnalyticsContext';
 
 export default function SectionMedication() {
-  const { incrementCounter, getDisplayCount } = useAnalytics();
+  const { incrementCounter, getDisplayCount, isCountPublic } = useAnalytics();
   const CONSULT_URL = 'https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618';
 
   return (
@@ -15,19 +15,19 @@ export default function SectionMedication() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#E8E4DA] gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap mb-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2EBE8] border border-[#BDD3CC] text-[#1F5C55] text-sm font-bold">
               <Pill className="w-3.5 h-3.5 text-[#1F5C55]" />
               <span>Dược Lý Lâm Sàng • An Toàn Kê Đơn Thuốc</span>
             </div>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
+            {isCountPublic('tuong-tac-thuoc') && (<span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
               <Flame className="w-3 h-3 text-emerald-600" />
               <span>{getDisplayCount('tuong-tac-thuoc', 0)} lượt tra cứu tương tác</span>
-            </span>
+            </span>)}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-[#12211F] tracking-tight">
             Hướng Dẫn Dùng Thuốc An Toàn & Tránh Tương Tác
           </h2>
-          <p className="text-[#63706D] text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+          <p className="text-[#63706D] text-sm sm:text-base mt-1 max-w-2xl leading-relaxed">
             Bạn đang dùng nhiều loại thuốc cùng lúc? Thuốc nào nên uống trước bữa ăn, thuốc nào cần uống sau ăn? 
             Tra cứu nhanh để đảm bảo hiệu quả điều trị tối ưu và phòng ngừa các tương tác bất lợi.
           </p>
@@ -38,9 +38,9 @@ export default function SectionMedication() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0"
+          className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] border border-[#CBD5CF] font-bold text-sm transition-colors shrink-0"
         >
-          <Sparkles className="w-4 h-4 text-emerald-200" />
+          <Sparkles className="w-4 h-4" aria-hidden="true" />
           <span>Hỏi AI kiểm tra đơn thuốc</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
@@ -62,7 +62,7 @@ export default function SectionMedication() {
               <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#1F5C55] text-white mb-1 inline-block">
                 Dược học an toàn
               </span>
-              <p className="text-xs text-slate-200">
+              <p className="text-sm text-slate-100">
                 Biên soạn bởi BSCKI. Lương Đình Trung
               </p>
             </div>
@@ -73,41 +73,41 @@ export default function SectionMedication() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             
             <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA]">
-              <div className="flex items-center gap-2 font-bold text-[#12211F] text-xs sm:text-sm mb-1.5">
+              <div className="flex items-center gap-2 font-bold text-[#12211F] text-sm sm:text-base mb-1.5">
                 <ShieldAlert className="w-4 h-4 text-amber-600" />
                 <span>Cảnh Báo Tương Tác Giữa Các Thuốc</span>
               </div>
-              <p className="text-[11.5px] text-[#63706D] leading-relaxed">
+              <p className="text-sm text-[#63706D] leading-relaxed">
                 Nhận biết ngay những cặp thuốc không nên uống cùng lúc để tránh giảm tác dụng điều trị hoặc gia tăng độc tính.
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA]">
-              <div className="flex items-center gap-2 font-bold text-[#12211F] text-xs sm:text-sm mb-1.5">
+              <div className="flex items-center gap-2 font-bold text-[#12211F] text-sm sm:text-base mb-1.5">
                 <Clock className="w-4 h-4 text-[#1F5C55]" />
                 <span>Thời Điểm Uống Thuốc Chuẩn</span>
               </div>
-              <p className="text-[11.5px] text-[#63706D] leading-relaxed">
+              <p className="text-sm text-[#63706D] leading-relaxed">
                 Hướng dẫn cụ thể thuốc uống lúc đói, thuốc uống ngay sau ăn no và khoảng cách giãn cữ giữa các lần uống.
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA]">
-              <div className="flex items-center gap-2 font-bold text-[#12211F] text-xs sm:text-sm mb-1.5">
+              <div className="flex items-center gap-2 font-bold text-[#12211F] text-sm sm:text-base mb-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>Lưu Ý Người Cao Tuổi & Bệnh Thận</span>
               </div>
-              <p className="text-[11.5px] text-[#63706D] leading-relaxed">
+              <p className="text-sm text-[#63706D] leading-relaxed">
                 Hiệu chỉnh liều theo mức lọc cầu thận (eGFR) nhằm bảo vệ chức năng gan thận khi điều trị dài ngày.
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA]">
-              <div className="flex items-center gap-2 font-bold text-[#12211F] text-xs sm:text-sm mb-1.5">
+              <div className="flex items-center gap-2 font-bold text-[#12211F] text-sm sm:text-base mb-1.5">
                 <AlertTriangle className="w-4 h-4 text-rose-600" />
                 <span>Tương Tác Với Thức Ăn, Nước Uống</span>
               </div>
-              <p className="text-[11.5px] text-[#63706D] leading-relaxed">
+              <p className="text-sm text-[#63706D] leading-relaxed">
                 Các loại thực phẩm quen thuộc (sữa, chè, bưởi chùm, rượu bia...) cần tránh dùng kèm khi đang uống thuốc.
               </p>
             </div>
@@ -115,14 +115,14 @@ export default function SectionMedication() {
           </div>
 
           <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#E8E4DA] flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs text-[#3D4745] font-semibold text-center sm:text-left">
+            <span className="text-sm text-[#3D4745] font-semibold text-center sm:text-left">
               Bạn muốn đối chiếu và kiểm tra độ an toàn của đơn thuốc mình đang dùng?
             </span>
             <a
               href={CONSULT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs transition-colors shrink-0 shadow-2xs"
+              className="inline-flex items-center gap-1.5 min-h-11 px-4 py-2 rounded-xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-sm transition-colors shrink-0 shadow-2xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
               <span>Hỏi Trợ lý AI kiểm tra ngay</span>

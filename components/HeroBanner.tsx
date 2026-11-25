@@ -1,304 +1,111 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import {
   Stethoscope,
   ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
   Sparkles,
   MessageCircle,
   Pill,
   Apple,
-  Cpu,
-  Layers,
-  FlaskConical,
   Gauge,
-  ExternalLink,
+  Baby,
+  ChevronRight,
+  BookOpenCheck,
+  Clock,
+  UserRound,
 } from 'lucide-react';
 import { useZaloConsult } from './ZaloConsultContext';
 import { useAnalytics } from './AnalyticsContext';
 
+const TOPICS = [
+  { href: '#noi-khoa', title: 'Nội khoa & cấp cứu', note: 'Phác đồ, xét nghiệm, thang điểm', icon: Stethoscope },
+  { href: '#dinh-duong', title: 'Dinh dưỡng & thực đơn', note: 'Đái tháo đường, mỡ máu, gout, mẹ bầu', icon: Apple },
+  { href: '#thuoc', title: 'Thuốc & tương tác', note: 'Uống lúc nào, thuốc nào không đi cùng nhau', icon: Pill },
+  { href: '#tinh-toan', title: 'Tính BMI & chức năng thận', note: 'Nhập số đo, có kết quả ngay', icon: Gauge },
+  { href: '#nhi-khoa', title: 'Chăm sóc bé ốm', note: 'Liều hạ sốt theo cân nặng, dấu hiệu đi viện', icon: Baby },
+];
+
+const FACTS = [
+  { icon: BookOpenCheck, text: 'Nội dung biên soạn theo phác đồ Bộ Y tế' },
+  { icon: Clock, text: 'Trợ lý AI trả lời 24/7, không mất phí' },
+  { icon: UserRound, text: 'Tư vấn 1-1: bác sĩ xem bệnh án, trả lời qua Zalo' },
+];
+
 export default function HeroBanner() {
   const { openZaloModal } = useZaloConsult();
-  const { incrementCounter, getDisplayCount } = useAnalytics();
-  const [greeting, setGreeting] = useState('Chào bạn!');
-  const [formattedDate, setFormattedDate] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
-
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date();
-      const hour = now.getHours();
-      if (hour < 12) {
-        setGreeting('Chào buổi sáng');
-      } else if (hour < 18) {
-        setGreeting('Chào buổi chiều');
-      } else {
-        setGreeting('Chào buổi tối');
-      }
-
-      const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
-      const dayName = days[now.getDay()];
-      const day = String(now.getDate()).padStart(2, '0');
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const year = now.getFullYear();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-
-      setFormattedDate(`${dayName}, ngày ${day}/${month}/${year}`);
-      setCurrentTime(`${hours}:${minutes}`);
-    };
-
-    updateDateTime();
-    const timer = setInterval(updateDateTime, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const { incrementCounter } = useAnalytics();
 
   return (
-    <section className="relative pt-6 pb-10 md:pt-10 md:pb-14 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-8">
-        
-        {/* Top Greeting Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#E8E4DA] pb-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-[#12211F] tracking-tight">
-              Cổng Y Khoa & Sổ Tay Lâm Sàng
-            </h1>
-            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#63706D] mt-1.5 font-medium">
-              <span>{greeting}</span>
-              <span>•</span>
-              <span>{formattedDate}</span>
-              {currentTime && (
-                <>
-                  <span>•</span>
-                  <span className="font-mono font-bold text-[#1F5C55] bg-[#E2EBE8] px-2 py-0.5 rounded-md border border-[#BDD3CC]">
-                    {currentTime}
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
+    <section className="pt-8 pb-4 md:pt-14 md:pb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E2EBE8] text-[#1F5C55] text-xs font-bold border border-[#BDD3CC]">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>BSCKI. Lương Đình Trung</span>
-            </span>
-          </div>
-        </div>
+        {/* Lời hứa + hai việc chính */}
+        <div className="lg:col-span-7">
+          <h1 className="text-3xl/[1.25] sm:text-4xl/[1.25] md:text-5xl/[1.2] font-bold font-serif text-[#12211F] tracking-tight text-balance">
+            Sổ tay y khoa cho gia đình, do bác sĩ Lương Đình Trung biên soạn
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-[#3D4745] leading-relaxed max-w-2xl">
+            Tra cứu phác đồ nội khoa, tương tác thuốc, dinh dưỡng bệnh lý và cách chăm sóc trẻ ốm cùng Trợ lý AI, miễn phí.
+            Cần ý kiến riêng cho trường hợp của mình thì đặt tư vấn 1-1 với BSCKI. Lương Đình Trung qua Zalo.
+          </p>
 
-        {/* System Health / Readiness Card (Inspired by Reference Image Status Card) */}
-        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E8E4DA] shadow-xs">
-          <div className="flex items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-3.5">
-              <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/80 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <div>
-                <h2 className="text-base sm:text-lg font-bold text-[#12211F]">
-                  Cổng Y Khoa Sẵn Sàng Phục Vụ
-                </h2>
-                <p className="text-xs text-[#63706D] mt-0.5">
-                  Trợ lý AI & Cẩm nang phác đồ trực tuyến 24/7
-                </p>
-              </div>
-            </div>
-
-            <div className="text-right shrink-0">
-              <span className="text-2xl sm:text-3xl font-black font-serif text-emerald-600">
-                100%
-              </span>
-              <span className="block text-[11px] text-[#63706D] font-medium">
-                Sẵn sàng
-              </span>
-            </div>
-          </div>
-
-          {/* Progress Indicator */}
-          <div className="w-full bg-[#F0EBE1] h-2 rounded-full overflow-hidden mb-3">
-            <div className="bg-gradient-to-r from-emerald-500 to-[#1F5C55] h-full w-full rounded-full transition-all duration-500" />
-          </div>
-
-          <div className="flex items-center justify-between text-[11px] text-[#63706D] font-medium">
-            <span>Dữ liệu lâm sàng chuẩn hóa theo Bộ Y tế & Quốc tế</span>
-            <span className="text-emerald-700 font-semibold">Cập nhật trực tuyến</span>
-          </div>
-        </div>
-
-        {/* 4 Core Clinical Tools Bento Cards (2 cols mobile, 4 cols desktop) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          
-          {/* Card 1: Thực Hành Nội Khoa */}
-          <a
-            href="https://notebooklm.google.com/notebook/a9ba76b2-c822-48d0-8fbd-f305a03cad29"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => incrementCounter('noi-khoa-icu', 'Thực Hành Nội Khoa & Cấp Cứu ICU', 'clinical')}
-            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-cyan-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Stethoscope className="w-4 h-4" />
-                </div>
-                <span className="text-[10px] font-semibold text-cyan-800 bg-cyan-50/80 px-2 py-0.5 rounded-md border border-cyan-200/50 flex items-center gap-1">
-                  <span>Tra cứu</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-cyan-800 transition-colors leading-snug">
-                Thực Hành Nội Khoa
-              </h3>
-              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
-                Phác đồ chẩn đoán, Cấp cứu & Hồi sức ICU
-              </p>
-            </div>
-            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-cyan-800 bg-cyan-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('noi-khoa-icu', 0)} lượt xem
-              </span>
-              <span className="opacity-70">BYT chuẩn</span>
-            </div>
-          </a>
-
-          {/* Card 2: Tương Tác Thuốc */}
-          <a
-            href="https://notebooklm.google.com/notebook/5fd2fede-0ef7-4699-b3c6-680c4bc84618"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => incrementCounter('tuong-tac-thuoc', 'Dược Lý & Tương Tác Thuốc Chuẩn BYT', 'clinical')}
-            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-emerald-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Pill className="w-4 h-4" />
-                </div>
-                <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50/80 px-2 py-0.5 rounded-md border border-emerald-200/50 flex items-center gap-1">
-                  <span>Tra cứu</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-emerald-800 transition-colors leading-snug">
-                Tương Tác Thuốc
-              </h3>
-              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
-                Cập nhật chuẩn Dược thư & Bộ Y Tế
-              </p>
-            </div>
-            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-emerald-800 bg-emerald-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('tuong-tac-thuoc', 0)} lượt xem
-              </span>
-              <span className="opacity-70">An toàn đơn</span>
-            </div>
-          </a>
-
-          {/* Card 3: Xét Nghiệm & Trị Số SI */}
-          <a
-            href="https://notebooklm.google.com/notebook/3dbcddca-26c7-477a-a299-c3f482f85277"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => incrementCounter('xet-nghiem-si', 'Xét Nghiệm & Trị Số SI', 'clinical')}
-            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-purple-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <FlaskConical className="w-4 h-4" />
-                </div>
-                <span className="text-[10px] font-semibold text-purple-800 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-200/50 flex items-center gap-1">
-                  <span>Tra cứu</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-purple-800 transition-colors leading-snug">
-                Xét Nghiệm & Trị Số SI
-              </h3>
-              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
-                Biện luận sinh hóa, huyết học & marker
-              </p>
-            </div>
-            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-purple-800 bg-purple-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('xet-nghiem-si', 0)} lượt xem
-              </span>
-              <span className="opacity-70">Trị số SI</span>
-            </div>
-          </a>
-
-          {/* Card 4: Thang Điểm & Tiên Lượng */}
-          <a
-            href="https://notebooklm.google.com/notebook/863d113d-3014-46ae-a171-8253e3a75eee"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => incrementCounter('thang-diem', 'Thang Điểm & Tiên Lượng Lâm Sàng', 'clinical')}
-            className="group bg-white hover:bg-[#FAF9F5] rounded-2xl p-4 border border-[#E8E4DA] hover:border-amber-600/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Gauge className="w-4 h-4" />
-                </div>
-                <span className="text-[10px] font-semibold text-amber-800 bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/50 flex items-center gap-1">
-                  <span>Tra cứu</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#12211F] group-hover:text-amber-800 transition-colors leading-snug">
-                Thang Điểm & Tiên Lượng
-              </h3>
-              <p className="text-[11px] sm:text-xs text-[#63706D] font-normal mt-1 leading-relaxed">
-                HEART, CURB-65, CKD-EPI & phân tầng
-              </p>
-            </div>
-            <div className="mt-3 pt-2 border-t border-[#E8E4DA]/60 flex items-center justify-between text-[10px] text-[#63706D]">
-              <span className="font-semibold text-amber-800 bg-amber-50/70 px-1.5 py-0.5 rounded">
-                🔥 {getDisplayCount('thang-diem', 0)} lượt xem
-              </span>
-              <span className="opacity-70">Đo lường</span>
-            </div>
-          </a>
-
-        </div>
-
-        {/* Action Bar (Clear separation between Free AI Assistant and Direct 1-1 Doctor Consultation) */}
-        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E8E4DA] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <h3 className="text-sm sm:text-base font-bold text-[#12211F]">
-              Bạn cần tra cứu phác đồ hay cần tư vấn bệnh án riêng?
-            </h3>
-            <p className="text-xs text-[#63706D] mt-0.5">
-              Hỏi đáp miễn phí tức thì qua Trợ lý AI hoặc Đặt lịch tư vấn trực tiếp 1-1 cùng BSCKI. Lương Đình Trung
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0 w-full sm:w-auto">
+          <div className="mt-7 flex flex-col sm:flex-row gap-3">
             <a
               href="#tien-ich"
               onClick={() => incrementCounter('ai-assistant-hero', 'Trợ Lý AI NotebookLM (Hero)', 'ai')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
+              className="w-full sm:w-auto min-h-14 inline-flex items-center justify-center gap-2 px-6 rounded-2xl bg-[#1F5C55] hover:bg-[#16443F] text-white font-bold text-base shadow-sm transition-colors"
             >
-              <Sparkles className="w-4 h-4 text-emerald-200" />
-              <span>Tra Cứu Cùng Trợ Lý AI (Miễn Phí)</span>
-              <ArrowRight className="w-4 h-4" />
+              <Sparkles className="w-5 h-5" aria-hidden="true" />
+              <span>Tra cứu miễn phí với Trợ lý AI</span>
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </a>
-
             <button
+              type="button"
               onClick={() => {
                 incrementCounter('zalo-consult', 'Tư Vấn Zalo 1-1 (Hero)', 'consultation');
                 openZaloModal();
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#FAF7F2] hover:bg-[#EFECE5] text-[#1F5C55] font-bold text-xs sm:text-sm border border-[#CBD5CF] transition-all cursor-pointer"
+              className="w-full sm:w-auto min-h-14 inline-flex items-center justify-center gap-2 px-6 rounded-2xl bg-white hover:bg-[#EAF0ED] text-[#1F5C55] font-bold text-base border border-[#CBD5CF] transition-colors cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 text-[#1F5C55]" />
-              <span>Tư Vấn 1-1 Cùng Bác Sĩ (Zalo)</span>
+              <MessageCircle className="w-5 h-5" aria-hidden="true" />
+              <span>Đặt tư vấn 1-1 qua Zalo · 299.000đ</span>
             </button>
           </div>
+
+          <ul className="mt-7 grid gap-2.5 text-sm text-[#3D4745]">
+            {FACTS.map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-center gap-2.5">
+                <Icon className="w-4 h-4 text-[#1F5C55] shrink-0" aria-hidden="true" />
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
+        {/* Mục lục chuyên mục: đi thẳng tới phần cần đọc */}
+        <nav aria-label="Chuyên mục" className="lg:col-span-5 bg-white rounded-3xl border border-[#E8E4DA] p-2 sm:p-3">
+          <p className="px-3 pt-2 pb-1 text-sm font-bold text-[#12211F]">Bạn đang cần tra cứu gì?</p>
+          <ul>
+            {TOPICS.map(({ href, title, note, icon: Icon }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  className="group flex items-center gap-3 rounded-2xl px-3 py-3 min-h-14 hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <span className="w-10 h-10 rounded-xl bg-[#E2EBE8] text-[#1F5C55] flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="block text-base font-bold text-[#12211F] group-hover:text-[#1F5C55]">{title}</span>
+                    <span className="block text-sm text-[#63706D]">{note}</span>
+                  </span>
+                  <ChevronRight className="w-5 h-5 text-[#63706D] group-hover:text-[#1F5C55] shrink-0" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   );
